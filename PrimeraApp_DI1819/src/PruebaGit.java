@@ -9,5 +9,5 @@
  * @author Ainhoa
  */
 public class PruebaGit {
-    int num;
+    int num = 0;
 }
