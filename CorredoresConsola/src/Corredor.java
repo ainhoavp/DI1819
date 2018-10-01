@@ -8,16 +8,15 @@
  *
  * @author Ainhoa
  */
-import java.io.Serializable;
-import java.util.Objects;
+import java.util.Date;
 
-public class Corredor implements Serializable {
+public class Corredor implements Comparable<Corredor>{
 
     private String nombre, apellido, direccion, dni;
-    private String fechaNac;
-    private int telefono;
+    private Date fNac, actual;
+    private int telefono, edad;
 
-    public Corredor(String nombre, String apellido, String direccion, String dni, String fechaNac, int telefono) {
+    public Corredor(String nombre, String apellido, String direccion, String dni, Date fechaNac, int telefono) {
         if (dni == null) {
             throw new IllegalArgumentException("El dni no puede estar vacío."); //no permite crear corredores sin dni para que no falle luego a la hora de compara.
         }
@@ -25,8 +24,9 @@ public class Corredor implements Serializable {
         this.apellido = apellido;
         this.direccion = direccion;
         this.dni = dni;
-        this.fechaNac = fechaNac;
+        this.fNac = fechaNac;
         this.telefono = telefono;
+        
     }
 
     public Corredor(String dni) {
@@ -61,12 +61,20 @@ public class Corredor implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getFechaNac() {
-        return fechaNac;
+    public Date getfNac() {
+        return fNac;
     }
 
-    public void setFechaNac(String fechaNac) {
-        this.fechaNac = fechaNac;
+    public void setfNac(Date fNac) {
+        this.fNac = fNac;
+    }
+
+    public Date getActual() {
+        return actual;
+    }
+
+    public void setActual(Date actual) {
+        this.actual = actual;
     }
 
     public int getTelefono() {
@@ -90,34 +98,12 @@ public class Corredor implements Serializable {
 
     @Override
     public String toString() {
-        return "Persona: " + "Nombre: " + nombre + ", Apellido: " + apellido + '}';
+        return "Corredor; " + "Nombre: " + nombre + ", Apellido: " + apellido + ", Direccion: " + direccion + ", DNI: " + dni + ", Fecha nacimiento " + fNac + ", Telefono: " + telefono + '.';
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        return hash;
+     @Override
+    public int compareTo(Corredor o) {
+        return this.dni.compareTo(o.dni);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Corredor other = (Corredor) obj;
-        if (!Objects.equals(this.dni, other.dni)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
 
 }
