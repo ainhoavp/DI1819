@@ -1,12 +1,14 @@
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultListModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 // programar en un boto añadir para recuperar los datos del formulario, crear una clase corredores y añadirlos a una lista.
 /**
  *
@@ -17,11 +19,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form PantallaPrincipalOK
      */
-    GestionCorredor gc;
+    GestionCorredor gc = new GestionCorredor();
+
     
     public PantallaPrincipal() {
         initComponents();
-
+        
     }
 
     /**
@@ -34,166 +37,51 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelAlta = new javax.swing.JLabel();
-        jLabelNombre = new javax.swing.JLabel();
-        jTextFieldNombre = new javax.swing.JTextField();
-        jLabelApellidos = new javax.swing.JLabel();
-        jTextFieldApellidos = new javax.swing.JTextField();
-        jLabelDireccion = new javax.swing.JLabel();
-        jTextFieldDNI = new javax.swing.JTextField();
-        jLabelDNI = new javax.swing.JLabel();
-        jTextFieldDireccion = new javax.swing.JTextField();
-        jLabelFechaNac = new javax.swing.JLabel();
-        jLabelTel = new javax.swing.JLabel();
-        jTextFieldTel = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jPanel2 = new javax.swing.JPanel();
-        jButtonEnviar = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
+        jButtonDardeAlta = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListCorredores = new javax.swing.JList<>();
+        jLabelTituloPP = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jPanel1.setForeground(new java.awt.Color(60, 63, 65));
-
-        jLabelAlta.setFont(new java.awt.Font("Calibri Light", 3, 36)); // NOI18N
-        jLabelAlta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelAlta.setText("ALTA CORREDOR");
-
-        jLabelNombre.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jLabelNombre.setText("Nombre: ");
-
-        jTextFieldNombre.setName(""); // NOI18N
-        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDardeAlta.setText("ALTA CORREDOR");
+        jButtonDardeAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreActionPerformed(evt);
+                jButtonDardeAltaActionPerformed(evt);
             }
         });
 
-        jLabelApellidos.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jLabelApellidos.setText("Apellidos: ");
+        jScrollPane1.setViewportView(jListCorredores);
 
-        jLabelDireccion.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jLabelDireccion.setText("Dirección: ");
-
-        jLabelDNI.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jLabelDNI.setText("DNI: ");
-
-        jLabelFechaNac.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jLabelFechaNac.setText("Fecha nac.: ");
-
-        jLabelTel.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jLabelTel.setText("Teléfono: ");
-
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
-
-        jButtonEnviar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jButtonEnviar.setText("ENVIAR");
-        jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEnviarActionPerformed(evt);
-            }
-        });
-
-        jButtonLimpiar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jButtonLimpiar.setText("LIMPIAR");
-        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(jButtonLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonEnviar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
+        jLabelTituloPP.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabelTituloPP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTituloPP.setText("LISTADO CORREDORES");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelAlta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelFechaNac)
-                                    .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldTel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jTextFieldDireccion)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelNombre)
-                                        .addComponent(jLabelDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(47, 47, 47)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(103, 103, 103)))
-                .addContainerGap())
+            .addComponent(jLabelTituloPP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(247, 247, 247)
+                        .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabelTituloPP, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,43 +98,31 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void limpiarPantalla(){
-        jTextFieldNombre.setText("");
-        jTextFieldApellidos.setText("");
-        jTextFieldDNI.setText("");
-        jTextFieldDireccion.setText("");
-        jTextFieldTel.setText("");
-    }
-    
-    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNombreActionPerformed
-
-    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-       limpiarPantalla();
-    }//GEN-LAST:event_jButtonLimpiarActionPerformed
-
-    private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-         String nombre = jTextFieldNombre.getText();
-         String apellidos=  jTextFieldApellidos.getText();
-        String dni = jTextFieldDNI.getText();
-        String dir = jTextFieldDireccion.getText();
-        String telf = jTextFieldTel.getText();
-        Date fecha = (Date) jSpinner1.getValue();
-
-        gc = new GestionCorredor();
-        Integer.parseInt(telf);
-        gc.anadirCorredor(nombre, apellidos, dir, dni, fecha,Integer.parseInt(telf));
-        gc.registroCorredores();
+    private void jButtonDardeAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDardeAltaActionPerformed
+        CuestionarioAlta cuestionarioAlta = new CuestionarioAlta(this, true, gc);
+        cuestionarioAlta.setVisible(true);
+        //rellenarListaCorredores();
         
-       limpiarPantalla();
-    }//GEN-LAST:event_jButtonEnviarActionPerformed
+    }//GEN-LAST:event_jButtonDardeAltaActionPerformed
+    
+    public void rellenarListaCorredores() {
+        
+        DefaultListModel dlm = new DefaultListModel();
+        for (Corredor listaCorredore : gc.getListaCorredores()) {
+            dlm.addElement(listaCorredore);
+        }
+         jListCorredores.setModel(dlm);
+        
+        
+        
+        
+    }
 
     /**
      * @param args the command line arguments
@@ -285,22 +161,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonEnviar;
-    private javax.swing.JButton jButtonLimpiar;
-    private javax.swing.JLabel jLabelAlta;
-    private javax.swing.JLabel jLabelApellidos;
-    private javax.swing.JLabel jLabelDNI;
-    private javax.swing.JLabel jLabelDireccion;
-    private javax.swing.JLabel jLabelFechaNac;
-    private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JLabel jLabelTel;
+    private javax.swing.JButton jButtonDardeAlta;
+    private javax.swing.JLabel jLabelTituloPP;
+    private javax.swing.JList<String> jListCorredores;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextFieldApellidos;
-    private javax.swing.JTextField jTextFieldDNI;
-    private javax.swing.JTextField jTextFieldDireccion;
-    private javax.swing.JTextField jTextFieldNombre;
-    private javax.swing.JTextField jTextFieldTel;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    
 }

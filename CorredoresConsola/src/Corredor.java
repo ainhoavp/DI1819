@@ -98,7 +98,7 @@ public class Corredor implements Comparable<Corredor>{
 
     @Override
     public String toString() {
-        return "Corredor; " + "Nombre: " + nombre + ", Apellido: " + apellido + ", Direccion: " + direccion + ", DNI: " + dni + ", Fecha nacimiento " + fNac + ", Telefono: " + telefono + '.';
+        return nombre +" " +apellido+" " + dni;
     }
 
      @Override
