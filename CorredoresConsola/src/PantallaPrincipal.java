@@ -21,10 +21,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     GestionCorredor gc = new GestionCorredor();
 
-    
     public PantallaPrincipal() {
         initComponents();
-        
+        rellenarTablaCorredores();
     }
 
     /**
@@ -38,9 +37,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButtonDardeAlta = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListCorredores = new javax.swing.JList<>();
         jLabelTituloPP = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCorredores = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,11 +50,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jListCorredores);
-
         jLabelTituloPP.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelTituloPP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTituloPP.setText("LISTADO CORREDORES");
+
+        jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableCorredores);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,25 +73,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabelTituloPP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabelTituloPP, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,23 +115,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jButtonDardeAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDardeAltaActionPerformed
         CuestionarioAlta cuestionarioAlta = new CuestionarioAlta(this, true, gc);
         cuestionarioAlta.setVisible(true);
-        //rellenarListaCorredores();
-        
     }//GEN-LAST:event_jButtonDardeAltaActionPerformed
-    
-    public void rellenarListaCorredores() {
-        
+
+    public void rellenarTablaCorredores() {
+        jTableCorredores.setModel(new MiTabla(gc.getListaCorredores()));
+    }
+
+    /*public void rellenarListaCorredores() {
+
         DefaultListModel dlm = new DefaultListModel();
         for (Corredor listaCorredore : gc.getListaCorredores()) {
             dlm.addElement(listaCorredore);
         }
-         jListCorredores.setModel(dlm);
-        
-        
-        
-        
-    }
+        jListCorredores.setModel(dlm);
 
+    }*/
     /**
      * @param args the command line arguments
      */
@@ -163,10 +169,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDardeAlta;
     private javax.swing.JLabel jLabelTituloPP;
-    private javax.swing.JList<String> jListCorredores;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCorredores;
     // End of variables declaration//GEN-END:variables
 
-    
 }

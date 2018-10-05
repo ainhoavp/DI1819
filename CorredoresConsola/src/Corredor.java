@@ -98,8 +98,10 @@ public class Corredor implements Comparable<Corredor>{
 
     @Override
     public String toString() {
-        return nombre +" " +apellido+" " + dni;
+        return "Corredor{" + "nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", dni=" + dni + ", fNac=" + fNac + ", telefono=" + telefono;
     }
+
+   
 
      @Override
     public int compareTo(Corredor o) {

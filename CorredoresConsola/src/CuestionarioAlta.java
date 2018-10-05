@@ -1,5 +1,6 @@
 
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -115,11 +116,11 @@ public class CuestionarioAlta extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(jButtonLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonEnviar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonLimpiar)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,8 +240,14 @@ public class CuestionarioAlta extends javax.swing.JDialog {
         gc.registroCorredores();
 
         PantallaPrincipal pp = (PantallaPrincipal) getParent();  //llama al padre (PantallaPrincipal) que está referenciado en el constructor
-                                                                                           //de esta clase: "java.awt.Frame parent"     
-        pp.rellenarListaCorredores();
+                                                              
+        JOptionPane.showMessageDialog(this, "Corredor dado de alta", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+//de esta clase: "java.awt.Frame parent"     
+        //pp.rellenarListaCorredores();
+        pp.rellenarTablaCorredores();
+        
+        
+        
         pp.setVisible(true);
         limpiarPantalla();
         dispose(); //para cerrar la pantalla secundaria
@@ -248,6 +255,7 @@ public class CuestionarioAlta extends javax.swing.JDialog {
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         limpiarPantalla();
+        JOptionPane.showMessageDialog(this,"No se ha dado de alta ningun corredor", "Limpiando...", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
