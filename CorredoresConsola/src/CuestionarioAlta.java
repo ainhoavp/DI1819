@@ -18,7 +18,7 @@ public class CuestionarioAlta extends javax.swing.JDialog {
      después, asignamos a lal instacia gc de arribla con this la clase que le pasamos como parametro y luego en la clase pantalla principal hay que programar
      el boton que pusimos en el jdialog, crear una instancia del jdialog y hacer setVisible(true) para que se vea la pantalla secundiaria (jdialog).
      */
-    public CuestionarioAlta(java.awt.Frame parent, boolean modal, GestionCorredor gc) {
+    public CuestionarioAlta(java.awt.Dialog parent, boolean modal, GestionCorredor gc) {
         super(parent, modal);
         initComponents();
         this.gc = gc;
@@ -237,18 +237,18 @@ public class CuestionarioAlta extends javax.swing.JDialog {
         Date fecha = (Date) jSpinner1.getValue();
 
         gc.anadirCorredor(nombre, apellidos, dir, dni, fecha, Integer.parseInt(telf));
-        gc.registroCorredores();
+       
 
-        PantallaPrincipal pp = (PantallaPrincipal) getParent();  //llama al padre (PantallaPrincipal) que está referenciado en el constructor
+        
                                                               
         JOptionPane.showMessageDialog(this, "Corredor dado de alta", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 //de esta clase: "java.awt.Frame parent"     
         //pp.rellenarListaCorredores();
-        pp.rellenarTablaCorredores();
+
         
         
         
-        pp.setVisible(true);
+        
         limpiarPantalla();
         dispose(); //para cerrar la pantalla secundaria
     }//GEN-LAST:event_jButtonEnviarActionPerformed

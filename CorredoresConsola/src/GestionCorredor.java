@@ -1,4 +1,10 @@
 
+import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -6,6 +12,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import paqueteLeerDatos.Leer;
 
 /**
@@ -15,7 +23,8 @@ import paqueteLeerDatos.Leer;
 public class GestionCorredor {
 
     private Date fechaNacimiento;
-    private SimpleDateFormat sdf;
+    private SimpleDateFormat sdf   = new SimpleDateFormat("dd/MM/yyyy");
+
     private Corredor corredor;
     ArrayList<Corredor> listaCorredores = new ArrayList();
 
@@ -101,6 +110,7 @@ public class GestionCorredor {
         return cadenaCsv;
     }
 
+    
     public void ordenarLista() {
         Collections.sort(listaCorredores, new Comparator<Corredor>() {
             @Override
@@ -108,6 +118,76 @@ public class GestionCorredor {
                 return c1.getfNac().compareTo(c2.getfNac());
             }
         });
+    }
+    
+    public void escribirCsvCorredores() {
+        String outputFile = "C:\\Users\\aainh\\Desktop\\2DAM\\DI\\DI1819\\CorredoresConsola\\corredores.csv";
+        boolean alreadyExists = new File(outputFile).exists();
+
+        if (alreadyExists) {
+            File ArchivoCorredores = new File(outputFile);
+            ArchivoCorredores.delete();
+        }
+
+        try {
+
+            CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');
+
+            csvOutput.write("Nombre");
+            csvOutput.write("Apellido");
+            csvOutput.write("Dirección");
+            csvOutput.write("Dni");
+            csvOutput.write("Fecha nacimiento");
+            csvOutput.write("Telefono");
+            csvOutput.endRecord();
+
+            for (Corredor corredor : listaCorredores) {
+
+                csvOutput.write(corredor.getNombre());
+                csvOutput.write(corredor.getApellido());
+                csvOutput.write(corredor.getDireccion());
+                csvOutput.write(corredor.getDni());
+                csvOutput.write(corredor.getfNac().toString());
+                csvOutput.write(String.valueOf(corredor.getTelefono()));
+                csvOutput.endRecord();
+            }
+
+            csvOutput.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void leerCsvCorredores() {
+
+        try {
+
+            CsvReader corredores_import = new CsvReader("C:\\Users\\aainh\\Desktop\\2DAM\\DI\\DI1819\\CorredoresConsola\\corredores.csv");
+            corredores_import.readHeaders();
+
+            while (corredores_import.readRecord()) {
+
+                String nombre = corredores_import.get(0);
+                String dni = corredores_import.get(1);
+                String fechaNacimiento = corredores_import.get(2);
+                String direccion = corredores_import.get(3);
+                int telefono = Integer.valueOf(corredores_import.get(4));
+
+                Corredor corredorAux = new Corredor(nombre, direccion, direccion, dni, sdf.parse(fechaNacimiento), telefono);
+
+                listaCorredores.add(corredorAux);
+            }
+
+            corredores_import.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException ex) {
+            Logger.getLogger(GestionCorredor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
