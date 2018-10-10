@@ -1,4 +1,7 @@
+package Vista;
 
+import Controlador.GestionCorredor;
+import Modelo.Corredor;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -12,6 +15,7 @@ public class CuestionarioAlta extends javax.swing.JDialog {
      * Creates new form CuestionarioAlta
      */
     private GestionCorredor gc;
+    private Corredor corredorModificar;
 
     /* Para pasar de una pantalla a otra SOLO PUEDE HABER UN MAIN en la app, borramos el main del jdialog para que no de problemas.
      En este constructor se pasa como parametro la gestion corredor para no tener que volver a instanciar NUNCA MÁS a lo largo de la aplicación
@@ -20,8 +24,22 @@ public class CuestionarioAlta extends javax.swing.JDialog {
      */
     public CuestionarioAlta(java.awt.Dialog parent, boolean modal, GestionCorredor gc) {
         super(parent, modal);
-        initComponents();
         this.gc = gc;
+        initComponents();
+
+    }
+
+    public CuestionarioAlta(java.awt.Dialog parent, boolean modal, Corredor corredorModificar) {
+        super(parent, modal);
+        this.corredorModificar = corredorModificar;
+        initComponents();
+        jTextFieldNombre.setText(this.corredorModificar.getNombre());
+        jTextFieldApellidos.setText(this.corredorModificar.getApellido());
+        jTextFieldDNI.setText(this.corredorModificar.getDni());
+        jTextFieldDireccion.setText(this.corredorModificar.getDireccion());
+        jTextFieldTel.setText(Integer.toString(this.corredorModificar.getTelefono()));
+        jSpinner1.setValue(this.corredorModificar.getfNac());
+
     }
 
     private void limpiarPantalla() {
@@ -229,6 +247,7 @@ public class CuestionarioAlta extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
+        
         String nombre = jTextFieldNombre.getText();
         String apellidos = jTextFieldApellidos.getText();
         String dni = jTextFieldDNI.getText();
@@ -236,26 +255,29 @@ public class CuestionarioAlta extends javax.swing.JDialog {
         String telf = jTextFieldTel.getText();
         Date fecha = (Date) jSpinner1.getValue();
 
-        gc.anadirCorredor(nombre, apellidos, dir, dni, fecha, Integer.parseInt(telf));
-       
+        if (corredorModificar==null) {
+            gc.anadirCorredor(nombre, apellidos, dir, dni, fecha, Integer.parseInt(telf));
+            JOptionPane.showMessageDialog(this, "Corredor dado de alta", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            corredorModificar.setNombre(nombre);
+            corredorModificar.setApellido(apellidos);
+            corredorModificar.setDni(dni);
+            corredorModificar.setDireccion(dir);
+            corredorModificar.setTelefono(Integer.parseInt(telf));
+            corredorModificar.setfNac(fecha);
+        }
 
         
-                                                              
-        JOptionPane.showMessageDialog(this, "Corredor dado de alta", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 //de esta clase: "java.awt.Frame parent"     
         //pp.rellenarListaCorredores();
 
-        
-        
-        
-        
         limpiarPantalla();
         dispose(); //para cerrar la pantalla secundaria
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         limpiarPantalla();
-        JOptionPane.showMessageDialog(this,"No se ha dado de alta ningun corredor", "Limpiando...", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "No se ha dado de alta ningun corredor", "Limpiando...", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

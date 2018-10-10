@@ -1,3 +1,10 @@
+package Vista;
+
+
+import Controlador.GestionCorredor;
+import Modelo.Corredor;
+import Modelo.MiTabla;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,6 +43,7 @@ public class ListadoCorredores extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jButtonDardeAlta = new javax.swing.JButton();
         jButtonGuardarCorredores = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,6 +78,13 @@ public class ListadoCorredores extends javax.swing.JDialog {
             }
         });
 
+        jButtonModificar.setText("MODIFICAR");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -79,9 +94,11 @@ public class ListadoCorredores extends javax.swing.JDialog {
                 .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonGuardarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonGuardarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(72, 72, 72))
         );
@@ -94,8 +111,9 @@ public class ListadoCorredores extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                    .addComponent(jButtonGuardarCorredores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGuardarCorredores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32))
         );
 
@@ -129,6 +147,20 @@ public class ListadoCorredores extends javax.swing.JDialog {
         gc.escribirCsvCorredores();
     }//GEN-LAST:event_jButtonGuardarCorredoresActionPerformed
 
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+      //tiene que llevar al jdialog de cuestionario de alta, cargar los datos del corredor y cuando le das a enviar
+      //tienen que modificar la persona de la lista
+      int seleccionado = jTableCorredores.getSelectedRow(); //seleccionar con el ratón un int con la posicion del corredor en la lista de corredores.
+      Corredor corredorSeleccionado = gc.getListaCorredores().get(seleccionado);
+      CuestionarioAlta cuestionarioModificar = new CuestionarioAlta(this, true, corredorSeleccionado);  
+      cuestionarioModificar.setLocationRelativeTo(null);
+      cuestionarioModificar.setVisible(true);
+      rellenarTablaCorredores();
+      
+      
+      
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
       public void rellenarTablaCorredores() {
         jTableCorredores.setModel(new MiTabla(gc.getListaCorredores()));
     }
@@ -141,6 +173,7 @@ public class ListadoCorredores extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDardeAlta;
     private javax.swing.JButton jButtonGuardarCorredores;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

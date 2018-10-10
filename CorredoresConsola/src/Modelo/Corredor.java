@@ -1,3 +1,5 @@
+package Modelo;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,7 +16,7 @@ public class Corredor implements Comparable<Corredor>{
 
     private String nombre, apellido, direccion, dni;
     private Date fNac, actual;
-    private int telefono, edad;
+    private int telefono;
 
     public Corredor(String nombre, String apellido, String direccion, String dni, Date fechaNac, int telefono) {
         if (dni == null) {
@@ -84,7 +86,7 @@ public class Corredor implements Comparable<Corredor>{
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-
+    
     public String getDni() {
         return dni;
     }
