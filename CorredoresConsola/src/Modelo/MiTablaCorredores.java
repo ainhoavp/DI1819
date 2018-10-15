@@ -1,7 +1,6 @@
 package Modelo;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -9,12 +8,12 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Ainhoa
  */
-public class MiTabla extends AbstractTableModel {
+public class MiTablaCorredores extends AbstractTableModel {
 
     private final String[] columnas = {"Nombre", "Apellidos", "DNI", "Dirección", "F.nac", "Tel"};
     private final List<Corredor> listaCorredoresTabla;
 
-    public MiTabla(List<Corredor> c) {
+    public MiTablaCorredores(List<Corredor> c) {
         this.listaCorredoresTabla = c;
     }
 

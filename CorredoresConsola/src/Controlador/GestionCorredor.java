@@ -1,6 +1,5 @@
 package Controlador;
 
-
 import Modelo.Corredor;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
@@ -18,7 +17,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Ainhoa
@@ -26,7 +24,7 @@ import java.util.logging.Logger;
 public class GestionCorredor {
 
     private Date fechaNacimiento;
-    private SimpleDateFormat sdf   = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     private Corredor corredor;
     ArrayList<Corredor> listaCorredores = new ArrayList();
@@ -39,7 +37,7 @@ public class GestionCorredor {
         this.listaCorredores = listaCorredores;
     }
 
-        public void anadirCorredor(String nombC, String apel, String dir, String dni, Date fecha, int tel) {
+    public void anadirCorredor(String nombC, String apel, String dir, String dni, Date fecha, int tel) {
         Corredor c = new Corredor(nombC, apel, dir, dni, fecha, tel);
         listaCorredores.add(c);
 
@@ -113,7 +111,6 @@ public class GestionCorredor {
         return cadenaCsv;
     }
 
-    
     public void ordenarLista() {
         Collections.sort(listaCorredores, new Comparator<Corredor>() {
             @Override
@@ -122,7 +119,7 @@ public class GestionCorredor {
             }
         });
     }
-    
+
     public void escribirCsvCorredores() {
         String outputFile = "C:\\Users\\aainh\\Desktop\\2DAM\\DI\\DI1819\\CorredoresConsola\\corredores.csv";
         boolean alreadyExists = new File(outputFile).exists();
@@ -150,7 +147,7 @@ public class GestionCorredor {
                 csvOutput.write(corredor.getApellido());
                 csvOutput.write(corredor.getDireccion());
                 csvOutput.write(corredor.getDni());
-                csvOutput.write(corredor.getfNac().toString());
+                csvOutput.write(sdf.format(corredor.getfNac()));
                 csvOutput.write(String.valueOf(corredor.getTelefono()));
                 csvOutput.endRecord();
             }
@@ -161,7 +158,7 @@ public class GestionCorredor {
             e.printStackTrace();
         }
     }
-    
+
     public void leerCsvCorredores() {
 
         try {
@@ -172,12 +169,14 @@ public class GestionCorredor {
             while (corredores_import.readRecord()) {
 
                 String nombre = corredores_import.get(0);
-                String dni = corredores_import.get(1);
-                String fechaNacimiento = corredores_import.get(2);
-                String direccion = corredores_import.get(3);
-                int telefono = Integer.valueOf(corredores_import.get(4));
-
-                Corredor corredorAux = new Corredor(nombre, direccion, direccion, dni, sdf.parse(fechaNacimiento), telefono);
+                String apellidos = corredores_import.get(1);
+                String direccion = corredores_import.get(2);
+                String dni = corredores_import.get(3);
+                String fnac = corredores_import.get(4);
+                int telefono = Integer.parseInt(corredores_import.get(5));
+                //valueOf convierte 
+                
+                Corredor corredorAux = new Corredor(nombre, apellidos, direccion, dni, sdf.parse(fnac), telefono);
 
                 listaCorredores.add(corredorAux);
             }

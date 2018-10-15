@@ -1,5 +1,9 @@
 package Vista;
+
 import Controlador.GestionCorredor;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author Ainhoa
@@ -13,7 +17,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     public PantallaPrincipal() {
         initComponents();
-   
+        
+     /**
+      * Método que le pone un escuchador a la ventana principal y cuando se cierra guarda el csv sin necesitad de darle al botón guardar
+      * this.add... añade a ésta pantalla un listener de la ventana. sobreescribir el método windowClosing y no confundir con windowClosed
+      * */
+      
+     
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                gc.escribirCsvCorredores();
+            }
+});
+
     }
 
     /**
@@ -32,10 +50,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTituloPP.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabelTituloPP.setFont(new java.awt.Font("Dialog", 2, 36)); // NOI18N
         jLabelTituloPP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTituloPP.setText("LISTADO CORREDORES");
+        jLabelTituloPP.setText("Gestión corredores/carreras");
 
+        jButtonCorredores.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jButtonCorredores.setText("Corredores");
         jButtonCorredores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,6 +62,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButtonCarreras.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jButtonCarreras.setText("Carreras");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -50,26 +70,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTituloPP, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jLabelTituloPP, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(jButtonCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(188, 188, 188))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTituloPP, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(112, 112, 112)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -93,11 +113,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCorredoresActionPerformed
-     ListadoCorredores lc = new ListadoCorredores(this, true, gc);
-      lc.setVisible(true);
+        gc.leerCsvCorredores();
+        ListadoCorredores lc = new ListadoCorredores(this, true, gc);
+        lc.setVisible(true);
     }//GEN-LAST:event_jButtonCorredoresActionPerformed
-
-  
 
     //si haces lista en vez de tabla
     /*public void rellenarListaCorredores() {
