@@ -115,4 +115,39 @@ v.	Generar Javadoc.
         return cantidadFicherosCreados;
     }
 
+    /*c.	int cambiarExtensionFicheros(String ruta, extensionAntigua, extensionNueva)
+i
+	
+i.	Si la ruta de origen existe salta una excepción.
+ii.	Retorna el numero de ficheros modificados.
+iii.	Probar el correcto funcionamiento desde un método main().
+iv.	Generar Javadoc.
+*/
+    
+    public static int cambiarExtensionFicheros(File ruta, String extensionAntigua, String extensionNueva) throws Excepciones.LaRutaNoExiste{
+        
+        int contadorFicherosModificados = 0;
+        if(!ruta.exists())
+           throw new Excepciones.LaRutaNoExiste("La ruta no existe");
+        
+        File[] listaFicherosRuta = ruta.listFiles();
+            
+        for (File file : listaFicherosRuta) {
+            if(file.getName().endsWith(extensionAntigua)){
+            String [] trozos = file.getName().split(".");
+            String nombreNuevo = trozos[0]+extensionNueva;
+            file.renameTo(new File(nombreNuevo));
+            contadorFicherosModificados++;
+        }
+        }
+        
+        
+        return contadorFicherosModificados;
+        
+    }
+    
+    
+    
+    
+    
 }
