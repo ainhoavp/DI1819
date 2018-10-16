@@ -7,12 +7,15 @@ package Vista;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Ainhoa
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
+
+    File file = null;
 
     /**
      * Creates new form PantallaPrincipal
@@ -105,7 +108,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jButtonSelectUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectUActionPerformed
         JFileChooser jc = new JFileChooser();
-        File file = null;
         jc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int seleccion = jc.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
@@ -120,7 +122,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSelectUActionPerformed
 
     private void jButtonDeleteEmplyDirectoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteEmplyDirectoryActionPerformed
-        // TODO add your handling code here:
+        int contadorDirectoriosBorrados = 0;
+        int resultado = JOptionPane.showConfirmDialog(this, "¿Desea borrar los directorios vacíos de esta ruta?", "Borrar directorios", JOptionPane.YES_NO_OPTION);
+        if (resultado == JOptionPane.YES_OPTION) {
+            File[] arrayFiles = file.listFiles();
+            for (File arrayFile : arrayFiles) {
+                if (arrayFile.isDirectory()) {
+                    String[] directoriosDentroDirectorio = arrayFile.list();
+                    if (directoriosDentroDirectorio.length == 0) {
+                        arrayFile.delete();
+                        contadorDirectoriosBorrados++;
+                    }
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Se han borrado " + contadorDirectoriosBorrados + " directorios vacíos.");
     }//GEN-LAST:event_jButtonDeleteEmplyDirectoryActionPerformed
 
     /**
