@@ -57,33 +57,44 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonShowFreeSpace.setText("Mostrar espacio libre");
+        jButtonShowFreeSpace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonShowFreeSpaceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabelSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonSelectU, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
-                .addGap(53, 53, 53)
-                .addComponent(jButtonDeleteEmplyDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonDeleteEmplyDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(311, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(jLabelSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                    .addComponent(jButtonSelectU, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                    .addComponent(jButtonDeleteEmplyDirectory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(jLabelSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(jButtonDeleteEmplyDirectory)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonShowFreeSpace)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,6 +118,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSelectUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectUActionPerformed
+         //meter dentro de un metodo y que el jbutton llame al metodo.
         JFileChooser jc = new JFileChooser();
         jc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int seleccion = jc.showOpenDialog(this);
@@ -122,6 +134,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSelectUActionPerformed
 
     private void jButtonDeleteEmplyDirectoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteEmplyDirectoryActionPerformed
+          //meter dentro de un metodo y que el jbutton llame al metodo.
         int contadorDirectoriosBorrados = 0;
         int resultado = JOptionPane.showConfirmDialog(this, "¿Desea borrar los directorios vacíos de esta ruta?", "Borrar directorios", JOptionPane.YES_NO_OPTION);
         if (resultado == JOptionPane.YES_OPTION) {
@@ -138,6 +151,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "Se han borrado " + contadorDirectoriosBorrados + " directorios vacíos.");
     }//GEN-LAST:event_jButtonDeleteEmplyDirectoryActionPerformed
+
+    private void jButtonShowFreeSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowFreeSpaceActionPerformed
+       //meter dentro de un metodo y que el jbutton llame al metodo.
+        File fileAbsoluta = file.getAbsoluteFile();
+       long total = fileAbsoluta.getTotalSpace();
+       long libre = fileAbsoluta.getFreeSpace();
+       EspacioLibre el = new EspacioLibre(this, true);
+       el.setVisible(true);
+       
+        System.out.println("Kilobytes:");
+        System.out.printf("Espacio total en disco: %s kB\n", total / 1024);
+        System.out.printf("Espacio libre en disco: %s kB\n\n", libre / 1024);
+         
+        System.out.println("Megabytes:");
+        System.out.printf("Espacio total en disco: %s MB\n",
+            total / 1024 / 1024);
+        System.out.printf("Espacio libre en disco: %s MB\n",
+            libre / 1024 / 1024);
+        
+    }//GEN-LAST:event_jButtonShowFreeSpaceActionPerformed
 
     /**
      * @param args the command line arguments
