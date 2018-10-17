@@ -17,20 +17,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     public PantallaPrincipal() {
         initComponents();
-        
-     /**
-      * Método que le pone un escuchador a la ventana principal y cuando se cierra guarda el csv sin necesitad de darle al botón guardar
-      * this.add... añade a ésta pantalla un listener de la ventana. sobreescribir el método windowClosing y no confundir con windowClosed
-      * */
-      
-     
-        
+
+        /**
+         * Método que le pone un escuchador a la ventana principal y cuando se
+         * cierra guarda el csv sin necesitad de darle al botón guardar
+         * this.add... añade a ésta pantalla un listener de la ventana.
+         * sobreescribir el método windowClosing y no confundir con windowClosed
+      *
+         */
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 gc.escribirCsvCorredores();
             }
-});
+        });
 
     }
 
@@ -64,6 +64,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jButtonCarreras.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jButtonCarreras.setText("Carreras");
+        jButtonCarreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCarrerasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,6 +122,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ListadoCorredores lc = new ListadoCorredores(this, true, gc);
         lc.setVisible(true);
     }//GEN-LAST:event_jButtonCorredoresActionPerformed
+
+    private void jButtonCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarrerasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCarrerasActionPerformed
 
     //si haces lista en vez de tabla
     /*public void rellenarListaCorredores() {
