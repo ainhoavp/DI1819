@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
+import Controlador.Gestion;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -15,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
-    File file = null;
+    Gestion gestion = new Gestion();
 
     /**
      * Creates new form PantallaPrincipal
@@ -39,6 +35,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jButtonDeleteEmplyDirectory = new javax.swing.JButton();
         jButtonShowFreeSpace = new javax.swing.JButton();
         jLabelSelect = new javax.swing.JLabel();
+        jButtonDeleteRecycle = new javax.swing.JButton();
+        jButtonDeleteBrowsingHistory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,10 +54,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonShowFreeSpace.setText("Mostrar espacio libre");
+        jButtonShowFreeSpace.setText("<html><center>Mostrar espacio libre <br> en disco</center</html>");
         jButtonShowFreeSpace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonShowFreeSpaceActionPerformed(evt);
+            }
+        });
+
+        jButtonDeleteRecycle.setText("Vaciar la papelera");
+        jButtonDeleteRecycle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteRecycleActionPerformed(evt);
+            }
+        });
+
+        jButtonDeleteBrowsingHistory.setText("Eliminar historial de navegación");
+        jButtonDeleteBrowsingHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteBrowsingHistoryActionPerformed(evt);
             }
         });
 
@@ -67,34 +79,38 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonDeleteEmplyDirectory, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(311, Short.MAX_VALUE))
+            .addComponent(jLabelSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonDeleteEmplyDirectory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonDeleteRecycle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonDeleteBrowsingHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(jLabelSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonDeleteEmplyDirectory)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonShowFreeSpace)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(jButtonDeleteRecycle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDeleteBrowsingHistory)
+                        .addGap(29, 29, 29))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,59 +134,56 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSelectUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectUActionPerformed
-         //meter dentro de un metodo y que el jbutton llame al metodo.
-        JFileChooser jc = new JFileChooser();
-        jc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int seleccion = jc.showOpenDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            file = jc.getSelectedFile();
+        int resultado = gestion.selectUnity(this);
+        if (resultado == 0) {
+            jLabelSelect.setText("Has seleccionado la ruta: " + gestion.getFile().getAbsolutePath());
         } else {
-            System.out.println("No se ha seleccionado ningun directorio.");
+            jLabelSelect.setText("No se ha seleccionado ningun directorio");
         }
-
-        jLabelSelect.setText("Has seleccionado la ruta: " + file.getAbsolutePath());
-
 
     }//GEN-LAST:event_jButtonSelectUActionPerformed
 
     private void jButtonDeleteEmplyDirectoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteEmplyDirectoryActionPerformed
-          //meter dentro de un metodo y que el jbutton llame al metodo.
-        int contadorDirectoriosBorrados = 0;
         int resultado = JOptionPane.showConfirmDialog(this, "¿Desea borrar los directorios vacíos de esta ruta?", "Borrar directorios", JOptionPane.YES_NO_OPTION);
-        if (resultado == JOptionPane.YES_OPTION) {
-            File[] arrayFiles = file.listFiles();
-            for (File arrayFile : arrayFiles) {
-                if (arrayFile.isDirectory()) {
-                    String[] directoriosDentroDirectorio = arrayFile.list();
-                    if (directoriosDentroDirectorio.length == 0) {
-                        arrayFile.delete();
-                        contadorDirectoriosBorrados++;
-                    }
-                }
-            }
-        }
-        JOptionPane.showMessageDialog(this, "Se han borrado " + contadorDirectoriosBorrados + " directorios vacíos.");
+        int directoriosBorrados = gestion.deleteEmptyDirectories(resultado);
+        JOptionPane.showMessageDialog(this, "Se han borrado " + directoriosBorrados + " directorios vacíos.");
     }//GEN-LAST:event_jButtonDeleteEmplyDirectoryActionPerformed
 
     private void jButtonShowFreeSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowFreeSpaceActionPerformed
-       //meter dentro de un metodo y que el jbutton llame al metodo.
-        File fileAbsoluta = file.getAbsoluteFile();
-       long total = fileAbsoluta.getTotalSpace();
-       long libre = fileAbsoluta.getFreeSpace();
-       EspacioLibre el = new EspacioLibre(this, true);
-       el.setVisible(true);
-       
-        System.out.println("Kilobytes:");
-        System.out.printf("Espacio total en disco: %s kB\n", total / 1024);
-        System.out.printf("Espacio libre en disco: %s kB\n\n", libre / 1024);
-         
-        System.out.println("Megabytes:");
-        System.out.printf("Espacio total en disco: %s MB\n",
-            total / 1024 / 1024);
-        System.out.printf("Espacio libre en disco: %s MB\n",
-            libre / 1024 / 1024);
-        
+        gestion.checkDiskSpace();
+        JOptionPane.showMessageDialog(this, "Espacio total del disco: " + gestion.getTotal() / 1024 / 1024 / 1024 + "GB" + "\n" + "Espacio libre en disco: " + gestion.getLibre() / 1024 / 1024 / 1024 + "GB");
     }//GEN-LAST:event_jButtonShowFreeSpaceActionPerformed
+
+    private void jButtonDeleteRecycleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteRecycleActionPerformed
+        int resultado = JOptionPane.showConfirmDialog(this, "¿Desea borrar la papelera de reciclaje?", "Borrar papelera", JOptionPane.YES_NO_OPTION);
+        int borrados = 0;
+        if (resultado == JOptionPane.YES_OPTION) {
+            borrados = gestion.emptyTrash();
+        }
+        if (borrados == 0) {
+            JOptionPane.showMessageDialog(this, "No se ha borrado ningun documento de la papelera.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Se han borrado " + borrados + " documentos de la papelera.");
+        }
+
+
+    }//GEN-LAST:event_jButtonDeleteRecycleActionPerformed
+
+    private void jButtonDeleteBrowsingHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteBrowsingHistoryActionPerformed
+        //opera
+        //cargar en memoria todas la rutas del sistema y analizarlas con .getName hasta que encuentre la carpeta que necesito
+        //para borrar el caché
+        //https://docs.oracle.com/javase/tutorial/essential/io/pathOps.html aqui está la info de la clase Path que es la que divide la ruta en "nombres"
+
+        int resultado = gestion.deleteBrowsingHistory();
+        if(resultado>5){
+            JOptionPane.showMessageDialog(this, "Se ha borrado el historial de navegación.");
+        }else{
+            JOptionPane.showMessageDialog(this, "El historial de navegación estaba vacío.");
+        }
+        
+
+    }//GEN-LAST:event_jButtonDeleteBrowsingHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,7 +221,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonDeleteBrowsingHistory;
     private javax.swing.JButton jButtonDeleteEmplyDirectory;
+    private javax.swing.JButton jButtonDeleteRecycle;
     private javax.swing.JButton jButtonSelectU;
     private javax.swing.JButton jButtonShowFreeSpace;
     private javax.swing.JLabel jLabelSelect;

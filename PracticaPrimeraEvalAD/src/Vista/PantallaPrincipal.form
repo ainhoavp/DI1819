@@ -46,42 +46,45 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelSelect" min="-2" pref="275" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="jButtonSelectU" min="-2" pref="181" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButtonDeleteEmplyDirectory" min="-2" pref="196" max="-2" attributes="0"/>
-                              <Component id="jButtonShowFreeSpace" min="-2" pref="196" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+              <Component id="jLabelSelect" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="jButtonSelectU" min="-2" pref="203" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jButtonShowFreeSpace" min="-2" pref="218" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtonDeleteEmplyDirectory" max="32767" attributes="0"/>
+                      <Component id="jButtonDeleteRecycle" max="32767" attributes="0"/>
+                      <Component id="jButtonDeleteBrowsingHistory" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="311" max="32767" attributes="0"/>
+                  <EmptySpace pref="150" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabelSelect" min="-2" pref="73" max="-2" attributes="0"/>
+                  <EmptySpace pref="163" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
-                          <Component id="jLabelSelect" min="-2" pref="73" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonSelectU" min="-2" pref="89" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButtonSelectU" alignment="3" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="jButtonShowFreeSpace" alignment="3" min="-2" pref="110" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="jButtonDeleteEmplyDirectory" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonShowFreeSpace" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonDeleteRecycle" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButtonDeleteBrowsingHistory" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,13 +108,29 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonShowFreeSpace">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mostrar espacio libre"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Mostrar espacio libre &lt;br&gt; en disco&lt;/center&lt;/html&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonShowFreeSpaceActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelSelect">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonDeleteRecycle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Vaciar la papelera"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteRecycleActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonDeleteBrowsingHistory">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar historial de navegaci&#xf3;n"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteBrowsingHistoryActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
