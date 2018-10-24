@@ -1,8 +1,6 @@
 package Vista;
 
 import Controlador.Gestion;
-import java.io.File;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +35,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabelSelect = new javax.swing.JLabel();
         jButtonDeleteRecycle = new javax.swing.JButton();
         jButtonDeleteBrowsingHistory = new javax.swing.JButton();
+        jButtonScanUnity = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,21 +74,31 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButtonScanUnity.setText("Escanera unidad");
+        jButtonScanUnity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScanUnityActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabelSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonDeleteEmplyDirectory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonDeleteRecycle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonDeleteBrowsingHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonScanUnity, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonDeleteEmplyDirectory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonDeleteRecycle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonDeleteBrowsingHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -97,7 +106,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(jButtonScanUnity, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -145,8 +156,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jButtonDeleteEmplyDirectoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteEmplyDirectoryActionPerformed
         int resultado = JOptionPane.showConfirmDialog(this, "¿Desea borrar los directorios vacíos de esta ruta?", "Borrar directorios", JOptionPane.YES_NO_OPTION);
-        int directoriosBorrados = gestion.deleteEmptyDirectories(resultado);
-        JOptionPane.showMessageDialog(this, "Se han borrado " + directoriosBorrados + " directorios vacíos.");
+        int directoriosBorrados = gestion.confirmDeleteEmptyDirectories(resultado);
+        JOptionPane.showMessageDialog(this, "Se han borrado " + gestion.getContadorDirectoriosBorrados() + " directorios vacíos.");
     }//GEN-LAST:event_jButtonDeleteEmplyDirectoryActionPerformed
 
     private void jButtonShowFreeSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowFreeSpaceActionPerformed
@@ -184,6 +195,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_jButtonDeleteBrowsingHistoryActionPerformed
+
+    private void jButtonScanUnityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScanUnityActionPerformed
+       gestion.scanUnity(gestion.getFile());
+       
+    }//GEN-LAST:event_jButtonScanUnityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,6 +240,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDeleteBrowsingHistory;
     private javax.swing.JButton jButtonDeleteEmplyDirectory;
     private javax.swing.JButton jButtonDeleteRecycle;
+    private javax.swing.JButton jButtonScanUnity;
     private javax.swing.JButton jButtonSelectU;
     private javax.swing.JButton jButtonShowFreeSpace;
     private javax.swing.JLabel jLabelSelect;

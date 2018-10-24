@@ -2,6 +2,9 @@ package Controlador;
 
 import java.awt.Component;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -13,6 +16,25 @@ public class Gestion {
     private long total;
     private long libre;
     private File file;
+    int contadorElementosBorrados = 0;
+    File[] arrayFicherosUnidad = null;
+    
+
+    public File[] getArrayFicherosUnidad() {
+        return arrayFicherosUnidad;
+    }
+
+    public void setArrayFicherosUnidad(File[] arrayFicherosUnidad) {
+        this.arrayFicherosUnidad = arrayFicherosUnidad;
+    }
+
+    public int getContadorDirectoriosBorrados() {
+        return contadorElementosBorrados;
+    }
+
+    public void setContadorDirectoriosBorrados(int contadorDirectoriosBorrados) {
+        this.contadorElementosBorrados = contadorDirectoriosBorrados;
+    }
 
     public long getTotal() {
         return total;
@@ -49,24 +71,43 @@ public class Gestion {
         this.libre = fileAbsoluta.getFreeSpace();
     }
 
-    public int deleteEmptyDirectories(int resultado) {
-        int contadorDirectoriosBorrados = 0;
+    public int confirmDeleteEmptyDirectories(int resultado) {
         if (resultado == 0) {
-            File[] arrayFiles = file.listFiles();
-            for (File arrayFile : arrayFiles) {
-                if (arrayFile.isDirectory()) {
-                    String[] directoriosDentroDirectorio = arrayFile.list();
-                    if (directoriosDentroDirectorio.length == 0) {
-                        arrayFile.delete();
-                        contadorDirectoriosBorrados++;
-                    }
+            contadorElementosBorrados = 0;
+            try {
+                deleteEmptyDirectoriesR(file);
+            } catch (IOException ex) {
+                Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return resultado;
+
+    }
+
+    public File[] scanUnity(File fileSelectU) {
+        this.file = fileSelectU;
+        arrayFicherosUnidad = file.listFiles();
+        return arrayFicherosUnidad;
+
+    }
+
+
+
+    public int deleteEmptyDirectoriesR(File fileDelete) throws IOException {
+        File[] arrayFicheros = fileDelete.listFiles();
+        if (arrayFicheros != null) {
+            for (File fichero : arrayFicheros) {
+                if (fichero.isDirectory() && fichero.listFiles().length != 0) {
+                    deleteEmptyDirectoriesR(fichero);
+                }
+                if (fichero.isDirectory() && fichero.listFiles().length == 0) {
+                    fichero.delete();
+                    contadorElementosBorrados++;
+                    //         System.err.println(fichero.getCanonicalPath());
                 }
             }
-        } else {
-            return contadorDirectoriosBorrados;
         }
-        return contadorDirectoriosBorrados;
-
+        return contadorElementosBorrados;
     }
 
     public int selectUnity(Component PantallaPrincipal) {
