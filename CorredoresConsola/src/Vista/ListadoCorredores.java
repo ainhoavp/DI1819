@@ -39,7 +39,7 @@ public class ListadoCorredores extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTituloListadoCorredores = new javax.swing.JLabel();
         jButtonDardeAlta = new javax.swing.JButton();
         jButtonGuardarCorredores = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
@@ -60,9 +60,9 @@ public class ListadoCorredores extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableCorredores);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 2, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LISTADO CORREDORES");
+        jLabelTituloListadoCorredores.setFont(new java.awt.Font("Calibri Light", 3, 36)); // NOI18N
+        jLabelTituloListadoCorredores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTituloListadoCorredores.setText("LISTADO CORREDORES");
 
         jButtonDardeAlta.setText("ALTA CORREDOR");
         jButtonDardeAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -96,26 +96,26 @@ public class ListadoCorredores extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(73, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonGuardarCorredores))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addComponent(jButtonGuardarCorredores)))
                 .addGap(72, 72, 72))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
@@ -175,7 +175,7 @@ public class ListadoCorredores extends javax.swing.JDialog {
         int seleccionado = jTableCorredores.getSelectedRow(); //seleccionar con el ratón un int con la posicion del corredor en la lista de corredores.
         Corredor corredorSeleccionado = gc.getListaCorredores().remove(seleccionado);
         rellenarTablaCorredores();
-        
+
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     public void rellenarTablaCorredores() {
@@ -188,7 +188,7 @@ public class ListadoCorredores extends javax.swing.JDialog {
     private javax.swing.JButton jButtonDardeAlta;
     private javax.swing.JButton jButtonGuardarCorredores;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelTituloListadoCorredores;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCorredores;

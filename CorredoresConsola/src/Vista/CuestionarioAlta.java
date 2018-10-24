@@ -132,6 +132,11 @@ public class CuestionarioAlta extends javax.swing.JDialog {
         jLabelApellidos.setText("Apellidos: ");
 
         jTextFieldApellidos.setName("Apellidos"); // NOI18N
+        jTextFieldApellidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldApellidosActionPerformed(evt);
+            }
+        });
 
         jLabelDireccion.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         jLabelDireccion.setText("Dirección: ");
@@ -233,7 +238,7 @@ public class CuestionarioAlta extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,6 +335,10 @@ public class CuestionarioAlta extends javax.swing.JDialog {
         limpiarPantalla();
         JOptionPane.showMessageDialog(this, "No se ha dado de alta ningun corredor", "Limpiando...", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+    private void jTextFieldApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldApellidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldApellidosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEnviar;

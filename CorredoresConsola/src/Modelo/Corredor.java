@@ -10,9 +10,10 @@ package Modelo;
  *
  * @author Ainhoa
  */
+import java.io.Serializable;
 import java.util.Date;
 
-public class Corredor implements Comparable<Corredor>{
+public class Corredor implements Comparable<Corredor>, Serializable{
 
     private String nombre, apellido, direccion, dni;
     private Date fNac, actual;

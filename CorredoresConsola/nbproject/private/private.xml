@@ -8,13 +8,7 @@
             <file>file:/C:/Users/aainh/Documents/NetBeansProjects/Gestion_corredores/src/GestionCorredor.java</file>
         </group>
         <group name="PSP1819"/>
-        <group name="AD_1Eval">
-            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Vista/PantallaPrincipal.java</file>
-        </group>
-        <group name="DI_1Eval">
-            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Vista/CuestionarioAlta.java</file>
-            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Vista/PantallaPrincipal.java</file>
-            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Vista/ListadoCorredores.java</file>
-        </group>
+        <group name="AD_1Eval"/>
+        <group name="DI_1Eval"/>
     </open-files>
 </project-private>

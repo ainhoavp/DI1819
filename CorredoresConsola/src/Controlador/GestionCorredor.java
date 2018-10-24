@@ -37,6 +37,11 @@ public class GestionCorredor {
         this.listaCorredores = listaCorredores;
     }
 
+    /* constructor */
+    public GestionCorredor() {
+        leerCsvCorredores();
+    }
+
     public void anadirCorredor(String nombC, String apel, String dir, String dni, Date fecha, int tel) {
         Corredor c = new Corredor(nombC, apel, dir, dni, fecha, tel);
         listaCorredores.add(c);
@@ -160,9 +165,7 @@ public class GestionCorredor {
     }
 
     public void leerCsvCorredores() {
-
         try {
-
             CsvReader corredores_import = new CsvReader("C:\\Users\\aainh\\Desktop\\2DAM\\DI\\DI1819\\CorredoresConsola\\corredores.csv");
             corredores_import.readHeaders();
 
@@ -175,7 +178,7 @@ public class GestionCorredor {
                 String fnac = corredores_import.get(4);
                 int telefono = Integer.parseInt(corredores_import.get(5));
                 //valueOf convierte 
-                
+
                 Corredor corredorAux = new Corredor(nombre, apellidos, direccion, dni, sdf.parse(fnac), telefono);
 
                 listaCorredores.add(corredorAux);

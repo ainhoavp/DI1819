@@ -79,10 +79,10 @@
         <Component class="javax.swing.JLabel" name="jLabelTituloPP">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="36" style="2"/>
+              <Font name="Calibri Light" size="36" style="3"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Gesti&#xf3;n corredores/carreras"/>
+            <Property name="text" type="java.lang.String" value="GESTION CORREDORES/CARRERAS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCorredores">

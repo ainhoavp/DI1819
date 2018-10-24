@@ -23,7 +23,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
          * cierra guarda el csv sin necesitad de darle al botón guardar
          * this.add... añade a ésta pantalla un listener de la ventana.
          * sobreescribir el método windowClosing y no confundir con windowClosed
-      *
+         *
          */
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -50,9 +50,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTituloPP.setFont(new java.awt.Font("Dialog", 2, 36)); // NOI18N
+        jLabelTituloPP.setFont(new java.awt.Font("Calibri Light", 3, 36)); // NOI18N
         jLabelTituloPP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTituloPP.setText("Gestión corredores/carreras");
+        jLabelTituloPP.setText("GESTION CORREDORES/CARRERAS");
 
         jButtonCorredores.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jButtonCorredores.setText("Corredores");
@@ -118,7 +118,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCorredoresActionPerformed
-        gc.leerCsvCorredores();
         ListadoCorredores lc = new ListadoCorredores(this, true, gc);
         lc.setVisible(true);
     }//GEN-LAST:event_jButtonCorredoresActionPerformed
