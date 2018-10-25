@@ -18,7 +18,6 @@ public class Gestion {
     private File file;
     int contadorElementosBorrados = 0;
     File[] arrayFicherosUnidad = null;
-    
 
     public File[] getArrayFicherosUnidad() {
         return arrayFicherosUnidad;
@@ -84,14 +83,17 @@ public class Gestion {
 
     }
 
+    
     public File[] scanUnity(File fileSelectU) {
-        this.file = fileSelectU;
-        arrayFicherosUnidad = file.listFiles();
+       //if(fileSelectU != null){
+            arrayFicherosUnidad = file.listFiles();
+     //  }
+        for (File file1 : arrayFicherosUnidad) {
+            System.out.println(file1.toString());
+        }
         return arrayFicherosUnidad;
 
     }
-
-
 
     public int deleteEmptyDirectoriesR(File fileDelete) throws IOException {
         File[] arrayFicheros = fileDelete.listFiles();
@@ -103,7 +105,6 @@ public class Gestion {
                 if (fichero.isDirectory() && fichero.listFiles().length == 0) {
                     fichero.delete();
                     contadorElementosBorrados++;
-                    //         System.err.println(fichero.getCanonicalPath());
                 }
             }
         }
