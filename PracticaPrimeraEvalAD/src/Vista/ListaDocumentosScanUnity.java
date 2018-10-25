@@ -17,21 +17,19 @@ public class ListaDocumentosScanUnity extends javax.swing.JDialog {
     /**
      * Creates new form ListaDocumentosScanUnity
      */
-    
-    Gestion g;
-    
+    private Gestion gestion;
+
     public ListaDocumentosScanUnity(java.awt.Frame parent, boolean modal, Gestion g) {
         super(parent, modal);
-        this.g = g;
         initComponents();
+        this.gestion = g;
+        rellenarTabla();
     }
 
-    
-    public void rellenarTabla(){
- //       jTableArchivosEscaneados.setModel(new MiTablaEscaneados());
+    public void rellenarTabla() {
+        jTableArchivosEscaneados.setModel(new MiTablaEscaneados(gestion.getListaFicheros()));
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

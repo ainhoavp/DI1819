@@ -3,6 +3,9 @@ package Controlador;
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -18,6 +21,15 @@ public class Gestion {
     private File file;
     int contadorElementosBorrados = 0;
     File[] arrayFicherosUnidad = null;
+    List<File> listaFicheros = new ArrayList();
+
+    public List<File> getListaFicheros() {
+        return listaFicheros;
+    }
+
+    public void setListaFicheros(List<File> listaFicheros) {
+        this.listaFicheros = listaFicheros;
+    }
 
     public File[] getArrayFicherosUnidad() {
         return arrayFicherosUnidad;
@@ -83,11 +95,10 @@ public class Gestion {
 
     }
 
-    
     public File[] scanUnity(File fileSelectU) {
-       //if(fileSelectU != null){
+        if (fileSelectU != null) {
             arrayFicherosUnidad = file.listFiles();
-     //  }
+        }
         for (File file1 : arrayFicherosUnidad) {
             System.out.println(file1.toString());
         }
@@ -155,4 +166,11 @@ public class Gestion {
         }
         return directorios;
     }
+
+    public List<File> convertirArrayEnList() {
+        listaFicheros = Arrays.asList(arrayFicherosUnidad);
+        return listaFicheros;
+        
+    }
+
 }

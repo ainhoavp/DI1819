@@ -2,6 +2,7 @@ package Vista;
 
 import Controlador.Gestion;
 import java.io.File;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,19 +141,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         if (resultado == 0) {
             jLabelSelect.setText("Has seleccionado la ruta: " + gestion.getFile().getAbsolutePath());
             File[] escaneados = gestion.scanUnity(gestion.getFile());
-             if(escaneados.length == 0){
-                 JOptionPane.showMessageDialog(this, "No hay nada en este directorio.");
-               //System.out.println("No hay nada en este directorio");
-           }
-            for (File ficheroEscaneado : escaneados) {
-                System.out.println(ficheroEscaneado);
-           }
-          
+            if (escaneados.length == 0) {
+                JOptionPane.showMessageDialog(this, "No hay nada en este directorio.");
+            }
         } else {
             jLabelSelect.setText("No se ha seleccionado ningun directorio");
         }
-        
-        //que aqui escanee la unidad y abra el dialogo con la lista de archivos escaneados.
+        gestion.convertirArrayEnList();
+        ListaDocumentosScanUnity listaDocumentos = new ListaDocumentosScanUnity(this, true, gestion);
+        listaDocumentos.setVisible(true);
 
     }//GEN-LAST:event_jButtonSelectUActionPerformed
 
@@ -189,15 +186,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //https://docs.oracle.com/javase/tutorial/essential/io/pathOps.html aqui está la info de la clase Path que es la que divide la ruta en "nombres"
 
         int resultado = gestion.deleteBrowsingHistory();
-        if(resultado>5){
+        if (resultado > 5) {
             JOptionPane.showMessageDialog(this, "Se ha borrado el historial de navegación.");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "El historial de navegación estaba vacío.");
         }
-        
+
 
     }//GEN-LAST:event_jButtonDeleteBrowsingHistoryActionPerformed
-/**/
+    /**/
     /**
      * @param args the command line arguments
      */

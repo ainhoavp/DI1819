@@ -1,7 +1,7 @@
 package Modelo;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -11,9 +11,9 @@ import javax.swing.table.AbstractTableModel;
 public class MiTablaEscaneados extends AbstractTableModel {
 
     private final String[] columnas = {"Archivo"};
-    private ArrayList<File> listaArchivosEscaneados;
+    private List<File> listaArchivosEscaneados;
 
-    public MiTablaEscaneados(ArrayList<File> listaArchivosEscaneados) {
+    public MiTablaEscaneados(List<File> listaArchivosEscaneados) {
         this.listaArchivosEscaneados = listaArchivosEscaneados;
     }
 
@@ -34,7 +34,11 @@ public class MiTablaEscaneados extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return listaArchivosEscaneados.get(rowIndex).getAbsolutePath();
-    }
+        switch (columnIndex) {
+            case 0:
+                return listaArchivosEscaneados.get(rowIndex).getAbsolutePath();
+        }
+        return null;
 
+    }
 }
