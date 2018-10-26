@@ -22,6 +22,24 @@ public class Gestion {
     int contadorElementosBorrados = 0;
     File[] arrayFicherosUnidad = null;
     List<File> listaFicheros = new ArrayList();
+    List<File> listaFicherosRecursivo = new ArrayList();
+    File[] directorios;
+
+    public File[] getDirectorios() {
+        return directorios;
+    }
+
+    public void setDirectorios(File[] directorios) {
+        this.directorios = directorios;
+    }
+
+    public List<File> getListaFicherosRecursivo() {
+        return listaFicherosRecursivo;
+    }
+
+    public void setListaFicherosRecursivo(List<File> listaFicherosRecursivo) {
+        this.listaFicherosRecursivo = listaFicherosRecursivo;
+    }
 
     public List<File> getListaFicheros() {
         return listaFicheros;
@@ -99,9 +117,6 @@ public class Gestion {
         if (fileSelectU != null) {
             arrayFicherosUnidad = file.listFiles();
         }
-        for (File file1 : arrayFicherosUnidad) {
-            System.out.println(file1.toString());
-        }
         return arrayFicherosUnidad;
 
     }
@@ -147,9 +162,9 @@ public class Gestion {
     }
 
     public File[] listarRecursivo(String ruta) {
-        file = new File(ruta);
+        //file = new File(ruta);
 
-        File[] directorios = file.listFiles();
+        directorios = file.listFiles();
 
         if (directorios != null) {
 
@@ -160,7 +175,6 @@ public class Gestion {
                     listarRecursivo(directorios[i].getAbsolutePath());
                 }
                 if (directorios[i].isFile()) {
-                    System.out.println("Esto es un fichero: " + directorios[i].toString());
                 }
             }
         }
@@ -170,7 +184,13 @@ public class Gestion {
     public List<File> convertirArrayEnList() {
         listaFicheros = Arrays.asList(arrayFicherosUnidad);
         return listaFicheros;
-        
+
+    }
+
+    public List<File> convertirArrayEnListRecursiva() {
+        listaFicherosRecursivo = Arrays.asList(directorios);
+        return listaFicherosRecursivo;
+
     }
 
 }

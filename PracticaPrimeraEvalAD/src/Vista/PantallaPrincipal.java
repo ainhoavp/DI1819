@@ -2,7 +2,6 @@ package Vista;
 
 import Controlador.Gestion;
 import java.io.File;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -80,9 +79,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabelSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(170, 170, 170))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -93,6 +89,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonDeleteRecycle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonDeleteBrowsingHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(150, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabelSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(170, 170, 170))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +149,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         gestion.convertirArrayEnList();
         ListaDocumentosScanUnity listaDocumentos = new ListaDocumentosScanUnity(this, true, gestion);
         listaDocumentos.setVisible(true);
-
+        
+        //NO FUNCIONA EL METODO RECURSIVO.
+        /*
+        int resultListarRe = JOptionPane.showConfirmDialog(this, "¿Quieres listar todos los ficheros/directorios de la unidad?", "¿Listar recursivamente?", JOptionPane.YES_NO_OPTION);
+        if(resultListarRe == 0){
+            gestion.setDirectorios(gestion.listarRecursivo(gestion.getFile().getAbsolutePath()));
+            gestion.convertirArrayEnListRecursiva();
+            ListaDirectoriosRecursivo listaRecursivos = new ListaDirectoriosRecursivo(this, true, gestion);
+            listaRecursivos.setVisible(true);
+        }
+        */
     }//GEN-LAST:event_jButtonSelectUActionPerformed
 
     private void jButtonDeleteEmplyDirectoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteEmplyDirectoryActionPerformed
