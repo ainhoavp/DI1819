@@ -23,8 +23,20 @@ public class Gestion {
     File[] arrayFicherosUnidad = null;
     List<File> listaFicheros = new ArrayList();
     List<File> listaFicherosRecursivo = new ArrayList();
+    List<File> listaParaMetodoRecursivo = new ArrayList();
     File[] directorios;
 
+    public List<File> getListaParaMetodoRecursivo() {
+        return listaParaMetodoRecursivo;
+    }
+
+    public void setListaParaMetodoRecursivo(List<File> listaParaMetodoRecursivo) {
+        this.listaParaMetodoRecursivo = listaParaMetodoRecursivo;
+    }
+
+    
+    
+    
     public File[] getDirectorios() {
         return directorios;
     }
@@ -161,24 +173,26 @@ public class Gestion {
         return contadorBorrados;
     }
 
-    public File[] listarRecursivo(String ruta) {
-        //file = new File(ruta);
+    public void listarRecursivo(String ruta) {
+        file = new File(ruta);
 
-        directorios = file.listFiles();
+        File[] arrayLocal = file.listFiles();
 
-        if (directorios != null) {
+        if (arrayLocal != null) {
 
-            for (int i = 0; i < directorios.length; i++) {
-                System.out.println(directorios[i].getName());
-                if (directorios[i].isDirectory()) {
-                    System.out.println(directorios[i].toString());
-                    listarRecursivo(directorios[i].getAbsolutePath());
+            for (File fichero : arrayLocal) {
+                System.out.println(fichero.getAbsolutePath());
+                if (fichero.isDirectory()) {
+
+                    listarRecursivo(fichero.getAbsolutePath());
+
+                } else {
+                    listaParaMetodoRecursivo.add(fichero);
                 }
-                if (directorios[i].isFile()) {
-                }
+
             }
+
         }
-        return directorios;
     }
 
     public List<File> convertirArrayEnList() {
