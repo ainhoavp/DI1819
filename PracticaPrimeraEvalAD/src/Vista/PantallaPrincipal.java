@@ -103,15 +103,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonSelectU, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonDeleteEmplyDirectory)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonDeleteRecycle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonDeleteBrowsingHistory)
-                        .addGap(29, 29, 29))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonDeleteEmplyDirectory)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonDeleteRecycle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonDeleteBrowsingHistory))
+                            .addComponent(jButtonShowFreeSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
 
@@ -146,20 +146,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         } else {
             jLabelSelect.setText("No se ha seleccionado ningun directorio");
         }
-        gestion.convertirArrayEnList();
-        ListaDocumentosScanUnity listaDocumentos = new ListaDocumentosScanUnity(this, true, gestion);
-        listaDocumentos.setVisible(true);
-        
-        //NO FUNCIONA EL METODO RECURSIVO.
-        /*
-        int resultListarRe = JOptionPane.showConfirmDialog(this, "¿Quieres listar todos los ficheros/directorios de la unidad?", "¿Listar recursivamente?", JOptionPane.YES_NO_OPTION);
-        if(resultListarRe == 0){
-            gestion.setDirectorios(gestion.listarRecursivo(gestion.getFile().getAbsolutePath()));
-            gestion.convertirArrayEnListRecursiva();
+        //gestion.convertirArrayEnList();
+        //ListaDocumentosScanUnity listaDocumentos = new ListaDocumentosScanUnity(this, true, gestion);
+        //listaDocumentos.setVisible(true);
+
+        int resultListarRe = JOptionPane.showConfirmDialog(this, " ¿Quieres listar todos los ficheros/directorios de la unidad?" + gestion.getFile().getAbsolutePath(), "¿Listar recursivamente?", JOptionPane.YES_NO_OPTION);
+        if (resultListarRe == 0) {
+            gestion.listarRecursivo(gestion.getFile().getAbsolutePath());
             ListaDirectoriosRecursivo listaRecursivos = new ListaDirectoriosRecursivo(this, true, gestion);
             listaRecursivos.setVisible(true);
+
         }
-        */
+
     }//GEN-LAST:event_jButtonSelectUActionPerformed
 
     private void jButtonDeleteEmplyDirectoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteEmplyDirectoryActionPerformed

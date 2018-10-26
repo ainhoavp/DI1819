@@ -34,9 +34,6 @@ public class Gestion {
         this.listaParaMetodoRecursivo = listaParaMetodoRecursivo;
     }
 
-    
-    
-    
     public File[] getDirectorios() {
         return directorios;
     }
@@ -92,6 +89,8 @@ public class Gestion {
     public void setFile(File file) {
         this.file = file;
     }
+    
+    //_______________________________________MÉTODOS____________________________________________________________
 
     public int emptyTrash() {
         File papelera = new File("C://$Recycle.Bin//S-1-5-21-3924842705-2844399566-1741625739-1001");
@@ -125,6 +124,11 @@ public class Gestion {
 
     }
 
+    /**
+     * Lista SOLO los ficheros de la unidad que le pasas por parámetro
+     * @param fileSelectU
+     * @return File[] con los ficheros de la unidad.
+     */
     public File[] scanUnity(File fileSelectU) {
         if (fileSelectU != null) {
             arrayFicherosUnidad = file.listFiles();
@@ -133,6 +137,12 @@ public class Gestion {
 
     }
 
+    /**
+     * Borra directorios vacios 
+     * @param fileDelete
+     * @return total directorios borrados
+     * @throws IOException
+     */
     public int deleteEmptyDirectoriesR(File fileDelete) throws IOException {
         File[] arrayFicheros = fileDelete.listFiles();
         if (arrayFicheros != null) {
@@ -172,26 +182,23 @@ public class Gestion {
         }
         return contadorBorrados;
     }
+    /**
+     * Crea una lista (listaParaMetodoRecursivo) con los ficheros de la ruta
+     * @param ruta 
+     */
 
     public void listarRecursivo(String ruta) {
         file = new File(ruta);
-
         File[] arrayLocal = file.listFiles();
-
         if (arrayLocal != null) {
 
             for (File fichero : arrayLocal) {
-                System.out.println(fichero.getAbsolutePath());
                 if (fichero.isDirectory()) {
-
                     listarRecursivo(fichero.getAbsolutePath());
-
                 } else {
                     listaParaMetodoRecursivo.add(fichero);
                 }
-
             }
-
         }
     }
 
