@@ -41,7 +41,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Texto que explica las funcionalidades de la aplicacion una por una.");
+        jLabel1.setText("Esta aplicación permite hacer una limpieza de nuestro ordenador.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

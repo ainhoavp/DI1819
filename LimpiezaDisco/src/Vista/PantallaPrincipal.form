@@ -81,7 +81,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Texto que explica las funcionalidades de la aplicacion una por una."/>
+            <Property name="text" type="java.lang.String" value="Esta aplicaci&#xf3;n permite hacer una limpieza de nuestro ordenador."/>
           </Properties>
         </Component>
       </SubComponents>

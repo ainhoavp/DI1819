@@ -122,11 +122,14 @@ public class Gestion {
         return contadorBorradosPapelera / 2;
     }
 
-    public int deleteBrowsingHistory() {
-
-        //para chrome sabiedo ruta
-        File file = new File("C:/Users/aainh/AppData/Local/Google/Chrome/User Data/Default/Cache");
-        //ficheroElegidoPorFileChooser = 
+    public int deleteBrowsingHistory(int seleccion) {
+        File file = null;
+        if (seleccion == 0) {
+            file = new File("C:/Users/aainh/AppData/Local/Google/Chrome/User Data/Default/Cache");
+        } else{
+            if(seleccion == 1){
+                file = new File("C:\\Users\\aainh\\AppData\\Local\\Opera Software\\Opera Stable\\Cache");
+            }}
         int contadorBorrados = 0;
         File[] ficherosDentroDelDirectorioCache = file.listFiles();
         for (File ficheroCache : ficherosDentroDelDirectorioCache) {
@@ -161,7 +164,5 @@ public class Gestion {
         }
         return contadorVideosBorrados;
     }
-    
-    
 
 }

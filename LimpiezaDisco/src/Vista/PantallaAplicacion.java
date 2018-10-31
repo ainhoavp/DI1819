@@ -196,7 +196,6 @@ public class PantallaAplicacion extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No se han borrado los directorios.");
         }
 
-
     }//GEN-LAST:event_jButtonDeleteEmplyDirectoryActionPerformed
 
     private void jButtonShowFreeSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowFreeSpaceActionPerformed
@@ -211,9 +210,8 @@ public class PantallaAplicacion extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonDeleteRecycleActionPerformed
 
     private void jButtonDeleteBrowsingHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteBrowsingHistoryActionPerformed
-
-        int borradosHistorial = gestion.deleteBrowsingHistory();
-        JOptionPane.showMessageDialog(this, "Se han borrado " + borradosHistorial + " archivos del caché.");
+        SeleccionarNavegador sn = new SeleccionarNavegador(this, true, gestion);
+        sn.setVisible(true);
     }//GEN-LAST:event_jButtonDeleteBrowsingHistoryActionPerformed
 
     private void jButtonDeleteImagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteImagesActionPerformed
