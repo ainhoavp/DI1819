@@ -15,6 +15,7 @@ public class Gestion {
 
     File file;
     List<File> listaParaMetodoRecursivo = new ArrayList();
+    List<File> listaBorrarPorTamanio = new ArrayList();
     long total;
     long libre;
     int contadorDirectoriosVaciosBorrados = 0;
@@ -59,6 +60,16 @@ public class Gestion {
         this.contadorDirectoriosVaciosBorrados = contadorDirectoriosVaciosBorrados;
     }
 
+    public List<File> getListaBorrarPorTamanio() {
+        return listaBorrarPorTamanio;
+    }
+
+    public void setListaBorrarPorTamanio(List<File> listaBorrarPorTamanio) {
+        this.listaBorrarPorTamanio = listaBorrarPorTamanio;
+    }
+    
+    
+
     /**
      * Metodo que selecciona la unidad através de un file choose
      *
@@ -79,9 +90,12 @@ public class Gestion {
 
             for (File fichero : arrayLocal) {
                 if (fichero.isDirectory()) {
+                    listaParaMetodoRecursivo.add(fichero);
                     listarRecursivo(fichero.getAbsolutePath());
                 } else {
-                    listaParaMetodoRecursivo.add(fichero);
+                    if (fichero.isDirectory() || fichero.isFile()) {
+                        listaParaMetodoRecursivo.add(fichero);
+                    }
                 }
             }
         }
@@ -122,23 +136,6 @@ public class Gestion {
         return contadorBorradosPapelera / 2;
     }
 
-    public int deleteBrowsingHistory(int seleccion) {
-        File file = null;
-        if (seleccion == 0) {
-            file = new File("C:/Users/aainh/AppData/Local/Google/Chrome/User Data/Default/Cache");
-        } else{
-            if(seleccion == 1){
-                file = new File("C:\\Users\\aainh\\AppData\\Local\\Opera Software\\Opera Stable\\Cache");
-            }}
-        int contadorBorrados = 0;
-        File[] ficherosDentroDelDirectorioCache = file.listFiles();
-        for (File ficheroCache : ficherosDentroDelDirectorioCache) {
-            ficheroCache.delete();
-            contadorBorrados++;
-        }
-        return contadorBorrados;
-    }
-
     public int deleteImages() {
         int contadorImagenesBorradas = 0;
         for (Iterator<File> iterator = listaParaMetodoRecursivo.iterator(); iterator.hasNext();) {
@@ -163,6 +160,63 @@ public class Gestion {
             }
         }
         return contadorVideosBorrados;
+    }
+
+    public int deleteBrowsingHistory(int seleccion) {
+        listarRecursivo("c:\\");
+        int contador = 0;
+
+        switch (seleccion) {
+            case 0:
+                for (File fileParaBorrar : listaParaMetodoRecursivo) {
+                    if (fileParaBorrar.isDirectory() && fileParaBorrar.toString().toLowerCase().contains("opera") && fileParaBorrar.toString().toLowerCase().endsWith("cache") && !fileParaBorrar.toString().toLowerCase().contains("roaming")) {
+                        File[] borrar = fileParaBorrar.listFiles();
+                        for (File fileBorrar : borrar) {
+                            fileBorrar.delete();
+                            contador++;
+                        }
+                    }
+                }
+            case 1:
+                for (File fileParaBorrar : listaParaMetodoRecursivo) {
+                    if (fileParaBorrar.isDirectory() && fileParaBorrar.toString().toLowerCase().contains("chrome") && fileParaBorrar.toString().toLowerCase().endsWith("cache") && !fileParaBorrar.toString().toLowerCase().contains("script")) {
+                        File[] borrar = fileParaBorrar.listFiles();
+                        for (File fileBorrar : borrar) {
+                            fileBorrar.delete();
+                            contador++;
+                        }
+                    }
+                }
+            default:
+                return contador;
+        }
+    }
+
+    public void scanFilesBySize(int seleccionTamanio) {
+        
+        switch (seleccionTamanio) {
+            case 0:
+                for (File menor1Gb : listaParaMetodoRecursivo) {
+                    double tamanio = (double) (menor1Gb.length() / 1024) / 1024; //en mb
+                    if (tamanio < 1024) {
+                        listaBorrarPorTamanio.add(menor1Gb);
+                    }
+                }
+            case 1:
+                for (File between1and10 : listaParaMetodoRecursivo) {
+                    double size = (double) (between1and10.length() / 1024) / 1024; //en mb
+                    if (size >= 1024 && size <= (1024 * 10)) {
+                        listaBorrarPorTamanio.add(between1and10);
+                    }
+                }
+            case 2:
+                for (File greaterThan10 : listaParaMetodoRecursivo) {
+                    double size = (double) (greaterThan10.length() / 1024) / 1024; //en mb
+                    if (size > (1024 * 10)) {
+                        listaBorrarPorTamanio.add(greaterThan10);
+                    }
+                }
+        }
     }
 
 }

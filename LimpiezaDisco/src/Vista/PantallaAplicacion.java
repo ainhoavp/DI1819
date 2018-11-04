@@ -39,6 +39,7 @@ public class PantallaAplicacion extends javax.swing.JDialog {
         jTableArchivosRecursivos = new javax.swing.JTable();
         jButtonDeleteImages = new javax.swing.JButton();
         jButtonDeleteVideo = new javax.swing.JButton();
+        jButtonBorrarPorTamanio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,6 +105,13 @@ public class PantallaAplicacion extends javax.swing.JDialog {
             }
         });
 
+        jButtonBorrarPorTamanio.setText("Borrar por tamaño");
+        jButtonBorrarPorTamanio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarPorTamanioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,6 +130,7 @@ public class PantallaAplicacion extends javax.swing.JDialog {
                             .addComponent(jButtonDeleteEmplyDirectory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonBorrarPorTamanio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonDeleteImages, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonDeleteVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -145,7 +154,9 @@ public class PantallaAplicacion extends javax.swing.JDialog {
                             .addComponent(jButtonDeleteRecycle)
                             .addComponent(jButtonDeleteVideo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonDeleteBrowsingHistory)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonDeleteBrowsingHistory)
+                            .addComponent(jButtonBorrarPorTamanio))
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -227,11 +238,17 @@ public class PantallaAplicacion extends javax.swing.JDialog {
       
     }//GEN-LAST:event_jButtonDeleteVideoActionPerformed
 
+    private void jButtonBorrarPorTamanioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarPorTamanioActionPerformed
+       BorrarPorTamanio bt = new BorrarPorTamanio(this, true, gestion);
+       bt.setVisible(true);
+    }//GEN-LAST:event_jButtonBorrarPorTamanioActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBorrarPorTamanio;
     private javax.swing.JButton jButtonDeleteBrowsingHistory;
     private javax.swing.JButton jButtonDeleteEmplyDirectory;
     private javax.swing.JButton jButtonDeleteImages;

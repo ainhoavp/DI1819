@@ -17,11 +17,11 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
     Gestion gestion = new Gestion();
     
     
-    public SeleccionarNavegador(Dialog owner, boolean modal, Gestion gestion) {
-        super(owner, modal);
+    public SeleccionarNavegador(Dialog dialogoNavegador, boolean modal, Gestion gestion) {
+        super(dialogoNavegador, modal);
         initComponents();
         this.gestion = gestion;
-        this.setLocationRelativeTo(owner);
+        this.setLocationRelativeTo(dialogoNavegador);
            }
 
     /**
@@ -42,7 +42,12 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
 
         jLabelSeleccionar.setText("<html><center>Selecciona en el desplegable el navegador para el que desea <br> borrar el historial </center></html>");
 
-        jComboBoxSelectNavigator.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chrome", "Opera" }));
+        jComboBoxSelectNavigator.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Opera", "Chrome" }));
+        jComboBoxSelectNavigator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSelectNavigatorActionPerformed(evt);
+            }
+        });
 
         jButtonBorrar.setText("Borrar");
         jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,10 +109,14 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
         int seleccion = jComboBoxSelectNavigator.getSelectedIndex();
-        gestion.deleteBrowsingHistory(seleccion);
-        JOptionPane.showMessageDialog(this, "Se han borrado " + seleccion + " archivos del caché.");
+        int borrados = gestion.deleteBrowsingHistory(seleccion);
+        JOptionPane.showMessageDialog(this, "Se han borrado " + borrados + " archivos del caché.");
         
     }//GEN-LAST:event_jButtonBorrarActionPerformed
+
+    private void jComboBoxSelectNavigatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelectNavigatorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSelectNavigatorActionPerformed
 
     /**
      * @param args the command line arguments
