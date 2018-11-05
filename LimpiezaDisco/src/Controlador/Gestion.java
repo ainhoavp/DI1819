@@ -83,6 +83,10 @@ public class Gestion {
         this.file = jc.getSelectedFile();
     }
 
+    /**
+     * Lista recursivamente todos los archivos de la ruta seleccionada en el fileChooser
+     * @param ruta 
+     */
     public void listRecursively(String ruta) {
         File fileRecursivo = new File(ruta);
         File[] arrayLocal = fileRecursivo.listFiles();
@@ -101,12 +105,19 @@ public class Gestion {
         }
     }
 
+    /**
+     * Método para saber el espacio total y disponible del disco.
+     */
     public void checkDiskSpace() {
         File fileRoot = new File("C://");
         this.totalSpace = fileRoot.getTotalSpace();
         this.freeSpace = fileRoot.getFreeSpace();
     }
 
+    /**
+     * Elimina los directorios vacíos de una ruta recursivamente.
+     * @param ruta 
+     */
     public void deleteEmptyDirectoriesR(String ruta) {
         File fileRuta = new File(ruta);
         File[] arrayFicheros = fileRuta.listFiles();
@@ -123,6 +134,10 @@ public class Gestion {
         }
     }
 
+    /**
+     * Vacía la papelera de reciclaje
+     * @return 
+     */
     public int emptyTrash() {
         File papelera = new File("C://$Recycle.Bin//S-1-5-21-3924842705-2844399566-1741625739-1001");
         File[] archivosPapelera = papelera.listFiles();
@@ -136,6 +151,11 @@ public class Gestion {
         return contadorBorradosPapelera / 2;
     }
 
+    
+    /**
+     * Borra imagenes
+     * @return devuelve un int con el número de imagenes borradas
+     */
     public int deleteImages() {
         int contadorImagenesBorradas = 0;
         for (Iterator<File> iterator = listForRecursiveMethod.iterator(); iterator.hasNext();) {
@@ -149,6 +169,10 @@ public class Gestion {
         return contadorImagenesBorradas;
     }
 
+    /**
+     * Borra videos
+     * @return devuelve un int con el número de videos borrados
+     */
     public int deleteVideos() {
         int contadorVideosBorrados = 0;
         for (Iterator<File> iterator = listForRecursiveMethod.iterator(); iterator.hasNext();) {
@@ -162,6 +186,11 @@ public class Gestion {
         return contadorVideosBorrados;
     }
 
+    /**
+     * Borra el historial de navegación (Opera o Chrome) listando c:\\ y buscando la ruta en la que se encuetran los archivos caché
+     * @param seleccion pide por parámetro la seleccion del comboBox.
+     * @return int con el numero de archivos caché borrados.
+     */
     public int deleteBrowsingHistory(int seleccion) {
         listRecursively("c:\\");
         int contador = 0;
@@ -192,6 +221,10 @@ public class Gestion {
         }
     }
 
+    /**
+     * Escanea la ruta elegida por el fileChooser para filtrar los archivos por tamaños
+     * @param seleccionTamanio necesita un int con la seleccion del comboBox mayor 1gb...
+     */
     public void scanFilesBySize(int seleccionTamanio) {
         
         switch (seleccionTamanio) {
