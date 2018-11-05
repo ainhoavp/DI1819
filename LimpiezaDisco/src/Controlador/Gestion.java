@@ -14,11 +14,11 @@ import javax.swing.JFileChooser;
 public class Gestion {
 
     File file;
-    List<File> listaParaMetodoRecursivo = new ArrayList();
-    List<File> listaBorrarPorTamanio = new ArrayList();
-    long total;
-    long libre;
-    int contadorDirectoriosVaciosBorrados = 0;
+    List<File> listForRecursiveMethod = new ArrayList();
+    List<File> listToBeDeletedBySize = new ArrayList();
+    long totalSpace;
+    long freeSpace;
+    int emptyDirectoryCounterDeleted = 0;
 
     public File getFile() {
         return file;
@@ -28,44 +28,44 @@ public class Gestion {
         this.file = file;
     }
 
-    public List<File> getListaParaMetodoRecursivo() {
-        return listaParaMetodoRecursivo;
+    public List<File> getListForRecursiveMethod() {
+        return listForRecursiveMethod;
     }
 
-    public void setListaParaMetodoRecursivo(List<File> listaParaMetodoRecursivo) {
-        this.listaParaMetodoRecursivo = listaParaMetodoRecursivo;
+    public void setListForRecursiveMethod(List<File> listaParaMetodoRecursivo) {
+        this.listForRecursiveMethod = listaParaMetodoRecursivo;
     }
 
-    public long getTotal() {
-        return total;
+    public long getTotalSpace() {
+        return totalSpace;
     }
 
-    public void setTotal(long total) {
-        this.total = total;
+    public void setTotalSpace(long total) {
+        this.totalSpace = total;
     }
 
-    public long getLibre() {
-        return libre;
+    public long getFreeSpace() {
+        return freeSpace;
     }
 
-    public void setLibre(long libre) {
-        this.libre = libre;
+    public void setFreeSpace(long libre) {
+        this.freeSpace = libre;
     }
 
-    public int getContadorDirectoriosVaciosBorrados() {
-        return contadorDirectoriosVaciosBorrados;
+    public int getEmptyDirectoryCounterDeleted() {
+        return emptyDirectoryCounterDeleted;
     }
 
-    public void setContadorDirectoriosVaciosBorrados(int contadorDirectoriosVaciosBorrados) {
-        this.contadorDirectoriosVaciosBorrados = contadorDirectoriosVaciosBorrados;
+    public void setEmptyDirectoryCounterDeleted(int contadorDirectoriosVaciosBorrados) {
+        this.emptyDirectoryCounterDeleted = contadorDirectoriosVaciosBorrados;
     }
 
-    public List<File> getListaBorrarPorTamanio() {
-        return listaBorrarPorTamanio;
+    public List<File> getListToBeDeletedBySize() {
+        return listToBeDeletedBySize;
     }
 
-    public void setListaBorrarPorTamanio(List<File> listaBorrarPorTamanio) {
-        this.listaBorrarPorTamanio = listaBorrarPorTamanio;
+    public void setListToBeDeletedBySize(List<File> listaBorrarPorTamanio) {
+        this.listToBeDeletedBySize = listaBorrarPorTamanio;
     }
     
     
@@ -83,18 +83,18 @@ public class Gestion {
         this.file = jc.getSelectedFile();
     }
 
-    public void listarRecursivo(String ruta) {
+    public void listRecursively(String ruta) {
         File fileRecursivo = new File(ruta);
         File[] arrayLocal = fileRecursivo.listFiles();
         if (arrayLocal != null) {
 
             for (File fichero : arrayLocal) {
                 if (fichero.isDirectory()) {
-                    listaParaMetodoRecursivo.add(fichero);
-                    listarRecursivo(fichero.getAbsolutePath());
+                    listForRecursiveMethod.add(fichero);
+                    listRecursively(fichero.getAbsolutePath());
                 } else {
                     if (fichero.isDirectory() || fichero.isFile()) {
-                        listaParaMetodoRecursivo.add(fichero);
+                        listForRecursiveMethod.add(fichero);
                     }
                 }
             }
@@ -103,8 +103,8 @@ public class Gestion {
 
     public void checkDiskSpace() {
         File fileRoot = new File("C://");
-        this.total = fileRoot.getTotalSpace();
-        this.libre = fileRoot.getFreeSpace();
+        this.totalSpace = fileRoot.getTotalSpace();
+        this.freeSpace = fileRoot.getFreeSpace();
     }
 
     public void deleteEmptyDirectoriesR(String ruta) {
@@ -117,7 +117,7 @@ public class Gestion {
                 }
                 if (fichero.isDirectory() && fichero.listFiles().length == 0) {
                     fichero.delete();
-                    contadorDirectoriosVaciosBorrados++;
+                    emptyDirectoryCounterDeleted++;
                 }
             }
         }
@@ -138,7 +138,7 @@ public class Gestion {
 
     public int deleteImages() {
         int contadorImagenesBorradas = 0;
-        for (Iterator<File> iterator = listaParaMetodoRecursivo.iterator(); iterator.hasNext();) {
+        for (Iterator<File> iterator = listForRecursiveMethod.iterator(); iterator.hasNext();) {
             File fileBorrar = iterator.next();
             if (fileBorrar.isFile() && fileBorrar.getAbsolutePath().toLowerCase().endsWith(".jpg") || fileBorrar.getAbsolutePath().toLowerCase().endsWith(".png")) {
                 fileBorrar.delete();
@@ -151,7 +151,7 @@ public class Gestion {
 
     public int deleteVideos() {
         int contadorVideosBorrados = 0;
-        for (Iterator<File> iterator = listaParaMetodoRecursivo.iterator(); iterator.hasNext();) {
+        for (Iterator<File> iterator = listForRecursiveMethod.iterator(); iterator.hasNext();) {
             File fileBorrar = iterator.next();
             if (fileBorrar.isFile() && fileBorrar.getAbsolutePath().toLowerCase().endsWith(".avi") || fileBorrar.getAbsolutePath().toLowerCase().endsWith(".mov")) {
                 fileBorrar.delete();
@@ -163,12 +163,12 @@ public class Gestion {
     }
 
     public int deleteBrowsingHistory(int seleccion) {
-        listarRecursivo("c:\\");
+        listRecursively("c:\\");
         int contador = 0;
 
         switch (seleccion) {
             case 0:
-                for (File fileParaBorrar : listaParaMetodoRecursivo) {
+                for (File fileParaBorrar : listForRecursiveMethod) {
                     if (fileParaBorrar.isDirectory() && fileParaBorrar.toString().toLowerCase().contains("opera") && fileParaBorrar.toString().toLowerCase().endsWith("cache") && !fileParaBorrar.toString().toLowerCase().contains("roaming")) {
                         File[] borrar = fileParaBorrar.listFiles();
                         for (File fileBorrar : borrar) {
@@ -178,7 +178,7 @@ public class Gestion {
                     }
                 }
             case 1:
-                for (File fileParaBorrar : listaParaMetodoRecursivo) {
+                for (File fileParaBorrar : listForRecursiveMethod) {
                     if (fileParaBorrar.isDirectory() && fileParaBorrar.toString().toLowerCase().contains("chrome") && fileParaBorrar.toString().toLowerCase().endsWith("cache") && !fileParaBorrar.toString().toLowerCase().contains("script")) {
                         File[] borrar = fileParaBorrar.listFiles();
                         for (File fileBorrar : borrar) {
@@ -196,27 +196,33 @@ public class Gestion {
         
         switch (seleccionTamanio) {
             case 0:
-                for (File menor1Gb : listaParaMetodoRecursivo) {
-                    double tamanio = (double) (menor1Gb.length() / 1024) / 1024; //en mb
-                    if (tamanio < 1024) {
-                        listaBorrarPorTamanio.add(menor1Gb);
+                for (File lessThan1Gb : listForRecursiveMethod) {
+                    double size = (double) (lessThan1Gb.length() / 1024) / 1024; //en mb
+                    if (lessThan1Gb.isFile() && size < 1024) {
+                        listToBeDeletedBySize.add(lessThan1Gb);
                     }
                 }
             case 1:
-                for (File between1and10 : listaParaMetodoRecursivo) {
+                for (File between1and10 : listForRecursiveMethod) {
                     double size = (double) (between1and10.length() / 1024) / 1024; //en mb
-                    if (size >= 1024 && size <= (1024 * 10)) {
-                        listaBorrarPorTamanio.add(between1and10);
+                    if (between1and10.isFile() && size >= 1024 && size < (1024 * 10)) {
+                        listToBeDeletedBySize.add(between1and10);
                     }
                 }
             case 2:
-                for (File greaterThan10 : listaParaMetodoRecursivo) {
+                for (File greaterThan10 : listForRecursiveMethod) {
                     double size = (double) (greaterThan10.length() / 1024) / 1024; //en mb
-                    if (size > (1024 * 10)) {
-                        listaBorrarPorTamanio.add(greaterThan10);
+                    if (greaterThan10.isFile() && size >= (1024 * 10)) {
+                        listToBeDeletedBySize.add(greaterThan10);
                     }
                 }
         }
     }
 
+    
+    
+    
+    
+    
+    
 }

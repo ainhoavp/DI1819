@@ -8,6 +8,9 @@ package Vista;
 import Controlador.Gestion;
 import Modelo.MiTablaPorTamanio;
 import java.awt.Dialog;
+import java.io.File;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,12 +27,12 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
         super(dialogoTamanio, modal);
         initComponents();
         this.gestion = gestion;
-        this.setLocationRelativeTo(dialogoTamanio);
-        rellenarTabla();
+        this.setLocationRelativeTo(this);
+        rellenarTablaTamanio();
     }
 
-    public void rellenarTabla() {
-        jTableArchivosPorTamanio.setModel(new MiTablaPorTamanio(gestion.getListaBorrarPorTamanio()));
+    public void rellenarTablaTamanio() {
+        jTableArchivosPorTamanio.setModel(new MiTablaPorTamanio(gestion.getListToBeDeletedBySize()));
     }
 
     /**
@@ -74,10 +77,25 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTableArchivosPorTamanio);
 
         jButtonBorrarTodos.setText("Borrar todos");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
 
         jButtonBorrarSeleccionados.setText("Borrar seleccionados");
+        jButtonBorrarSeleccionados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarSeleccionadosActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -155,9 +173,43 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        rellenarTabla();
-        gestion.scanFilesBySize(jComboBoxArchivoPorTamanio.getSelectedIndex());
+        JOptionPane.showMessageDialog(this, "Buscando archivos, este proceso podrá tardar unos minutos...");
+        if (gestion.getListForRecursiveMethod().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado la unidad para buscar.");
+        } else {
+            gestion.scanFilesBySize(jComboBoxArchivoPorTamanio.getSelectedIndex());
+            rellenarTablaTamanio();
+
+        }
+
     }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+        for (Iterator<File> iterator = gestion.getListToBeDeletedBySize().iterator(); iterator.hasNext();) {
+            File next = iterator.next();
+            next.delete();
+        }
+        gestion.getListToBeDeletedBySize().clear();
+        JOptionPane.showMessageDialog(this, "Se han borrado los documentos.");
+        rellenarTablaTamanio();
+
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonBorrarSeleccionadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarSeleccionadosActionPerformed
+
+        int[] columnasSeleccionadas = jTableArchivosPorTamanio.getSelectedRows();
+        for (int i = 0; i < columnasSeleccionadas.length; i++) {
+            jTableArchivosPorTamanio.remove(columnasSeleccionadas[i]);
+        }
+        //no se que mierda dice del array
+        rellenarTablaTamanio();
+
+
+    }//GEN-LAST:event_jButtonBorrarSeleccionadosActionPerformed
 
     /**
      * @param args the command line arguments

@@ -38,7 +38,7 @@ public class MiTablaPorTamanio extends AbstractTableModel {
             case 0:
                 return listaBorrarPorTamanio.get(rowIndex).getAbsolutePath();
             case 1:
-                double tamanio = (listaBorrarPorTamanio.get(rowIndex).length()/1024)/1024;
+                double tamanio = (double)(listaBorrarPorTamanio.get(rowIndex).length()/1024)/1024;
                 return tamanio;
         }
         return null;

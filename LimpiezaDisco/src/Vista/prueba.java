@@ -7,7 +7,6 @@ package Vista;
 
 import Controlador.Gestion;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +22,12 @@ public class prueba {
 
         Gestion gestion = new Gestion();
 
-        gestion.listarRecursivo("C:\\Users\\aainh\\Desktop\\Ainhoa");
+        gestion.listRecursively("C:\\Users\\aainh\\Desktop\\Ainhoa");
         
         
         
         
-        List <File> lista = gestion.getListaParaMetodoRecursivo();
+        List <File> lista = gestion.getListForRecursiveMethod();
          for (File ficheroTamanio : lista) {
                     double tamanio = (double)(ficheroTamanio.length()/1024)/1024; //en mb
                     if(tamanio < 1024){
@@ -41,7 +40,7 @@ public class prueba {
         
         
 
-//        List<File> listaFileC = gestion.getListaParaMetodoRecursivo();
+//        List<File> listaFileC = gestion.getListForRecursiveMethod();
 //        ArrayList<String> listaConSoloNombres = new ArrayList<>();
 //        List<File> listaConRutasBorrar = new ArrayList<>();
 //        int contador = 0;

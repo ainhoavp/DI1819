@@ -18,6 +18,7 @@ public class PantallaAplicacion extends javax.swing.JDialog {
     public PantallaAplicacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -186,15 +187,15 @@ public class PantallaAplicacion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     public void rellenarTabla() {
-        jTableArchivosRecursivos.setModel(new MiTablaEscaneados(gestion.getListaParaMetodoRecursivo()));
+        jTableArchivosRecursivos.setModel(new MiTablaEscaneados(gestion.getListForRecursiveMethod()));
     }
     private void jButtonSelectUnityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectUnityActionPerformed
-        gestion.getListaParaMetodoRecursivo().clear();
+        gestion.getListForRecursiveMethod().clear();
         rellenarTabla();
         gestion.selectUnity(this);
         JOptionPane.showMessageDialog(this, "Estas en la ruta " + gestion.getFile().getAbsolutePath());
-        gestion.listarRecursivo(gestion.getFile().getAbsolutePath());
-        gestion.getListaParaMetodoRecursivo();
+        gestion.listRecursively(gestion.getFile().getAbsolutePath());
+        gestion.getListForRecursiveMethod();
         rellenarTabla();
     }//GEN-LAST:event_jButtonSelectUnityActionPerformed
 
@@ -202,7 +203,7 @@ public class PantallaAplicacion extends javax.swing.JDialog {
         int resultado = JOptionPane.showConfirmDialog(this, "¿Desea borrar los directorios vacíos de esta ruta?", "Borrar directorios", JOptionPane.YES_NO_OPTION);
         if (resultado == JOptionPane.YES_OPTION) {
             gestion.deleteEmptyDirectoriesR(gestion.getFile().getAbsolutePath());
-            JOptionPane.showMessageDialog(this, "Se han borrado " + gestion.getContadorDirectoriosVaciosBorrados() + " directorios vacíos.");
+            JOptionPane.showMessageDialog(this, "Se han borrado " + gestion.getEmptyDirectoryCounterDeleted() + " directorios vacíos.");
         } else {
             JOptionPane.showMessageDialog(this, "No se han borrado los directorios.");
         }
@@ -211,7 +212,7 @@ public class PantallaAplicacion extends javax.swing.JDialog {
 
     private void jButtonShowFreeSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowFreeSpaceActionPerformed
         gestion.checkDiskSpace();
-        JOptionPane.showMessageDialog(this, "Espacio total del disco: " + gestion.getTotal() / 1024 / 1024 / 1024 + "GB" + "\n" + "Espacio libre en disco: " + gestion.getLibre() / 1024 / 1024 / 1024 + "GB");
+        JOptionPane.showMessageDialog(this, "Espacio total del disco: " + gestion.getTotalSpace() / 1024 / 1024 / 1024 + "GB" + "\n" + "Espacio libre en disco: " + gestion.getFreeSpace() / 1024 / 1024 / 1024 + "GB");
     }//GEN-LAST:event_jButtonShowFreeSpaceActionPerformed
 
     private void jButtonDeleteRecycleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteRecycleActionPerformed
