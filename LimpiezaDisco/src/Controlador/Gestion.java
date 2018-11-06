@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,7 +81,12 @@ public class Gestion {
         JFileChooser jc = new JFileChooser();
         jc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         jc.showOpenDialog(PantallaAplicacion);
-        this.file = jc.getSelectedFile();
+        if(jc.getSelectedFile()==null){
+            JOptionPane.showMessageDialog(null, "No has seleccionado unidad.");
+        }else{
+            this.file = jc.getSelectedFile();
+        }
+        
     }
 
     /**
