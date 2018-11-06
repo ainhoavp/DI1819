@@ -16,7 +16,12 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
     
     Gestion gestion = new Gestion();
     
-    
+    /**
+     * Constructor clase SeleccionarNavegador
+     * @param dialogoNavegador
+     * @param modal
+     * @param gestion 
+     */
     public SeleccionarNavegador(Dialog dialogoNavegador, boolean modal, Gestion gestion) {
         super(dialogoNavegador, modal);
         initComponents();

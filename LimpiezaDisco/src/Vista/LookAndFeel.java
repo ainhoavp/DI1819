@@ -15,9 +15,11 @@ import javax.swing.SwingUtilities;
  */
 public class LookAndFeel extends javax.swing.JDialog {
 
-    /**
-     * Creates new form LookAndFeel
-     */
+  /**
+   * Constructor de la clase LookAndFeel
+   * @param parent
+   * @param modal 
+   */
     public LookAndFeel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

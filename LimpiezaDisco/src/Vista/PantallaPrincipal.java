@@ -13,7 +13,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     private static final String rutaPNG = "/Imagen/iso.png";
     
-    
+    /**
+     * Constructor Pantalla principal
+     */
     public PantallaPrincipal() {
         initComponents();
          setIconImage(new ImageIcon(getClass().getResource(rutaPNG)).getImage());
@@ -65,7 +67,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(jButtonComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
+                        .addGap(83, 83, 83)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()

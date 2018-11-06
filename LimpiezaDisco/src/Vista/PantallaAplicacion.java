@@ -10,11 +10,13 @@ import javax.swing.JOptionPane;
  */
 public class PantallaAplicacion extends javax.swing.JDialog {
 
-    /**
-     * Creates new form PantallaAplicacion
-     */
+   
     Gestion gestion = new Gestion();
-
+/**
+ * Constructor de la clase Gestion
+ * @param parent
+ * @param modal 
+ */
     public PantallaAplicacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

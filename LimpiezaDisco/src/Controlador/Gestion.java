@@ -21,50 +21,87 @@ public class Gestion {
     long freeSpace;
     int emptyDirectoryCounterDeleted = 0;
 
+    /**
+     * 
+     * @return 
+     */
     public File getFile() {
         return file;
     }
-
+/**
+ * 
+ * @param file 
+ */
     public void setFile(File file) {
         this.file = file;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<File> getListForRecursiveMethod() {
         return listForRecursiveMethod;
     }
-
+/**
+ * 
+ * @param listaParaMetodoRecursivo 
+ */
     public void setListForRecursiveMethod(List<File> listaParaMetodoRecursivo) {
         this.listForRecursiveMethod = listaParaMetodoRecursivo;
     }
-
+/**
+ * 
+ * @return 
+ */
     public long getTotalSpace() {
         return totalSpace;
     }
-
+/**
+ * 
+ * @param total 
+ */
     public void setTotalSpace(long total) {
         this.totalSpace = total;
     }
-
+/**
+ * 
+ * @return 
+ */
     public long getFreeSpace() {
         return freeSpace;
     }
-
+/**
+ * 
+ * @param libre 
+ */
     public void setFreeSpace(long libre) {
         this.freeSpace = libre;
     }
-
+/**
+ * 
+ * @return 
+ */
     public int getEmptyDirectoryCounterDeleted() {
         return emptyDirectoryCounterDeleted;
     }
-
+/**
+ * 
+ * @param contadorDirectoriosVaciosBorrados 
+ */
     public void setEmptyDirectoryCounterDeleted(int contadorDirectoriosVaciosBorrados) {
         this.emptyDirectoryCounterDeleted = contadorDirectoriosVaciosBorrados;
     }
-
+/**
+ * 
+ * @return 
+ */
     public List<File> getListToBeDeletedBySize() {
         return listToBeDeletedBySize;
     }
-
+/**
+ * 
+ * @param listaBorrarPorTamanio 
+ */
     public void setListToBeDeletedBySize(List<File> listaBorrarPorTamanio) {
         this.listToBeDeletedBySize = listaBorrarPorTamanio;
     }
@@ -75,7 +112,7 @@ public class Gestion {
      * Metodo que selecciona la unidad através de un file choose
      *
      * @param PantallaAplicacion
-     * @return file elegido
+     *
      */
     public void selectUnity(Component PantallaAplicacion) {
         JFileChooser jc = new JFileChooser();
