@@ -9,7 +9,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * 
  * @author Ainhoa
  */
 public class Gestion {
@@ -241,7 +241,10 @@ public class Gestion {
         switch (seleccion) {
             case 0:
                 for (File fileParaBorrar : listForRecursiveMethod) {
-                    if (fileParaBorrar.isDirectory() && fileParaBorrar.toString().toLowerCase().contains("opera") && fileParaBorrar.toString().toLowerCase().endsWith("cache") && !fileParaBorrar.toString().toLowerCase().contains("roaming")) {
+                    if (fileParaBorrar.isDirectory() && fileParaBorrar.toString()
+                            .toLowerCase().contains("opera") && fileParaBorrar.toString()
+                                    .toLowerCase().endsWith("cache") && !fileParaBorrar.toString()
+                                            .toLowerCase().contains("roaming")) {
                         File[] borrar = fileParaBorrar.listFiles();
                         for (File fileBorrar : borrar) {
                             fileBorrar.delete();
@@ -296,7 +299,7 @@ public class Gestion {
     }
     
     /**
-     * Método que recibe por parámetro una posiciçon de la lista listToBeDeletedBySize para borrar un elemento.
+     * Método que recibe por parámetro una posicion de la lista listToBeDeletedBySize para borrar un elemento.
      * @param posicion
      * @return true si borró la posición y false si no la borrró.
      */
