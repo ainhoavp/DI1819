@@ -7,11 +7,10 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Ainhoa
  */
-public class MiTablaCarreras extends AbstractTableModel{
-    
-    
-   private final String[] columnas = {"Nombre carrera", "Fecha", "Lugar", "Número participantes", "Precio"};
-   private List<Carrera> listaCarrerasTabla;
+public class MiTablaCarreras extends AbstractTableModel {
+
+    private final String[] columnas = {"Nombre carrera", "Fecha", "Lugar", "Número participantes", "Precio"};
+    private List<Carrera> listaCarrerasTabla;
 
     public MiTablaCarreras(List<Carrera> listaCarreras) {
         this.listaCarrerasTabla = listaCarreras;
@@ -29,28 +28,25 @@ public class MiTablaCarreras extends AbstractTableModel{
         return columnas.length;
     }
 
-       @Override
+    @Override
     public String getColumnName(int column) {
         return columnas[column];
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch(columnIndex){
-case 0:
+        switch (columnIndex) {
+            case 0:
                 return listaCarrerasTabla.get(rowIndex).getNombreCarrera();
             case 1:
                 return listaCarrerasTabla.get(rowIndex).getFechaCarrera();
             case 2:
                 return listaCarrerasTabla.get(rowIndex).getLugarCarrera();
-                        case 3:
+            case 3:
                 return listaCarrerasTabla.get(rowIndex).getNumeroParticipantes();
             case 4:
                 return listaCarrerasTabla.get(rowIndex).getPrecio();
         }
         return null;
     }
-    }
-    
-   
-   
+}

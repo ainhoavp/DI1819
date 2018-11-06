@@ -55,7 +55,7 @@ public class CuestionarioAlta extends javax.swing.JDialog {
         group.add(jTextFieldApellidos, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTextFieldDNI, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTextFieldDireccion, StringValidators.REQUIRE_NON_EMPTY_STRING);
-        group.add(jTextFieldTel, StringValidators.REQUIRE_VALID_INTEGER, StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jTextFieldTel, StringValidators.REQUIRE_VALID_NUMBER, StringValidators.REQUIRE_NON_EMPTY_STRING);
         
         validationPanel.addChangeListener(new ChangeListener() {
             @Override

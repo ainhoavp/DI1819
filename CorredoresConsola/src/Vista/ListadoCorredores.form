@@ -49,19 +49,19 @@
               <Component id="jLabelTituloListadoCorredores" alignment="1" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="73" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jButtonDardeAlta" min="-2" pref="174" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButtonModificar" min="-2" pref="190" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButtonBorrar" min="-2" pref="188" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="jButtonGuardarCorredores" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jScrollPane1" min="-2" pref="774" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
+                  <Component id="jButtonDardeAlta" min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButtonModificar" min="-2" pref="110" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButtonBorrar" min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButtonGuardarCorredores" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -72,14 +72,14 @@
                   <Component id="jLabelTituloListadoCorredores" min="-2" pref="97" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="295" max="-2" attributes="0"/>
-                  <EmptySpace pref="39" max="32767" attributes="0"/>
+                  <EmptySpace pref="55" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButtonDardeAlta" pref="96" max="32767" attributes="0"/>
-                      <Component id="jButtonModificar" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButtonBorrar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButtonGuardarCorredores" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonGuardarCorredores" pref="64" max="32767" attributes="0"/>
+                      <Component id="jButtonModificar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonDardeAlta" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,7 +144,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDardeAlta">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ALTA CORREDOR"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;ALTA&lt;br&gt; CORREDOR&lt;/center&gt;&lt;/html&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDardeAltaActionPerformed"/>
@@ -152,7 +152,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonGuardarCorredores">
           <Properties>
-            <Property name="text" type="java.lang.String" value="GUARDAR CORREDORES"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;GUARDAR &lt;br&gt;CORREDORES&lt;/center&gt;&lt;/html&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGuardarCorredoresActionPerformed"/>
@@ -160,7 +160,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonModificar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="MODIFICAR"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;MODIFICAR&lt;br&gt;CORREDOR&lt;/center&gt;&lt;/html&gt;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonModificarActionPerformed"/>

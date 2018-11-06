@@ -8,7 +8,18 @@
             <file>file:/C:/Users/aainh/Documents/NetBeansProjects/Gestion_corredores/src/GestionCorredor.java</file>
         </group>
         <group name="PSP1819"/>
-        <group name="AD_1Eval"/>
-        <group name="DI_1Eval"/>
+        <group name="DI_1Eval">
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Controlador/GestionCarrera.java</file>
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Vista/ListadoCarreras.java</file>
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Modelo/Corredor.java</file>
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Vista/PantallaPrincipal.java</file>
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Modelo/CorredorCarrera.java</file>
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Modelo/Carrera.java</file>
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Vista/ListadoCorredores.java</file>
+        </group>
+        <group name="AD_1Eval">
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Modelo/MiTablaCarreras.java</file>
+            <file>file:/C:/Users/aainh/Desktop/2DAM/DI/DI1819/CorredoresConsola/src/Vista/PantallaPrincipal.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -28,7 +28,8 @@ public class GestionCorredor {
 
     private Corredor corredor;
     ArrayList<Corredor> listaCorredores = new ArrayList();
-
+    
+    
     public ArrayList<Corredor> getListaCorredores() {
         return listaCorredores;
     }
@@ -37,7 +38,7 @@ public class GestionCorredor {
         this.listaCorredores = listaCorredores;
     }
 
-    /* constructor */
+   
     public GestionCorredor() {
         leerCsvCorredores();
     }

@@ -1,8 +1,6 @@
 package Modelo;
 
 import java.util.Date;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  *
@@ -16,7 +14,6 @@ public class Carrera {
     private int numeroParticipantes;
     private double precio;
     
-    private Map<String, Corredor> listaCorredoresCarrera = new TreeMap<String, Corredor>();
 
     public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera, int numeroParticipantes, double precio) {
         this.nombreCarrera = nombreCarrera;
@@ -66,14 +63,7 @@ public class Carrera {
         this.precio = precio;
     }
 
-    public Map<String, Corredor> getListaCorredoresCarrera() {
-        return listaCorredoresCarrera;
-    }
-
-    public void setListaCorredoresCarrera(Map<String, Corredor> listaCorredoresCarrera) {
-        this.listaCorredoresCarrera = listaCorredoresCarrera;
-    }
-
+  
     
     
     
