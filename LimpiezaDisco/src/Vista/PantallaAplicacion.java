@@ -18,6 +18,7 @@ public class PantallaAplicacion extends javax.swing.JDialog {
     public PantallaAplicacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Limpiador de disco.");
         this.setLocationRelativeTo(this);
     }
 

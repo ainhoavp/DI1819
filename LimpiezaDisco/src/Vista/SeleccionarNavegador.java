@@ -20,6 +20,7 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
     public SeleccionarNavegador(Dialog dialogoNavegador, boolean modal, Gestion gestion) {
         super(dialogoNavegador, modal);
         initComponents();
+        setTitle("Seleccionar navegador.");
         this.gestion = gestion;
         this.setLocationRelativeTo(this);
            }

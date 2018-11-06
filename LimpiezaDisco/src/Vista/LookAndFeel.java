@@ -21,11 +21,13 @@ public class LookAndFeel extends javax.swing.JDialog {
     public LookAndFeel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Cambiar apariencia.");
         DefaultComboBoxModel dcm = new DefaultComboBoxModel();
         for (UIManager.LookAndFeelInfo lfi : UIManager.getInstalledLookAndFeels()) {
             dcm.addElement(lfi.getName());
         }
         jComboBoxLookAndFeel.setModel(dcm);
+        this.setLocationRelativeTo(this);
 
     }
 

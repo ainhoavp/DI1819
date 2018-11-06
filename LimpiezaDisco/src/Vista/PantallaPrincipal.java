@@ -17,10 +17,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form PantallaPrincipal
      */
+    private static final String rutaPNG = "/Imagen/iso.png";
+    
+    
     public PantallaPrincipal() {
         initComponents();
+         setIconImage(new ImageIcon(getClass().getResource(rutaPNG)).getImage());
+         setTitle("Limpiador de disco.");
         this.setLocationRelativeTo(this);
-        //Icon imagen = new ImageIcon(getClass().getResource("/Imagen/imagen_limpiezaDisco.jpg"));
+        
         //jLabelImagen.setIcon(imagen);
     }
 
@@ -37,7 +42,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jButtonComenzar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabelImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +53,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("<html><center>Esta aplicación permite hacer una limpieza de nuestro ordenador.<br> acabar de rellenar el texto correspondiente y añadir una imagen </center></html>");
+        jLabel1.setText("<html><center>Esta aplicación permite hacer una limpieza de nuestro disco.<br> Pulsando el botón \"COMENZAR\" nos llevará a la pantalla inicial.<br>El botón \"CONFIGURACIÓN\" permite cambiar la apariencia de la aplicación.</center></html>");
 
         jButton1.setText("Configuración");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,16 +69,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addGap(92, 92, 92)
                         .addComponent(jButtonComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,10 +88,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonComenzar)
                     .addComponent(jButton1))
                 .addGap(39, 39, 39))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,8 +96,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +158,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonComenzar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelImagen;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

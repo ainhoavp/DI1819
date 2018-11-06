@@ -33,6 +33,7 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
     public BorrarPorTamanio(Dialog dialogoTamanio, boolean modal, Gestion gestion) {
         super(dialogoTamanio, modal);
         initComponents();
+        setTitle("Borrar por tamaño.");
         this.gestion = gestion;
         this.setLocationRelativeTo(this);
         actualizarTabla();
