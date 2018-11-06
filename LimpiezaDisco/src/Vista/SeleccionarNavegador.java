@@ -107,6 +107,12 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /**
+     * Recoge la posición de la selección en el comboBox y la borra llamando al método deleteBrowsingHistory() de la gestión.
+     * @param evt 
+     */
+    
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
         int seleccion = jComboBoxSelectNavigator.getSelectedIndex();
         int borrados = gestion.deleteBrowsingHistory(seleccion);

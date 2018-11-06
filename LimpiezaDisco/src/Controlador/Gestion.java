@@ -251,6 +251,28 @@ public class Gestion {
                 }
         }
     }
+    
+    /**
+     * Método que recibe por parámetro una posiciçon de la lista listToBeDeletedBySize para borrar un elemento.
+     * @param posicion
+     * @return true si borró la posición y false si no la borrró.
+     */
+    
+public boolean removeByPosition(int posicion)
+{
+    File file = listToBeDeletedBySize.get(posicion);
+    if (file != null)
+    {
+        file.delete();
+        listToBeDeletedBySize.remove(posicion);
+        return true;
+    }
+    else
+    {
+        //Fichero no existe
+        return false;
+    }
+}
 
     
     

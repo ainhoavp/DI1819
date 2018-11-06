@@ -109,6 +109,11 @@ public class LookAndFeel extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Rellena el comboBox con los nombres de los temas para el Look and Feel.
+     * @param evt 
+     */
+    
     private void jComboBoxLookAndFeelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLookAndFeelActionPerformed
         try {
             UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[jComboBoxLookAndFeel.getSelectedIndex()].getClassName());

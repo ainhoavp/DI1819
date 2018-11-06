@@ -186,6 +186,9 @@ public class PantallaAplicacion extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Carga el modelo de la tabla y en funcion de si la lista getListForRecursiveMethod está o no vacía, rellenará la tabla. 
+     */
     public void rellenarTabla() {
         jTableArchivosRecursivos.setModel(new MiTablaEscaneados(gestion.getListForRecursiveMethod()));
     }

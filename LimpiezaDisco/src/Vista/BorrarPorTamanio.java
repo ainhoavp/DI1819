@@ -23,15 +23,25 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
      */
     Gestion gestion;
 
+    /**
+     * Constructor de la clase BorrarPorTamanio que tiene el initComponents, asigna el parametro Gestíon a la clase Gestión y coloca
+     * el diálogo en el centro de la pantalla.
+     * @param dialogoTamanio
+     * @param modal
+     * @param gestion 
+     */
     public BorrarPorTamanio(Dialog dialogoTamanio, boolean modal, Gestion gestion) {
         super(dialogoTamanio, modal);
         initComponents();
         this.gestion = gestion;
         this.setLocationRelativeTo(this);
-        rellenarTablaTamanio();
+        actualizarTabla();
     }
 
-    public void rellenarTablaTamanio() {
+    /**
+     * Carga el modelo de la tabla y en funcion de si la lista listToBeDeletedBySize está o no vacía, rellenará la tabla.
+     */
+    public void actualizarTabla() {
         jTableArchivosPorTamanio.setModel(new MiTablaPorTamanio(gestion.getListToBeDeletedBySize()));
     }
 
@@ -172,13 +182,16 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        gestion.getListToBeDeletedBySize().clear();
+        actualizarTabla();
         JOptionPane.showMessageDialog(this, "Buscando archivos, este proceso podrá tardar unos minutos...");
         if (gestion.getListForRecursiveMethod().isEmpty()) {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado la unidad para buscar.");
         } else {
             gestion.scanFilesBySize(jComboBoxArchivoPorTamanio.getSelectedIndex());
-            rellenarTablaTamanio();
+            actualizarTabla();
 
         }
 
@@ -191,7 +204,7 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
         }
         gestion.getListToBeDeletedBySize().clear();
         JOptionPane.showMessageDialog(this, "Se han borrado los documentos.");
-        rellenarTablaTamanio();
+        actualizarTabla();
 
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
@@ -203,10 +216,12 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
 
         int[] columnasSeleccionadas = jTableArchivosPorTamanio.getSelectedRows();
         for (int i = 0; i < columnasSeleccionadas.length; i++) {
-            jTableArchivosPorTamanio.remove(columnasSeleccionadas[i]);
+            int pos = columnasSeleccionadas[i];
+            gestion.removeByPosition(pos);
+
         }
-        //no se que mierda dice del array
-        rellenarTablaTamanio();
+
+        actualizarTabla();
 
 
     }//GEN-LAST:event_jButtonBorrarSeleccionadosActionPerformed
