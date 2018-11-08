@@ -12,11 +12,8 @@ public class PantallaAplicacion extends javax.swing.JDialog {
 
    
     Gestion gestion = new Gestion();
-/**
- * Constructor de la clase Gestion
- * @param parent
- * @param modal 
- */
+    
+    
     public PantallaAplicacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -250,9 +247,6 @@ public class PantallaAplicacion extends javax.swing.JDialog {
        bt.setVisible(true);
     }//GEN-LAST:event_jButtonBorrarPorTamanioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrarPorTamanio;

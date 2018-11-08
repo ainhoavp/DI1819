@@ -13,10 +13,7 @@ public class MiTablaPorTamanio extends AbstractTableModel {
     private final String[] columnas = {"Archivo", "Tamaño"};
     private List<File> listaBorrarPorTamanio;
 
-    /**
-     * 
-     * @param listaArchivosEscaneados 
-     */
+ 
     public MiTablaPorTamanio(List<File> listaArchivosEscaneados) {
         this.listaBorrarPorTamanio = listaArchivosEscaneados;
     }

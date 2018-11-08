@@ -21,87 +21,50 @@ public class Gestion {
     long freeSpace;
     int emptyDirectoryCounterDeleted = 0;
 
-    /**
-     * 
-     * @return 
-     */
     public File getFile() {
         return file;
     }
-/**
- * 
- * @param file 
- */
+
     public void setFile(File file) {
         this.file = file;
     }
-/**
- * 
- * @return 
- */
+
     public List<File> getListForRecursiveMethod() {
         return listForRecursiveMethod;
     }
-/**
- * 
- * @param listaParaMetodoRecursivo 
- */
+
     public void setListForRecursiveMethod(List<File> listaParaMetodoRecursivo) {
         this.listForRecursiveMethod = listaParaMetodoRecursivo;
     }
-/**
- * 
- * @return 
- */
+
     public long getTotalSpace() {
         return totalSpace;
     }
-/**
- * 
- * @param total 
- */
+
     public void setTotalSpace(long total) {
         this.totalSpace = total;
     }
-/**
- * 
- * @return 
- */
+
     public long getFreeSpace() {
         return freeSpace;
     }
-/**
- * 
- * @param libre 
- */
+
     public void setFreeSpace(long libre) {
         this.freeSpace = libre;
     }
-/**
- * 
- * @return 
- */
+
     public int getEmptyDirectoryCounterDeleted() {
         return emptyDirectoryCounterDeleted;
     }
-/**
- * 
- * @param contadorDirectoriosVaciosBorrados 
- */
+
     public void setEmptyDirectoryCounterDeleted(int contadorDirectoriosVaciosBorrados) {
         this.emptyDirectoryCounterDeleted = contadorDirectoriosVaciosBorrados;
     }
-/**
- * 
- * @return 
- */
+
     public List<File> getListToBeDeletedBySize() {
         return listToBeDeletedBySize;
     }
-/**
- * 
- * @param listaBorrarPorTamanio 
- */
+
     public void setListToBeDeletedBySize(List<File> listaBorrarPorTamanio) {
         this.listToBeDeletedBySize = listaBorrarPorTamanio;
     }
@@ -111,7 +74,7 @@ public class Gestion {
     /**
      * Metodo que selecciona la unidad através de un file choose
      *
-     * @param PantallaAplicacion
+     * @param PantallaAplicacion Se pasa como parametro un JDialog para el fileChooser
      *
      */
     public void selectUnity(Component PantallaAplicacion) {
@@ -128,7 +91,7 @@ public class Gestion {
 
     /**
      * Lista recursivamente todos los archivos de la ruta seleccionada en el fileChooser
-     * @param ruta 
+     * @param ruta Se pasa como parametro la ruta del directorio que se quiere listar.
      */
     public void listRecursively(String ruta) {
         File fileRecursivo = new File(ruta);
@@ -159,7 +122,7 @@ public class Gestion {
 
     /**
      * Elimina los directorios vacíos de una ruta recursivamente.
-     * @param ruta 
+     * @param ruta Se pasará como parámetro la ruta del directorio a listar para borrar.
      */
     public void deleteEmptyDirectoriesR(String ruta) {
         File fileRuta = new File(ruta);
@@ -179,7 +142,7 @@ public class Gestion {
 
     /**
      * Vacía la papelera de reciclaje
-     * @return 
+     * @return devuelve un int con el número de archivos eliminados.
      */
     public int emptyTrash() {
         File papelera = new File("C://$Recycle.Bin//S-1-5-21-3924842705-2844399566-1741625739-1001");
@@ -269,7 +232,7 @@ public class Gestion {
 
     /**
      * Escanea la ruta elegida por el fileChooser para filtrar los archivos por tamaños
-     * @param seleccionTamanio necesita un int con la seleccion del comboBox mayor 1gb...
+     * @param seleccionTamanio necesita un int con la seleccion del comboBox
      */
     public void scanFilesBySize(int seleccionTamanio) {
         
@@ -301,7 +264,7 @@ public class Gestion {
     /**
      * Método que recibe por parámetro una posicion de la lista listToBeDeletedBySize para borrar un elemento.
      * @param posicion
-     * @return true si borró la posición y false si no la borrró.
+     * @return true si borró la posición y false si no la borró.
      */
     
 public boolean removeByPosition(int posicion)

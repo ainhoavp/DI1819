@@ -8,15 +8,13 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Ainhoa
  */
+
+
 public class MiTablaEscaneados extends AbstractTableModel {
 
     private final String[] columnas = {"Archivo"};
     private List<File> listaArchivosUnidadSeleccionada;
 
-    /**
-     * 
-     * @param listaArchivosEscaneados 
-     */
     public MiTablaEscaneados(List<File> listaArchivosEscaneados) {
         this.listaArchivosUnidadSeleccionada = listaArchivosEscaneados;
     }

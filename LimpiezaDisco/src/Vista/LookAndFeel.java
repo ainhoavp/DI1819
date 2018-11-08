@@ -17,8 +17,8 @@ public class LookAndFeel extends javax.swing.JDialog {
 
   /**
    * Constructor de la clase LookAndFeel
-   * @param parent
-   * @param modal 
+   * @param parent el Frame de que extiende.
+    * @param modal true para que no se pueda salir del dialogo hasta que no se realize una opcioón.
    */
     public LookAndFeel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -115,7 +115,7 @@ public class LookAndFeel extends javax.swing.JDialog {
 
     /**
      * Rellena el comboBox con los nombres de los temas para el Look and Feel.
-     * @param evt 
+     * @param evt evento.
      */
     
     private void jComboBoxLookAndFeelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLookAndFeelActionPerformed
@@ -128,13 +128,14 @@ public class LookAndFeel extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jComboBoxLookAndFeelActionPerformed
 
+    /**
+     * 
+     * @param evt evento.
+     */
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;

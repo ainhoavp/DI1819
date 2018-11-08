@@ -23,13 +23,7 @@ public class BorrarPorTamanio extends javax.swing.JDialog {
      */
     Gestion gestion;
 
-    /**
-     * Constructor de la clase BorrarPorTamanio que tiene el initComponents, asigna el parametro Gestíon a la clase Gestión y coloca
-     * el diálogo en el centro de la pantalla.
-     * @param dialogoTamanio
-     * @param modal
-     * @param gestion 
-     */
+
     public BorrarPorTamanio(Dialog dialogoTamanio, boolean modal, Gestion gestion) {
         super(dialogoTamanio, modal);
         initComponents();

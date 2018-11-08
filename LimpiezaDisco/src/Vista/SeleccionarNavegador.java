@@ -16,12 +16,7 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
     
     Gestion gestion = new Gestion();
     
-    /**
-     * Constructor clase SeleccionarNavegador
-     * @param dialogoNavegador
-     * @param modal
-     * @param gestion 
-     */
+
     public SeleccionarNavegador(Dialog dialogoNavegador, boolean modal, Gestion gestion) {
         super(dialogoNavegador, modal);
         initComponents();
@@ -116,7 +111,7 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
     
     /**
      * Recoge la posición de la selección en el comboBox y la borra llamando al método deleteBrowsingHistory() de la gestión.
-     * @param evt 
+     * @param evt evento.
      */
     
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
@@ -130,9 +125,6 @@ public class SeleccionarNavegador extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxSelectNavigatorActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrar;
