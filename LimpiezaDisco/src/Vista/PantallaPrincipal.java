@@ -1,6 +1,5 @@
 package Vista;
 
-import java.awt.Desktop;
 import javax.swing.ImageIcon;
 
 /**
