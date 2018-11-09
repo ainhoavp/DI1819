@@ -149,7 +149,7 @@ public class ListadoCorredores extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDardeAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDardeAltaActionPerformed
-        CuestionarioAlta cuestionarioAlta = new CuestionarioAlta(this, true, gc);
+        CuestionarioAltaCorredor cuestionarioAlta = new CuestionarioAltaCorredor(this, true, gc);
         cuestionarioAlta.setVisible(true);
         rellenarTablaCorredores();
     }//GEN-LAST:event_jButtonDardeAltaActionPerformed
@@ -163,7 +163,7 @@ public class ListadoCorredores extends javax.swing.JDialog {
         //tienen que modificar la persona de la lista
         int seleccionado = jTableCorredores.getSelectedRow(); //seleccionar con el ratón un int con la posicion del corredor en la lista de corredores.
         Corredor corredorSeleccionado = gc.getListaCorredores().get(seleccionado);
-        CuestionarioAlta cuestionarioModificar = new CuestionarioAlta(this, true, corredorSeleccionado);
+        CuestionarioAltaCorredor cuestionarioModificar = new CuestionarioAltaCorredor(this, true, corredorSeleccionado);
         cuestionarioModificar.setLocationRelativeTo(null);
         cuestionarioModificar.setVisible(true);
         rellenarTablaCorredores();

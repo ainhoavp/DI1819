@@ -5,8 +5,10 @@
  */
 package Vista;
 
-import Controlador.GestionCorredor;
+import Controlador.GestionCarrera;
+import Modelo.Carrera;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,15 +19,34 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog {
     /**
      * Creates new form CuestionarioAltaCarreras
      */
+    GestionCarrera gc;
+    Carrera carreraModificar;
     
-    GestionCorredor gc;
-    
-    
-    
-    public CuestionarioAltaCarreras(java.awt.Frame parent, boolean modal, GestionCorredor gc) {
+    public CuestionarioAltaCarreras(java.awt.Dialog parent, boolean modal, GestionCarrera gc) {
         super(parent, modal);
         this.gc = gc;
         initComponents();
+        //falta validarFormulario();
+    }
+    
+    public CuestionarioAltaCarreras(java.awt.Dialog parent, boolean modal, Carrera carreraModificar) {
+        super(parent, modal);
+        this.carreraModificar = carreraModificar;
+        initComponents();
+        jTextFieldNombreCarrera.setText(this.carreraModificar.getNombreCarrera());
+        jTextFieldLugar.setText(this.carreraModificar.getLugarCarrera());
+        jTextFieldNumeroParticipantes.setText(Integer.toString(this.carreraModificar.getNumeroParticipantes()));
+        jTextFieldPrecio.setText(Double.toString(this.carreraModificar.getPrecio()));
+        jDateChooserFecha.setDate(this.carreraModificar.getFechaCarrera());
+        //falta validarFormulario();
+    }
+    
+    private void limpiarPantalla() {
+        jTextFieldNombreCarrera.setText("");
+        jTextFieldLugar.setText("");
+        jTextFieldNumeroParticipantes.setText("");
+        jTextFieldPrecio.setText("");
+        jDateChooserFecha.setDate(null);
     }
 
     /**
@@ -71,6 +92,11 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog {
         jTextFieldLugar.setText(org.openide.util.NbBundle.getMessage(CuestionarioAltaCarreras.class, "CuestionarioAltaCarreras.jTextFieldLugar.text")); // NOI18N
 
         jTextFieldNumeroParticipantes.setText(org.openide.util.NbBundle.getMessage(CuestionarioAltaCarreras.class, "CuestionarioAltaCarreras.jTextFieldNumeroParticipantes.text")); // NOI18N
+        jTextFieldNumeroParticipantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNumeroParticipantesActionPerformed(evt);
+            }
+        });
 
         jLabelPrecio.setText(org.openide.util.NbBundle.getMessage(CuestionarioAltaCarreras.class, "CuestionarioAltaCarreras.jLabelPrecio.text")); // NOI18N
 
@@ -168,20 +194,36 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEnviarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarCarrerasActionPerformed
-     String nombreCarreras = jLabelNombreCarrera.getText();
-     Date fechaCarrera = jDateChooserFecha.getDate();
-     String lugarCarrera = jLabelLugar.getText();
-     double precioCarrera  = Double.valueOf(jLabelPrecio.getText());
-     int numeroParticipantes = Integer.parseInt(jTextFieldNumeroParticipantes.getText());
-     
-     
         
+        String nombreCarreras = jTextFieldNombreCarrera.getText();
+        Date fechaCarrera = jDateChooserFecha.getDate();
+        String lugarCarrera = jTextFieldLugar.getText();
+        double precioCarrera = Double.valueOf(jTextFieldPrecio.getText());
+        int numeroParticipantes =(int)Integer.parseInt(jTextFieldNumeroParticipantes.getText());
+        
+        if (carreraModificar == null) {
+            gc.anadirCarrera(nombreCarreras, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);
+            JOptionPane.showMessageDialog(this, "Carreara dada de alta", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            carreraModificar.setNombreCarrera(nombreCarreras);
+            carreraModificar.setLugarCarrera(lugarCarrera);
+            carreraModificar.setNumeroParticipantes(numeroParticipantes);
+            carreraModificar.setPrecio(precioCarrera);
+            carreraModificar.setFechaCarrera(fechaCarrera);
+        }
+
+        limpiarPantalla();
+        dispose();
     }//GEN-LAST:event_jButtonEnviarCarrerasActionPerformed
+
+    private void jTextFieldNumeroParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroParticipantesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNumeroParticipantesActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEnviarCarreras;
     private com.toedter.calendar.JDateChooser jDateChooserFecha;

@@ -13,14 +13,21 @@ public class Carrera {
     private String lugarCarrera;
     private int numeroParticipantes;
     private double precio;
-    
 
     public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera, int numeroParticipantes, double precio) {
         this.nombreCarrera = nombreCarrera;
+        if (this.nombreCarrera == null) {
+            throw new IllegalArgumentException("El nombre del carrera no puede estar vacío.");
+        }
         this.fechaCarrera = fechaCarrera;
         this.lugarCarrera = lugarCarrera;
         this.numeroParticipantes = numeroParticipantes;
         this.precio = precio;
+
+    }
+
+    public Carrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
     }
 
     public String getNombreCarrera() {
@@ -28,6 +35,9 @@ public class Carrera {
     }
 
     public void setNombreCarrera(String nombreCarrera) {
+        if (this.nombreCarrera == null) {
+            throw new IllegalArgumentException("El nombre del carrera no puede estar vacío.");
+        }
         this.nombreCarrera = nombreCarrera;
     }
 
@@ -63,8 +73,9 @@ public class Carrera {
         this.precio = precio;
     }
 
-  
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", fechaCarrera=" + fechaCarrera + ", lugarCarrera=" + lugarCarrera + ", numeroParticipantes=" + numeroParticipantes + ", precio=" + precio + '}';
+    }
+
 }

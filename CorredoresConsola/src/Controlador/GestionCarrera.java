@@ -38,13 +38,25 @@ public class GestionCarrera {
         listaCarreras.add(carrera);
     }
     
-  /*  public void borrarCarrera(String dni) {
+    
+    
+     public void borrarCarrera(String nombre) {
 
-        if (listaCorredores.contains(new Corredor(dni))) {
-            listaCorredores.remove(new Corredor(dni));
-            System.out.println("Corredor con dni " + dni + " , BORRADO.");
+        if (listaCarreras.contains(new Carrera(nombre))) {
+            listaCarreras.remove(new Carrera(nombre));
+         System.out.println("Carrera  " + nombre + " , BORRADA.");
         } else {
-            System.out.println("No hay corredores con ese dni");
+            System.out.println("No hay carreras con ese nombrei");
         }
-*/ //VOY POR AQUÍ.
-}
+    }
+     
+//         public int buscarcorredor(String nombre) {
+//        carrera = new Carrera(nombre);
+//        //corredores.get(Collections.binarySearch(corredores, c1)).setDni(dni);
+//        return Collections.binarySearch(listaCarreras, carrera);
+//    }
+   
+
+
+
+     }

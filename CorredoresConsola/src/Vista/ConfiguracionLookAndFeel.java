@@ -28,6 +28,16 @@ public class ConfiguracionLookAndFeel extends javax.swing.JDialog {
         jComboBoxLookAndFeel.setModel(dcm);
         
     }
+    
+//    
+//    public void instalarLookAndFeelNuevo(String nombreLookAndFeel, String nombreClase){
+//       //mirar metodo para instalar un lookandfeel 
+//        for (UIManager.LookAndFeelInfo lfi )
+//        
+//        UIManager.installLookAndFeel(nombreClase, nombreClase);
+//        
+//       
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,6 +122,11 @@ public class ConfiguracionLookAndFeel extends javax.swing.JDialog {
     private void jComboBoxLookAndFeelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLookAndFeelActionPerformed
         try {
             UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[jComboBoxLookAndFeel.getSelectedIndex()].getClassName());
+           // UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+            //si el look and feel es descargado de internet:
+            // UIManager.setLookAndFeel("nombrePaquete.nombreDeLaClase.class.getCanonicalName());
+            //o
+            //UIManager.setLookAndFeel("nombrePaquete.nombreDeLaClase");
             SwingUtilities.updateComponentTreeUI(this);
             SwingUtilities.updateComponentTreeUI(this.getParent());
         } catch (Throwable e) {
@@ -121,7 +136,7 @@ public class ConfiguracionLookAndFeel extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBoxLookAndFeelActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
 
