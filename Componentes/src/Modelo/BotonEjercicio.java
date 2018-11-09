@@ -20,7 +20,6 @@ public class BotonEjercicio extends JButton implements Serializable, ActionListe
 
     
     private File fileElegido;
-    //private File fichero = new File("C:\\Users\\aainh\\Desktop\\clicks.txt");
     private int contadorClicks = 0;
 
     public BotonEjercicio() {
