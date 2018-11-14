@@ -28,7 +28,7 @@ public class Prueba extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        botonEjercicio1 = new Modelo.BotonEjercicio();
+        botonEjercicio1 = new BotonPropio.BotonEjercicio();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +107,7 @@ public class Prueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Modelo.BotonEjercicio botonEjercicio1;
+    private BotonPropio.BotonEjercicio botonEjercicio1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
