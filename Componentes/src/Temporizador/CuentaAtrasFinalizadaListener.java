@@ -7,4 +7,5 @@ package Temporizador;
 public interface CuentaAtrasFinalizadaListener {
     
     public void ejecutar();
+    
 }

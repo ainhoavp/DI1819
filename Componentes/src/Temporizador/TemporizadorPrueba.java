@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Temporizador;
 
 import java.io.Serializable;
@@ -17,7 +12,7 @@ import javax.swing.JLabel;
 public class TemporizadorPrueba extends JLabel implements Serializable {
 
     private int segundos;
-    
+
     private CuentaAtrasFinalizadaListener listener; //interface que creamos para completar el código. Esto siempre es null.
 
     public TemporizadorPrueba() {
@@ -31,24 +26,24 @@ public class TemporizadorPrueba extends JLabel implements Serializable {
         this.segundos = segundos;
     }
 
-    public void addCuentaAtrasFinalizadaListener(CuentaAtrasFinalizadaListener listener){
+    public void addCuentaAtrasFinalizadaListener(CuentaAtrasFinalizadaListener listener) {
         this.listener = listener;
     }
-    
-    
+
     public void start(CuentaAtrasFinalizadaListener listener) {
         setText(Integer.toString(segundos));
         Timer timer = new Timer();
+        
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(segundos >= 0){
+                if (segundos >= 0) {
                     setText(Integer.toString(segundos--));
-                } else{
+                } else {
                     setText("Fin cuenta atrás");
                     cancel();
                     //Todo: llamar a un código
-                    if(listener != null){
+                    if (listener != null) {
                         listener.ejecutar();
                     }
                 }
