@@ -1,18 +1,21 @@
 package Modelo;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  *
  * @author Ainhoa
  */
-public class Carrera {
+public class Carrera implements Serializable {
 
     private String nombreCarrera;
     private Date fechaCarrera;
     private String lugarCarrera;
     private int numeroParticipantes;
     private double precio;
+    ArrayList <CorredorCarrera> corredoresCarrera = new ArrayList<>();
 
     public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera, int numeroParticipantes, double precio) {
         this.nombreCarrera = nombreCarrera;
@@ -73,6 +76,14 @@ public class Carrera {
         this.precio = precio;
     }
 
+    public ArrayList<CorredorCarrera> getCorredoresCarrera() {
+        return corredoresCarrera;
+    }
+
+    public void setCorredoresCarrera(ArrayList<CorredorCarrera> corredoresCarrera) {
+        this.corredoresCarrera = corredoresCarrera;
+    }
+    
     @Override
     public String toString() {
         return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", fechaCarrera=" + fechaCarrera + ", lugarCarrera=" + lugarCarrera + ", numeroParticipantes=" + numeroParticipantes + ", precio=" + precio + '}';

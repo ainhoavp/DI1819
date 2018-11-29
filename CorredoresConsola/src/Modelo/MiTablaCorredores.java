@@ -1,6 +1,7 @@
 package Modelo;
 
 
+import java.io.Serializable;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -8,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Ainhoa
  */
-public class MiTablaCorredores extends AbstractTableModel {
+public class MiTablaCorredores extends AbstractTableModel implements Serializable{
 
     private final String[] columnas = {"Nombre", "Apellidos", "DNI", "Dirección", "F.nac", "Tel"};
     private final List<Corredor> listaCorredoresTabla;

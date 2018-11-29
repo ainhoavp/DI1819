@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.GestionCarrera;
 import Modelo.Carrera;
+import java.io.Serializable;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -14,21 +15,23 @@ import javax.swing.JOptionPane;
  *
  * @author Ainhoa
  */
-public class CuestionarioAltaCarreras extends javax.swing.JDialog {
+public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Serializable {
 
     /**
      * Creates new form CuestionarioAltaCarreras
      */
-    GestionCarrera gc;
-    Carrera carreraModificar;
-    
+    private GestionCarrera gc;
+    private Carrera carreraNueva;
+    private Carrera carreraModificar;
+
     public CuestionarioAltaCarreras(java.awt.Dialog parent, boolean modal, GestionCarrera gc) {
         super(parent, modal);
         this.gc = gc;
         initComponents();
+        setLocationRelativeTo(this);
         //falta validarFormulario();
     }
-    
+
     public CuestionarioAltaCarreras(java.awt.Dialog parent, boolean modal, Carrera carreraModificar) {
         super(parent, modal);
         this.carreraModificar = carreraModificar;
@@ -40,7 +43,7 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog {
         jDateChooserFecha.setDate(this.carreraModificar.getFechaCarrera());
         //falta validarFormulario();
     }
-    
+
     private void limpiarPantalla() {
         jTextFieldNombreCarrera.setText("");
         jTextFieldLugar.setText("");
@@ -194,18 +197,20 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEnviarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarCarrerasActionPerformed
-        
-        String nombreCarreras = jTextFieldNombreCarrera.getText();
+
+        String nombreCarrera = jTextFieldNombreCarrera.getText();
         Date fechaCarrera = jDateChooserFecha.getDate();
         String lugarCarrera = jTextFieldLugar.getText();
         double precioCarrera = Double.valueOf(jTextFieldPrecio.getText());
-        int numeroParticipantes =(int)Integer.parseInt(jTextFieldNumeroParticipantes.getText());
-        
+        int numeroParticipantes = Integer.parseInt(jTextFieldNumeroParticipantes.getText());
+
+        carreraNueva = new Carrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);
+
         if (carreraModificar == null) {
-            gc.anadirCarrera(nombreCarreras, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);
-            JOptionPane.showMessageDialog(this, "Carreara dada de alta", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+            gc.anadirCarrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);
+            JOptionPane.showMessageDialog(this, "Carrera dada de alta", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            carreraModificar.setNombreCarrera(nombreCarreras);
+            carreraModificar.setNombreCarrera(nombreCarrera);
             carreraModificar.setLugarCarrera(lugarCarrera);
             carreraModificar.setNumeroParticipantes(numeroParticipantes);
             carreraModificar.setPrecio(precioCarrera);

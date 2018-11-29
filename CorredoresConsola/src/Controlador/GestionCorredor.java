@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author Ainhoa
  */
-public class GestionCorredor {
+public class GestionCorredor implements Serializable {
 
     private Date fechaNacimiento;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -60,11 +61,11 @@ public class GestionCorredor {
 
     }
 
-    public int buscarcorredor(String dni) {
-        corredor = new Corredor(dni);
-        //corredores.get(Collections.binarySearch(corredores, c1)).setDni(dni);
-        return Collections.binarySearch(listaCorredores, corredor);
-    }
+//    public int buscarcorredor(String dni) {
+//        corredor = new Corredor(dni);
+//        //corredores.get(Collections.binarySearch(corredores, c1)).setDni(dni);
+//        return Collections.binarySearch(listaCorredores, corredor);
+//    }
 
     public void mostrarLista() {
         System.out.println(listaCorredores);

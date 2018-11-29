@@ -5,15 +5,15 @@ package Modelo;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Ainhoa
  */
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
-public class Corredor implements Comparable<Corredor>, Serializable{
+public class Corredor implements Serializable {
 
     private String nombre, apellido, direccion, dni;
     private Date fNac, actual;
@@ -29,15 +29,12 @@ public class Corredor implements Comparable<Corredor>, Serializable{
         this.dni = dni;
         this.fNac = fechaNac;
         this.telefono = telefono;
-        
+
     }
 
     public Corredor(String dni) {
         this.dni = dni;
 
-    }
-
-    public Corredor() {
     }
 
     public String getNombre() {
@@ -87,7 +84,7 @@ public class Corredor implements Comparable<Corredor>, Serializable{
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    
+
     public String getDni() {
         return dni;
     }
@@ -104,11 +101,25 @@ public class Corredor implements Comparable<Corredor>, Serializable{
         return "Corredor{" + "nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", dni=" + dni + ", fNac=" + fNac + ", telefono=" + telefono;
     }
 
-   
 
-     @Override
-    public int compareTo(Corredor o) {
-        return this.dni.compareTo(o.dni);
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Corredor other = (Corredor) obj;
+        if (!Objects.equals(this.dni, other.dni)) {
+            return false;
+        }
+        return true;
     }
+
+
 
 }

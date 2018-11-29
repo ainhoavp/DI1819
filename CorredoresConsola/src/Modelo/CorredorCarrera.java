@@ -1,13 +1,16 @@
 package Modelo;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  *
  * @author Ainhoa
  */
-public class CorredorCarrera {
-   
+public class CorredorCarrera implements Serializable {
+
     private Corredor corredor;
-    private String dorsal;
+    private int dorsal;
     private double tiempo;
 
     public Corredor getCorredor() {
@@ -18,11 +21,11 @@ public class CorredorCarrera {
         this.corredor = corredor;
     }
 
-    public String getDorsal() {
+    public int getDorsal() {
         return dorsal;
     }
 
-    public void setDorsal(String dorsal) {
+    public void setDorsal(int dorsal) {
         this.dorsal = dorsal;
     }
 
@@ -34,14 +37,39 @@ public class CorredorCarrera {
         this.tiempo = tiempo;
     }
 
+    public CorredorCarrera(Corredor corredor, int dorsal) {
+        this.corredor = corredor;
+        this.dorsal = dorsal;
+    }
+
+    
     @Override
     public String toString() {
         return "CorredorCarrera{" + "corredor=" + corredor + ", dorsal=" + dorsal + ", tiempo=" + tiempo + '}';
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CorredorCarrera other = (CorredorCarrera) obj;
+        if (this.dorsal != other.dorsal) {
+            return false;
+        }
+        if (!Objects.equals(this.corredor, other.corredor)) {
+            return false;
+        }
+        return true;
+    }
+
     
-    
-    
-    
-   
     
 }

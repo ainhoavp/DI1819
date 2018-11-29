@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import java.io.Serializable;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -13,7 +14,7 @@ import javax.swing.UIManager;
  *
  * @author Ainhoa
  */
-public class ConfiguracionLookAndFeel extends javax.swing.JDialog {
+public class ConfiguracionLookAndFeel extends javax.swing.JDialog implements Serializable{
 
     /**
      * Creates new form ConfiguracionLookAndFeel
@@ -21,6 +22,7 @@ public class ConfiguracionLookAndFeel extends javax.swing.JDialog {
     public ConfiguracionLookAndFeel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(this);
         DefaultComboBoxModel dcm = new DefaultComboBoxModel();
         for (UIManager.LookAndFeelInfo lfi : UIManager.getInstalledLookAndFeels()) {
             dcm.addElement(lfi.getName());

@@ -1,24 +1,26 @@
 package Vista;
 
 import Controlador.GestionCarrera;
+import Controlador.GestionCorredor;
 import Modelo.Carrera;
 import Modelo.MiTablaCarreras;
+import java.io.Serializable;
 
 /**
  *
  * @author Ainhoa
  */
-public class ListadoCarreras extends javax.swing.JDialog {
+public class ListadoCarreras extends javax.swing.JDialog implements Serializable {
 
-    /**
-     * Creates new form ListadoCarreras
-     */
-    GestionCarrera gc;
+    private GestionCarrera gc;
+    private GestionCorredor gestionCorredor;
 
-    public ListadoCarreras(java.awt.Frame parent, boolean modal, GestionCarrera gc) {
+    public ListadoCarreras(java.awt.Frame parent, boolean modal, GestionCarrera gc, GestionCorredor gestionCorredor) {
         super(parent, modal);
         initComponents();
         this.gc = gc;
+        this.gestionCorredor = gestionCorredor;
+        setLocationRelativeTo(this);
         rellenarTablaCarreras();
     }
 
@@ -42,7 +44,9 @@ public class ListadoCarreras extends javax.swing.JDialog {
         jButtonAltaCarrera = new javax.swing.JButton();
         jButtonBorrarCarrera = new javax.swing.JButton();
         jButtonModificarCarrera = new javax.swing.JButton();
-        jButtonGuardarCarrera = new javax.swing.JButton();
+        jButtonAddCorredores = new javax.swing.JButton();
+        jButtonGuardarCarreras = new javax.swing.JButton();
+        jButtonIniciarCarrera = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -90,10 +94,24 @@ public class ListadoCarreras extends javax.swing.JDialog {
             }
         });
 
-        jButtonGuardarCarrera.setText(org.openide.util.NbBundle.getMessage(ListadoCarreras.class, "ListadoCarreras.jButtonGuardarCarrera.text")); // NOI18N
-        jButtonGuardarCarrera.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddCorredores.setText(org.openide.util.NbBundle.getMessage(ListadoCarreras.class, "ListadoCarreras.jButtonAddCorredores.text")); // NOI18N
+        jButtonAddCorredores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarCarreraActionPerformed(evt);
+                jButtonAddCorredoresActionPerformed(evt);
+            }
+        });
+
+        jButtonGuardarCarreras.setText(org.openide.util.NbBundle.getMessage(ListadoCarreras.class, "ListadoCarreras.jButtonGuardarCarreras.text")); // NOI18N
+        jButtonGuardarCarreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarCarrerasActionPerformed(evt);
+            }
+        });
+
+        jButtonIniciarCarrera.setText(org.openide.util.NbBundle.getMessage(ListadoCarreras.class, "ListadoCarreras.jButtonIniciarCarrera.text")); // NOI18N
+        jButtonIniciarCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarCarreraActionPerformed(evt);
             }
         });
 
@@ -102,21 +120,28 @@ public class ListadoCarreras extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(jButtonAltaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addGap(7, 7, 7))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jButtonAltaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonGuardarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBorrarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAddCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonBorrarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonGuardarCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jButtonIniciarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -124,18 +149,17 @@ public class ListadoCarreras extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAltaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonBorrarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jButtonGuardarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAltaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonModificarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAddCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBorrarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGuardarCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonIniciarCarrera)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,9 +167,9 @@ public class ListadoCarreras extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(12, 12, 12)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,23 +199,42 @@ public class ListadoCarreras extends javax.swing.JDialog {
         rellenarTablaCarreras();
     }//GEN-LAST:event_jButtonModificarCarreraActionPerformed
 
-    private void jButtonGuardarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCarreraActionPerformed
-      //  gc.
-    }//GEN-LAST:event_jButtonGuardarCarreraActionPerformed
+    private void jButtonAddCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCorredoresActionPerformed
+        int seleccionado = jTableCarreras.convertRowIndexToModel(jTableCarreras.getSelectedRow());
+        Carrera carrera = gc.getListaCarreras().get(seleccionado);
+        AddCorredoresCarrera corredoresCarrera = new AddCorredoresCarrera(this, true, gc, gestionCorredor, carrera);
+        corredoresCarrera.rellenarTablaCorredoresInscritos();
+        corredoresCarrera.setVisible(true);
+
+    }//GEN-LAST:event_jButtonAddCorredoresActionPerformed
 
     private void jButtonBorrarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarCarreraActionPerformed
         int seleccionada = jTableCarreras.getSelectedRow();
-    Carrera carreraSeleccinada = gc.getListaCarreras().remove(seleccionada);
-    rellenarTablaCarreras();
+        Carrera carreraSeleccinada = gc.getListaCarreras().remove(seleccionada);
+        rellenarTablaCarreras();
     }//GEN-LAST:event_jButtonBorrarCarreraActionPerformed
+
+    private void jButtonIniciarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarCarreraActionPerformed
+        int posicionCarreraSeleccionada = jTableCarreras.getSelectedRow();
+        Carrera carreraSeleccionada = gc.getListaCarreras().get(posicionCarreraSeleccionada);
+        DialogoIniciarCarrera dialogoIniciarCarrera = new DialogoIniciarCarrera(this, true, gc, carreraSeleccionada);
+        dialogoIniciarCarrera.setVisible(true);
+    }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
+
+    private void jButtonGuardarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCarrerasActionPerformed
+        //        gc.escribirCsvCarreras();
+        //        JOptionPane.showMessageDialog(this, "Se han guardado las carreras", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButtonGuardarCarrerasActionPerformed
 
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddCorredores;
     private javax.swing.JButton jButtonAltaCarrera;
     private javax.swing.JButton jButtonBorrarCarrera;
-    private javax.swing.JButton jButtonGuardarCarrera;
+    private javax.swing.JButton jButtonGuardarCarreras;
+    private javax.swing.JButton jButtonIniciarCarrera;
     private javax.swing.JButton jButtonModificarCarrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
