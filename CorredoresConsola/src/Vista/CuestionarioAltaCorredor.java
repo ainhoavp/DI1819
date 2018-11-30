@@ -31,7 +31,8 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         super(parent, modal);
         this.gc = gc;
         initComponents();
-        setLocationRelativeTo(this);
+         jButtonEnviar.setEnabled(false);
+        setLocationRelativeTo(null);
         validarFormulario();
 
     }
@@ -40,6 +41,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         super(parent, modal);
         this.corredorModificar = corredorModificar;
         initComponents();
+        jButtonEnviar.setEnabled(true);
         jTextFieldNombre.setText(this.corredorModificar.getNombre());
         jTextFieldApellidos.setText(this.corredorModificar.getApellido());
         jTextFieldDNI.setText(this.corredorModificar.getDni());
@@ -51,7 +53,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
 
     public void validarFormulario() {
 
-        jButtonEnviar.setEnabled(false);
+       
         ValidationGroup group = validationPanel.getValidationGroup();
         group.add(jTextFieldNombre, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTextFieldApellidos, StringValidators.REQUIRE_NON_EMPTY_STRING);
