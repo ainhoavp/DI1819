@@ -52,8 +52,6 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
     }
 
     public void validarFormulario() {
-
-       
         ValidationGroup group = validationPanel.getValidationGroup();
         group.add(jTextFieldNombre, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTextFieldApellidos, StringValidators.REQUIRE_NON_EMPTY_STRING);

@@ -10,6 +10,10 @@ import Modelo.Carrera;
 import java.io.Serializable;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
+import org.netbeans.validation.api.ui.ValidationGroup;
 
 /**
  *
@@ -29,7 +33,7 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
         this.gc = gc;
         initComponents();
         setLocationRelativeTo(this);
-        //falta validarFormulario();
+        validarFormularioCarreras();
     }
 
     public CuestionarioAltaCarreras(java.awt.Dialog parent, boolean modal, Carrera carreraModificar) {
@@ -41,7 +45,28 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
         jTextFieldNumeroParticipantes.setText(Integer.toString(this.carreraModificar.getNumeroParticipantes()));
         jTextFieldPrecio.setText(Double.toString(this.carreraModificar.getPrecio()));
         jDateChooserFecha.setDate(this.carreraModificar.getFechaCarrera());
-        //falta validarFormulario();
+        jButtonEnviarCarreras.setEnabled(false);
+        validarFormularioCarreras();
+    }
+
+    public void validarFormularioCarreras() {
+        ValidationGroup group = validationPanelAltaCarrrera.getValidationGroup();
+        group.add(jTextFieldNombreCarrera, StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jTextFieldLugar, StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jTextFieldNumeroParticipantes, StringValidators.REQUIRE_VALID_INTEGER);
+        group.add(jTextFieldPrecio, StringValidators.REQUIRE_VALID_INTEGER);
+        //group.add(jDateChooserFecha, StringValidators.);
+
+        validationPanelAltaCarrrera.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (validationPanelAltaCarrrera.getProblem() == null) {
+                    jButtonEnviarCarreras.setEnabled(true);
+                } else {
+                    jButtonEnviarCarreras.setEnabled(false);
+                }
+            }
+        });
     }
 
     private void limpiarPantalla() {
@@ -74,6 +99,7 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
         jButtonEnviarCarreras = new javax.swing.JButton();
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jTextFieldPrecio = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -108,11 +134,8 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
         });
 
         jTextFieldPrecio.setText(org.openide.util.NbBundle.getMessage(CuestionarioAltaCarreras.class, "CuestionarioAltaCarreras.jTextFieldPrecio.text")); // NOI18N
-        jTextFieldPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPrecioActionPerformed(evt);
-            }
-        });
+
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(CuestionarioAltaCarreras.class, "CuestionarioAltaCarreras.jLabel1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,7 +146,7 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -138,15 +161,18 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
                                     .addComponent(jTextFieldLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jTextFieldNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(validationPanelAltaCarrrera, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelNumeroParticipantes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldNumeroParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(validationPanelAltaCarrrera, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(103, 103, 103))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonEnviarCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +204,8 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelNumeroParticipantes)
                             .addComponent(jTextFieldNumeroParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
                 .addGap(31, 31, 31)
                 .addComponent(jButtonEnviarCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -232,10 +259,6 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNumeroParticipantesActionPerformed
 
-    private void jTextFieldPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPrecioActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -243,6 +266,7 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEnviarCarreras;
     private com.toedter.calendar.JDateChooser jDateChooserFecha;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelLugar;
     private javax.swing.JLabel jLabelNombreCarrera;

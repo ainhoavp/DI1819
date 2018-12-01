@@ -4,9 +4,14 @@ import Modelo.Corredor;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +44,22 @@ public class GestionCorredor implements Serializable {
         this.listaCorredores = listaCorredores;
     }
 
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Corredor getCorredor() {
+        return corredor;
+    }
+
+    public void setCorredor(Corredor corredor) {
+        this.corredor = corredor;
+    }
+
    
     public GestionCorredor() {
         leerCsvCorredores();
@@ -61,11 +82,6 @@ public class GestionCorredor implements Serializable {
 
     }
 
-//    public int buscarcorredor(String dni) {
-//        corredor = new Corredor(dni);
-//        //corredores.get(Collections.binarySearch(corredores, c1)).setDni(dni);
-//        return Collections.binarySearch(listaCorredores, corredor);
-//    }
 
     public void mostrarLista() {
         System.out.println(listaCorredores);
@@ -196,5 +212,19 @@ public class GestionCorredor implements Serializable {
             Logger.getLogger(GestionCorredor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void guardarEstado() throws FileNotFoundException, IOException{
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("datosCarreras.data"));
+        oos.writeObject(this);
+        oos.close();
+    }
+    
+    public void leerEstado() throws FileNotFoundException, IOException, ClassNotFoundException{
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("datosCarreras.data"));
+        GestionCorredor gestionCorredor = (GestionCorredor) ois.readObject();
+        this.corredor = gestionCorredor.getCorredor();
+        this.listaCorredores = gestionCorredor.getListaCorredores();
+    }
+    
 
 }

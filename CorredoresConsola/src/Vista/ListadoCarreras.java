@@ -4,7 +4,9 @@ import Controlador.GestionCarrera;
 import Controlador.GestionCorredor;
 import Modelo.Carrera;
 import Modelo.MiTablaCarreras;
+import java.io.IOException;
 import java.io.Serializable;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -221,8 +223,12 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
     }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
 
     private void jButtonGuardarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCarrerasActionPerformed
-        //        gc.escribirCsvCarreras();
-        //        JOptionPane.showMessageDialog(this, "Se han guardado las carreras", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            this.gc.guardarEstado();
+            this.gestionCorredor.guardarEstado();
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
     }//GEN-LAST:event_jButtonGuardarCarrerasActionPerformed
 
     /**

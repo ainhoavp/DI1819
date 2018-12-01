@@ -1,6 +1,12 @@
 package Controlador;
 
 import Modelo.Carrera;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,43 +67,18 @@ public class GestionCarrera implements Serializable {
         
     }
 
-//         public int buscarcorredor(String nombre) {
-//        carrera = new Carrera(nombre);
-//        //corredores.get(Collections.binarySearch(corredores, c1)).setDni(dni);
-//        return Collections.binarySearch(listaCarreras, carrera);
-//    }
-//    public void escribirCsvCarreras() {
-//        String outputFile = "C:\\Users\\aainh\\Desktop\\2DAM\\DI\\DI1819\\CorredoresConsola\\carreras.csv";
-//
-//        try {
-//
-//            CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, false), ',');
-//
-//            
-//            csvOutput.write("Nombre");
-//            csvOutput.write("Fecha");
-//            csvOutput.write("Lugar");
-//            csvOutput.write("Número participantes");
-//            csvOutput.write("Precio");
-//            
-//
-//            for (Carrera carrera : listaCarreras) {
-//
-//                csvOutput.write(carrera.getNombreCarrera());
-//                csvOutput.write(sdf.format(carrera.getFechaCarrera()));
-//                csvOutput.write(carrera.getLugarCarrera());
-//                csvOutput.write(String.valueOf(carrera.getNumeroParticipantes()));
-//                csvOutput.write(String.valueOf(carrera.getPrecio()));
-//
-//                csvOutput.endRecord();
-//            }
-//
-//            csvOutput.close();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-    
+public void guardarEstado() throws FileNotFoundException, IOException{
+    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("datosCarrera.data"));
+    oos.writeObject(this);
+    oos.close();
+}
       
+public void leerEstado() throws FileNotFoundException, IOException, ClassNotFoundException{
+    ObjectInputStream ois = new ObjectInputStream(new FileInputStream("datosCarrera.data"));
+    GestionCarrera gestionCarrera = (GestionCarrera) ois.readObject();
+    this.listaCarreras = gestionCarrera.getListaCarreras();
+    this.carrera = gestionCarrera.getCarrera();
+    ois.close();
+}
+
 }
