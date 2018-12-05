@@ -4,6 +4,7 @@ import Controlador.GestionCarrera;
 import Controlador.GestionCorredor;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Timer;
@@ -21,24 +22,41 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
     /**
      * Creates new form PantallaPrincipalOK
      */
-    private GestionCorredor gc = new GestionCorredor();
+    private GestionCorredor gCorredor = new GestionCorredor();
     private GestionCarrera gCarrera = new GestionCarrera();
     private transient Timer timer;
-    private int tiempoGuardadoAutomatico = 0;
-    
+    private int tiempo = 0;
+    private File fileCarreras = new File("datosCarrera.data");
+    private File fileCorredores = new File("datosCorredores.data");
+
+    public File getFile() {
+        return fileCarreras;
+    }
+
     
     public PantallaPrincipal() {
-//        try {
-//            gc.leerEstado();
-//            gCarrera.leerEstado();
-//        } catch (IOException ex) {
-//            Exceptions.printStackTrace(ex);
-//        } catch (ClassNotFoundException ex) {
-//            Exceptions.printStackTrace(ex);
-//        }
         initComponents();
         guardadoAutomatico(5);
         cambiarLookAndFeel();
+
+        if (fileCarreras.exists()) {
+            try {
+                gCarrera.leerEstado(fileCarreras.getAbsolutePath());
+                gCorredor.leerEstado(fileCorredores.getAbsolutePath());
+            } catch (IOException ex) {
+                Exceptions.printStackTrace(ex);
+            } catch (ClassNotFoundException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        } else {
+            try {
+                gCorredor.guardarEstado(fileCorredores.getAbsolutePath());
+                gCarrera.guardarEstado(fileCarreras.getAbsolutePath());
+            } catch (IOException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+
         ImageIcon icono = new ImageIcon("opciones.png");
         jButtonConfiguracion.setIcon(icono);
         setLocationRelativeTo(this);
@@ -53,7 +71,13 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                gc.escribirCsvCorredores();
+                try {
+                    gCorredor.escribirCsvCorredores();
+                    gCorredor.guardarEstado(fileCorredores.getAbsolutePath());
+                    gCarrera.guardarEstado(fileCarreras.getAbsolutePath());
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
             }
         });
 
@@ -173,7 +197,7 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,12 +211,12 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCorredoresActionPerformed
-        ListadoCorredores listadoCorredores = new ListadoCorredores(this, true, gc);
+        ListadoCorredores listadoCorredores = new ListadoCorredores(this, true, gCorredor);
         listadoCorredores.setVisible(true);
     }//GEN-LAST:event_jButtonCorredoresActionPerformed
 
     private void jButtonCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarrerasActionPerformed
-        ListadoCarreras listadoCarreras = new ListadoCarreras(this, true, gCarrera, gc);
+        ListadoCarreras listadoCarreras = new ListadoCarreras(this, true, gCarrera, gCorredor);
         listadoCarreras.setVisible(true);
 
     }//GEN-LAST:event_jButtonCarrerasActionPerformed
@@ -200,12 +224,13 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
     private void jButtonConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracionActionPerformed
         ConfiguracionLookAndFeel configLA = new ConfiguracionLookAndFeel(this, true);
         configLA.setVisible(true);
-      
+
     }//GEN-LAST:event_jButtonConfiguracionActionPerformed
 
     private void jButtonGuardadoAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardadoAutoActionPerformed
-       String resultado =  JOptionPane.showInputDialog("Introduce el tiempo de guardado automático");
-       tiempoGuardadoAutomatico = Integer.parseInt(resultado);
+        String resultado = JOptionPane.showInputDialog("Introduce el tiempo de guardado automático");
+        tiempo = Integer.parseInt(resultado);
+        guardadoAutomatico(tiempo);
     }//GEN-LAST:event_jButtonGuardadoAutoActionPerformed
 
     //si haces lista en vez de tabla
@@ -216,29 +241,27 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
             dlm.addElement(listaCorredore);
         }
         jListCorredores.setModel(dlm);
-
     }*/
     
-    public void guardadoAutomatico(int tiempoGuardado){
-        
+    public void guardadoAutomatico(int tiempoGuardado) {
         if (tiempoGuardado == 0) {
-            tiempoGuardadoAutomatico = 5 * 60 * 1000;
+            tiempo = 5 * 60 * 1000;
         }
-        tiempoGuardadoAutomatico = tiempoGuardado * 60 * 1000;
+        tiempo = tiempoGuardado * 60 * 1000;
         if (timer == null) {
             timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     try {
-                        gCarrera.guardarEstado();
-                         gc.guardarEstado();
+                        gCarrera.guardarEstado(fileCarreras.getAbsolutePath());
+                        gCorredor.guardarEstado(fileCorredores.getAbsolutePath());
                     } catch (IOException ex) {
                         Exceptions.printStackTrace(ex);
                     }
-                  
+
                 }
-            }, tiempoGuardadoAutomatico);
+            }, tiempo);
         } else if (timer != null) {
             timer.cancel();
             timer = new Timer();
@@ -246,21 +269,18 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
                 @Override
                 public void run() {
                     try {
-                        gc.guardarEstado();
-                        gCarrera.guardarEstado();
+                        gCorredor.guardarEstado(fileCorredores.getAbsolutePath());
+                        gCarrera.guardarEstado(fileCarreras.getAbsolutePath());
                     } catch (IOException ex) {
                         Exceptions.printStackTrace(ex);
                     }
                 }
-            }, tiempoGuardadoAutomatico);
+            }, tiempo);
 
         }
-        
-        
-    }    
-    
-    
-    
+
+    }
+
     /**
      * @param args the command line arguments
      */

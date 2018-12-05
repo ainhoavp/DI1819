@@ -15,6 +15,7 @@ public class Carrera implements Serializable {
     private String lugarCarrera;
     private int numeroParticipantes;
     private double precio;
+    private boolean finalizada = false;
     ArrayList <CorredorCarrera> corredoresCarrera = new ArrayList<>();
 
     public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera, int numeroParticipantes, double precio) {
@@ -33,6 +34,15 @@ public class Carrera implements Serializable {
         this.nombreCarrera = nombreCarrera;
     }
 
+    public boolean isFinalizada() {
+        return finalizada;
+    }
+
+    public void setFinalizada(boolean finalizada) {
+        this.finalizada = finalizada;
+    }
+
+    
     public String getNombreCarrera() {
         return nombreCarrera;
     }

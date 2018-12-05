@@ -190,7 +190,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
     }//GEN-LAST:event_jButtonAddCorredoresActionPerformed
 
     private void jButtonBorrarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarCorredoresActionPerformed
-         int selec = jTableCorredoresDisponibles.getSelectedRow();
+         int selec = jTableCorredoresInscritos.getSelectedRow();
          CorredorCarrera corredorCarreraSeleccionado = carreraSeleccionada.getCorredoresCarrera().get(selec);
          carreraSeleccionada.getCorredoresCarrera().remove(corredorCarreraSeleccionado);
          

@@ -2,7 +2,12 @@ package Vista;
 
 import Controlador.GestionCarrera;
 import Modelo.Carrera;
+import Modelo.CorredorCarrera;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import modelo.Llegada;
 
 /**
  *
@@ -12,17 +17,27 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
 
     GestionCarrera gestionCarrera;
     Carrera carreraActual;
-    
+    List<Integer> dorsales = new ArrayList<>();
+
     public DialogoIniciarCarrera(java.awt.Dialog parent, boolean modal, GestionCarrera gc, Carrera cActual) {
         super(parent, modal);
         initComponents();
         this.gestionCarrera = gc;
         this.carreraActual = cActual;
+        for (CorredorCarrera corredorC : carreraActual.getCorredoresCarrera()) {
+                    dorsales.add(corredorC.getDorsal());
+                }
         setLocationRelativeTo(this);
+        cronometroJLabel2.setLlegada(new Llegada() {
+            @Override
+            public void ejecutarLlegada(int dorsal, String tiempo) {
+                if (dorsales.contains(dorsal)){
+                    carreraActual.getCorredoresCarrera().get(dorsal-1).setTiempo(tiempo);
+                    System.out.println(carreraActual.getCorredoresCarrera().get(dorsal-1).toString());
+                } 
+            }
+        });
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,24 +50,61 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButtonIniciar = new javax.swing.JButton();
+        jButtonParar = new javax.swing.JButton();
+        cronometroJLabel2 = new modelo.CronometroJLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jButton1.text")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButtonIniciar.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jButtonIniciar.text")); // NOI18N
+        jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarActionPerformed(evt);
+            }
+        });
+
+        jButtonParar.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jButtonParar.text")); // NOI18N
+        jButtonParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPararActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(236, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jButtonParar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cronometroJLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(280, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(cronometroJLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonParar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(14, 14, 14))
         );
@@ -76,8 +128,27 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        carreraActual.setFinalizada(true);
+        JOptionPane.showConfirmDialog(this, "Carrera finalizada.");
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
+        cronometroJLabel2.iniciar();
+        jButtonIniciar.setEnabled(false);
+    }//GEN-LAST:event_jButtonIniciarActionPerformed
+
+    private void jButtonPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPararActionPerformed
+        cronometroJLabel2.parar();
+        jButtonIniciar.setEnabled(true);
+    }//GEN-LAST:event_jButtonPararActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private modelo.CronometroJLabel cronometroJLabel2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonIniciar;
+    private javax.swing.JButton jButtonParar;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

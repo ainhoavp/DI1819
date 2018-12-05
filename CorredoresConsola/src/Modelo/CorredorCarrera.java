@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -11,7 +12,7 @@ public class CorredorCarrera implements Serializable {
 
     private Corredor corredor;
     private int dorsal;
-    private double tiempo;
+    private String tiempo;
 
     public Corredor getCorredor() {
         return corredor;
@@ -29,13 +30,14 @@ public class CorredorCarrera implements Serializable {
         this.dorsal = dorsal;
     }
 
-    public double getTiempo() {
+    public String getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(double tiempo) {
+    public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
     }
+
 
     public CorredorCarrera(Corredor corredor, int dorsal) {
         this.corredor = corredor;

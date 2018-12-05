@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.Carrera;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -67,14 +68,14 @@ public class GestionCarrera implements Serializable {
         
     }
 
-public void guardarEstado() throws FileNotFoundException, IOException{
-    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("datosCarrera.data"));
+public void guardarEstado(String nombreFichero) throws FileNotFoundException, IOException{
+    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreFichero));
     oos.writeObject(this);
     oos.close();
 }
       
-public void leerEstado() throws FileNotFoundException, IOException, ClassNotFoundException{
-    ObjectInputStream ois = new ObjectInputStream(new FileInputStream("datosCarrera.data"));
+public void leerEstado(String nombreFichero) throws FileNotFoundException, IOException, ClassNotFoundException{
+    ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreFichero));
     GestionCarrera gestionCarrera = (GestionCarrera) ois.readObject();
     this.listaCarreras = gestionCarrera.getListaCarreras();
     this.carrera = gestionCarrera.getCarrera();

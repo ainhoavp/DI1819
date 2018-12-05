@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -213,14 +212,14 @@ public class GestionCorredor implements Serializable {
         }
     }
     
-    public void guardarEstado() throws FileNotFoundException, IOException{
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("datosCarreras.data"));
+    public void guardarEstado(String rutaFichero) throws FileNotFoundException, IOException{
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaFichero));
         oos.writeObject(this);
         oos.close();
     }
     
-    public void leerEstado() throws FileNotFoundException, IOException, ClassNotFoundException{
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("datosCarreras.data"));
+    public void leerEstado(String rutaFichero) throws FileNotFoundException, IOException, ClassNotFoundException{
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaFichero));
         GestionCorredor gestionCorredor = (GestionCorredor) ois.readObject();
         this.corredor = gestionCorredor.getCorredor();
         this.listaCorredores = gestionCorredor.getListaCorredores();
