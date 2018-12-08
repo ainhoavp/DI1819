@@ -3,8 +3,15 @@ package Vista;
 import Controlador.GestionCorredor;
 import Modelo.Corredor;
 import Modelo.MiTablaCorredores;
+import java.io.File;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.JOptionPane;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -22,6 +29,7 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
         initComponents();
         setLocationRelativeTo(this);
         this.gestionCorredor = gc;
+        ponerAyuda();
         rellenarTablaCorredores();
     }
 
@@ -30,6 +38,27 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
         initComponents();
         this.gestionCorredor = gestionCorredor;
         rellenarTablaCorredores();
+    }
+
+    private void ponerAyuda() {
+        try {
+            File ficheroAyuda = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = ficheroAyuda.toURI().toURL();
+
+            //Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            hb.enableHelpOnButton(jButtonAyuda, "ventanaCorredores", helpset);
+            //Al pulsar F1 salta la ayuda
+            hb.enableHelpKey(getRootPane(), "ventanaCorredores", helpset);
+
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (HelpSetException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
     }
 
     /**
@@ -49,6 +78,7 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
         jButtonModificar = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
         jLabelTituloListadoCorredores = new javax.swing.JLabel();
+        jButtonAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -131,21 +161,30 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
         jLabelTituloListadoCorredores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTituloListadoCorredores.setText("LISTADO CORREDORES");
 
+        jButtonAyuda.setText("AYUDA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonAyuda)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
+                .addComponent(jButtonAyuda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,6 +232,7 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAyuda;
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonDardeAlta;
     private javax.swing.JButton jButtonGuardarCorredores;

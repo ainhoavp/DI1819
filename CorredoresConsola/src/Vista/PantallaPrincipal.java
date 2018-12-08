@@ -7,10 +7,19 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import org.openide.util.Exceptions;
 
 /**
@@ -33,12 +42,11 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
         return fileCarreras;
     }
 
-    
     public PantallaPrincipal() {
         initComponents();
         guardadoAutomatico(5);
-        cambiarLookAndFeel();
-
+//        cambiarLookAndFeel();
+        ponerAyuda();
         if (fileCarreras.exists()) {
             try {
                 gCarrera.leerEstado(fileCarreras.getAbsolutePath());
@@ -59,6 +67,7 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
 
         ImageIcon icono = new ImageIcon("opciones.png");
         jButtonConfiguracion.setIcon(icono);
+
         setLocationRelativeTo(this);
 
         /**
@@ -83,11 +92,34 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
 
     }
 
-    public void cambiarLookAndFeel() {
-        //UIManager.setLookAndFeel(SeaGlassLookAndFeel.class.getCanonicalName());
-        //SwingUtilities.updateComponentTreeUI(this);
+    private void ponerAyuda() {
+        try {
+            File ficheroAyuda = new File("help"+File.separator+"help_set.hs");
+            URL hsURL = ficheroAyuda.toURI().toURL();
+
+            //Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            hb.enableHelpOnButton(jButtonAyuda, "aplicacion", helpset);
+            //Al pulsar F1 salta la ayuda
+            hb.enableHelpKey(getRootPane(), "aplicacion", helpset);
+            hb.enableHelpKey(jButtonCorredores, "ventanaCorredores", helpset);
+            hb.enableHelpKey(jButtonCarreras, "ventanaCarreras", helpset);
+            hb.enableHelpKey(jButtonGuardadoAuto, "aplicacion", helpset);
+            hb.enableHelpKey(jButtonConfiguracion, "aplicacion", helpset);
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (HelpSetException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
     }
 
+//    public void cambiarLookAndFeel() {
+//        UIManager.setLookAndFeel(SeaGlassLookAndFeel.class.getCanonicalName());
+//        SwingUtilities.updateComponentTreeUI(this);
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,6 +136,7 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
         jButtonConfiguracion = new javax.swing.JButton();
         jButtonGuardadoAuto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButtonAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,6 +176,8 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/corredorR.png"))); // NOI18N
 
+        jButtonAyuda.setText("AYUDA");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -167,7 +202,8 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButtonConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAyuda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonGuardadoAuto)))
                 .addGap(29, 29, 29))
         );
@@ -186,7 +222,9 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonGuardadoAuto)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGuardadoAuto)
+                    .addComponent(jButtonAyuda))
                 .addContainerGap())
         );
 
@@ -242,7 +280,6 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
         }
         jListCorredores.setModel(dlm);
     }*/
-    
     public void guardadoAutomatico(int tiempoGuardado) {
         if (tiempoGuardado == 0) {
             tiempo = 5 * 60 * 1000;
@@ -318,6 +355,7 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAyuda;
     private javax.swing.JButton jButtonCarreras;
     private javax.swing.JButton jButtonConfiguracion;
     private javax.swing.JButton jButtonCorredores;

@@ -71,6 +71,7 @@
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
+                          <Component id="jButtonAyuda" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButtonGuardadoAuto" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -97,7 +98,10 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonGuardadoAuto" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonGuardadoAuto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonAyuda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -156,6 +160,11 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/corredorR.png"/>
             </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonAyuda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="AYUDA"/>
           </Properties>
         </Component>
       </SubComponents>

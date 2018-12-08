@@ -4,7 +4,14 @@ import Controlador.GestionCarrera;
 import Controlador.GestionCorredor;
 import Modelo.Carrera;
 import Modelo.MiTablaCarreras;
+import java.io.File;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -20,6 +27,7 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
         initComponents();
         this.gc = gc;
         this.gestionCorredor = gestionCorredor;
+        ponerAyuda();
         setLocationRelativeTo(this);
         rellenarTablaCarreras();
     }
@@ -27,6 +35,28 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
     public void rellenarTablaCarreras() {
         jTableCarreras.setModel(new MiTablaCarreras(gc.getListaCarreras()));
     }
+    
+        private void ponerAyuda() {
+        try {
+            File ficheroAyuda = new File("help" + File.separator + "help_set.hs");
+            URL hsURL = ficheroAyuda.toURI().toURL();
+
+            //Crea el HelpSet y el HelpBroker
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+
+            hb.enableHelpOnButton(jButtonAyuda, "ventanaCarreras", helpset);
+            //Al pulsar F1 salta la ayuda
+            hb.enableHelpKey(getRootPane(), "ventanaCarreras", helpset);
+
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (HelpSetException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +76,7 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
         jButtonModificarCarrera = new javax.swing.JButton();
         jButtonAddCorredores = new javax.swing.JButton();
         jButtonIniciarCarrera = new javax.swing.JButton();
+        jButtonAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -107,6 +138,8 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
             }
         });
 
+        jButtonAyuda.setText(org.openide.util.NbBundle.getMessage(ListadoCarreras.class, "ListadoCarreras.jButtonAyuda.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,7 +152,11 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonAyuda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(jButtonAltaCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,12 +166,16 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
                         .addComponent(jButtonAddCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBorrarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonAyuda)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -154,7 +195,7 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -213,6 +254,7 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddCorredores;
     private javax.swing.JButton jButtonAltaCarrera;
+    private javax.swing.JButton jButtonAyuda;
     private javax.swing.JButton jButtonBorrarCarrera;
     private javax.swing.JButton jButtonIniciarCarrera;
     private javax.swing.JButton jButtonModificarCarrera;
