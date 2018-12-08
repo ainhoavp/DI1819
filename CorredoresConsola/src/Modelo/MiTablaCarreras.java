@@ -8,10 +8,11 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Ainhoa
  */
-public class MiTablaCarreras extends AbstractTableModel implements Serializable{
+public class MiTablaCarreras extends AbstractTableModel implements Serializable {
 
-    private final String[] columnas = {"Nombre carrera", "Fecha", "Lugar", "Número participantes", "Precio"};
+    private final String[] columnas = {"Nombre carrera", "Fecha", "Lugar", "Número participantes", "Precio", "Estado"};
     private List<Carrera> listaCarrerasTabla;
+    private String est;
 
     public MiTablaCarreras(List<Carrera> listaCarreras) {
         this.listaCarrerasTabla = listaCarreras;
@@ -47,6 +48,11 @@ public class MiTablaCarreras extends AbstractTableModel implements Serializable{
                 return listaCarrerasTabla.get(rowIndex).getNumeroParticipantes();
             case 4:
                 return listaCarrerasTabla.get(rowIndex).getPrecio();
+            case 5:
+                if (listaCarrerasTabla.get(rowIndex).isFinalizada()) {
+                    return "Finalizada";
+                }
+                return "Pendiente";
         }
         return null;
     }

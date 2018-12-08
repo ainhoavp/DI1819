@@ -49,6 +49,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jLabel1.text")); // NOI18N
 
@@ -65,6 +66,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
         ));
         jScrollPane2.setViewportView(jTableCorredoresInscritos);
 
+        jButtonAddCorredores.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonAddCorredores.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jButtonAddCorredores.text")); // NOI18N
         jButtonAddCorredores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +74,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
             }
         });
 
+        jButtonBorrarCorredores.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonBorrarCorredores.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jButtonBorrarCorredores.text")); // NOI18N
         jButtonBorrarCorredores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +101,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
             jTableCorredoresDisponibles.getColumnModel().getColumn(3).setHeaderValue(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jTableCorredoresDisponibles.columnModel.title3")); // NOI18N
         }
 
+        jLabel2.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jLabel2.text")); // NOI18N
 
@@ -169,6 +173,9 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
 
     private void jButtonAddCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCorredoresActionPerformed
         int selec = jTableCorredoresDisponibles.getSelectedRow(); //posicion en la que está el corredor en la tabla
+        if(carreraSeleccionada.isFinalizada()){
+            JOptionPane.showMessageDialog(this, "No puedes añadir más corredores a esta carrera, ya está finalizada.");
+        }else{
         int dorsal = gc.generarDorsal(carreraSeleccionada);
         Corredor corredorSeleccionado = gestionCorredor.getListaCorredores().get(selec);
         CorredorCarrera corredorCarrera = new CorredorCarrera(corredorSeleccionado, dorsal);
@@ -186,6 +193,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
                 carreraSeleccionada.getCorredoresCarrera().add(corredorCarrera);
             }
             rellenarTablaCorredoresInscritos();
+        }
         }
     }//GEN-LAST:event_jButtonAddCorredoresActionPerformed
 

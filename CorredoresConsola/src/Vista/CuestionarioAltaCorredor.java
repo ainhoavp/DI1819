@@ -92,6 +92,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         jLabelNombre = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jLabelApellidos = new javax.swing.JLabel();
+        validationPanel = new org.netbeans.validation.api.ui.swing.ValidationPanel();
         jTextFieldApellidos = new javax.swing.JTextField();
         jLabelDireccion = new javax.swing.JLabel();
         jTextFieldDNI = new javax.swing.JTextField();
@@ -103,7 +104,6 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         jSpinner1 = new javax.swing.JSpinner();
         jButtonEnviar = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
-        validationPanel = new org.netbeans.validation.api.ui.swing.ValidationPanel();
         jLabelAlta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -111,7 +111,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jPanel1.setForeground(new java.awt.Color(60, 63, 65));
 
-        jLabelNombre.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabelNombre.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabelNombre.setText("Nombre: ");
 
         jTextFieldNombre.setName("Nombre"); // NOI18N
@@ -121,7 +121,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
             }
         });
 
-        jLabelApellidos.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabelApellidos.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabelApellidos.setText("Apellidos: ");
 
         jTextFieldApellidos.setName("Apellidos"); // NOI18N
@@ -131,27 +131,28 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
             }
         });
 
-        jLabelDireccion.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabelDireccion.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabelDireccion.setText("Dirección: ");
 
         jTextFieldDNI.setName("DNI"); // NOI18N
 
-        jLabelDNI.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabelDNI.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabelDNI.setText("DNI: ");
 
         jTextFieldDireccion.setName("Dirección"); // NOI18N
 
-        jLabelFechaNac.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabelFechaNac.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabelFechaNac.setText("Fecha nac.: ");
 
-        jLabelTel.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jLabelTel.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabelTel.setText("Teléfono: ");
 
         jTextFieldTel.setName("Teléfono"); // NOI18N
 
+        jSpinner1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jSpinner1.setModel(new javax.swing.SpinnerDateModel());
 
-        jButtonEnviar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jButtonEnviar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonEnviar.setText("ENVIAR");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +160,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
             }
         });
 
-        jButtonLimpiar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        jButtonLimpiar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonLimpiar.setText("LIMPIAR");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +168,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
             }
         });
 
-        jLabelAlta.setFont(new java.awt.Font("Calibri Light", 3, 36)); // NOI18N
+        jLabelAlta.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
         jLabelAlta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelAlta.setText("ALTA CORREDOR");
 
@@ -177,50 +178,46 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonEnviar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonLimpiar)
-                        .addGap(210, 210, 210))
+                    .addComponent(jLabelAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(validationPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelNombre)
+                                    .addComponent(jLabelDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabelApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)
+                                .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelFechaNac)
+                                    .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextFieldTel, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelNombre)
-                                            .addComponent(jLabelDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(47, 47, 47)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabelApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabelDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(19, 19, 19)
-                                        .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelFechaNac)
-                                            .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(24, 24, 24)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldTel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 29, Short.MAX_VALUE))))
-                    .addComponent(jLabelAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                        .addComponent(jButtonEnviar)
+                                        .addGap(101, 101, 101)
+                                        .addComponent(jButtonLimpiar))))
+                            .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +249,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEnviar)
                     .addComponent(jButtonLimpiar))
-                .addGap(66, 66, 66))
+                .addGap(605, 605, 605))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -262,14 +259,14 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

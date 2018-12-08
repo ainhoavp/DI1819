@@ -71,16 +71,20 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabelTituloListadoCorredores = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
         jButtonDardeAlta = new javax.swing.JButton();
-        jButtonGuardarCorredores = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
-        jLabelTituloListadoCorredores = new javax.swing.JLabel();
+        jButtonGuardarCorredores = new javax.swing.JButton();
         jButtonAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabelTituloListadoCorredores.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
+        jLabelTituloListadoCorredores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTituloListadoCorredores.setText("LISTADO CORREDORES");
 
         jTableCorredores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,6 +99,7 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
         ));
         jScrollPane1.setViewportView(jTableCorredores);
 
+        jButtonDardeAlta.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonDardeAlta.setText("<html><center>ALTA<br> CORREDOR</center></html>");
         jButtonDardeAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,13 +107,7 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
             }
         });
 
-        jButtonGuardarCorredores.setText("<html><center>GUARDAR <br>CORREDORES</center></html>");
-        jButtonGuardarCorredores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarCorredoresActionPerformed(evt);
-            }
-        });
-
+        jButtonModificar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonModificar.setText("<html><center>MODIFICAR<br>CORREDOR</center></html>");
         jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,12 +115,24 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
             }
         });
 
+        jButtonBorrar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonBorrar.setText("BORRAR");
         jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBorrarActionPerformed(evt);
             }
         });
+
+        jButtonGuardarCorredores.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        jButtonGuardarCorredores.setText("<html><center>GUARDAR <br>CORREDORES</center></html>");
+        jButtonGuardarCorredores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarCorredoresActionPerformed(evt);
+            }
+        });
+
+        jButtonAyuda.setFont(new java.awt.Font("Roboto Light", 0, 11)); // NOI18N
+        jButtonAyuda.setText("AYUDA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,10 +141,15 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonAyuda)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(23, 23, 23)
                         .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,52 +157,39 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
                         .addComponent(jButtonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonGuardarCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonAyuda)
+                    .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonGuardarCorredores)
                     .addComponent(jButtonModificar)
                     .addComponent(jButtonDardeAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
-
-        jLabelTituloListadoCorredores.setFont(new java.awt.Font("Calibri Light", 3, 36)); // NOI18N
-        jLabelTituloListadoCorredores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTituloListadoCorredores.setText("LISTADO CORREDORES");
-
-        jButtonAyuda.setText("AYUDA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonAyuda)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonAyuda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelTituloListadoCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -209,21 +212,30 @@ public class ListadoCorredores extends javax.swing.JDialog implements Serializab
         //tiene que llevar al jdialog de cuestionario de alta, cargar los datos del corredor y cuando le das a enviar
         //tienen que modificar la persona de la lista
         int seleccionado = jTableCorredores.getSelectedRow(); //seleccionar con el ratón un int con la posicion del corredor en la lista de corredores.
-        Corredor corredorSeleccionado = gestionCorredor.getListaCorredores().get(seleccionado);
-        CuestionarioAltaCorredor cuestionarioModificar = new CuestionarioAltaCorredor(this, true, corredorSeleccionado);
-        cuestionarioModificar.setLocationRelativeTo(null);
-        cuestionarioModificar.setVisible(true);
-        rellenarTablaCorredores();
+        if (seleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "No has seleccionado ningun corredor.");
+        } else {
+            Corredor corredorSeleccionado = gestionCorredor.getListaCorredores().get(seleccionado);
+            CuestionarioAltaCorredor cuestionarioModificar = new CuestionarioAltaCorredor(this, true, corredorSeleccionado);
+            cuestionarioModificar.setLocationRelativeTo(null);
+            cuestionarioModificar.setVisible(true);
+            rellenarTablaCorredores();
 
-
+        }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
         //tienen que borrar la persona de la lista
         int seleccionado = jTableCorredores.getSelectedRow(); //seleccionar con el ratón un int con la posicion del corredor en la lista de corredores.
-        Corredor corredorSeleccionado = gestionCorredor.getListaCorredores().remove(seleccionado);
-        rellenarTablaCorredores();
-
+        if (seleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "No has seleccionado ningun corredor.");
+        } else {
+            int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea borrar el corredor seleccionado?", "Confirmar borrado", JOptionPane.YES_NO_OPTION);
+           if(respuesta !=1){
+            Corredor corredorSeleccionado = gestionCorredor.getListaCorredores().remove(seleccionado);
+            rellenarTablaCorredores();
+           }
+        }
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     public void rellenarTablaCorredores() {

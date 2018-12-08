@@ -1,18 +1,18 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 
 /**
  *
  * @author Ainhoa
  */
-public class CorredorCarrera implements Serializable {
+public class CorredorCarrera implements Serializable, Comparable<CorredorCarrera> {
 
     private Corredor corredor;
     private int dorsal;
     private String tiempo;
+    private int tiempoParaClasificacion;
 
     public Corredor getCorredor() {
         return corredor;
@@ -38,18 +38,27 @@ public class CorredorCarrera implements Serializable {
         this.tiempo = tiempo;
     }
 
+    public int getTiempoParaClasificacion() {
+        return tiempoParaClasificacion;
+    }
+
+    public void setTiempoParaClasificacion(int tiempoParaClasificacion) {
+        this.tiempoParaClasificacion = tiempoParaClasificacion;
+    }
 
     public CorredorCarrera(Corredor corredor, int dorsal) {
         this.corredor = corredor;
         this.dorsal = dorsal;
     }
 
-    
+    public CorredorCarrera(String tiempo) {
+        this.tiempo = tiempo;
+    }
+
     @Override
     public String toString() {
         return "CorredorCarrera{" + "corredor=" + corredor + ", dorsal=" + dorsal + ", tiempo=" + tiempo + '}';
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -72,6 +81,15 @@ public class CorredorCarrera implements Serializable {
         return true;
     }
 
-    
-    
+    @Override
+    public int compareTo(CorredorCarrera o) {
+        if (tiempoParaClasificacion < o.tiempoParaClasificacion) {
+            return -1;
+        }
+        if (tiempoParaClasificacion > o.tiempoParaClasificacion) {
+            return 1;
+        }
+        return 0;
+    }
+
 }

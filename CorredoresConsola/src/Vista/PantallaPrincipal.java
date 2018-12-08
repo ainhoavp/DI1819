@@ -8,8 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,8 +16,6 @@ import javax.help.HelpSet;
 import javax.help.HelpSetException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import org.openide.util.Exceptions;
 
 /**
@@ -140,11 +136,11 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTituloPP.setFont(new java.awt.Font("Calibri Light", 3, 18)); // NOI18N
+        jLabelTituloPP.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         jLabelTituloPP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTituloPP.setText("<html><center>GESTION</center> <p><center>CORREDORES/CARRERAS</center></html>");
+        jLabelTituloPP.setText("<html><center>GESTIÓN</center> <p><center>CORREDORES/CARRERAS</center></html>");
 
-        jButtonCorredores.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jButtonCorredores.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonCorredores.setText("CORREDORES");
         jButtonCorredores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +148,7 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
             }
         });
 
-        jButtonCarreras.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jButtonCarreras.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonCarreras.setText("CARRERAS");
         jButtonCarreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,13 +156,15 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
             }
         });
 
-        jButtonConfiguracion.setText("<html><center>...</center></html>");
+        jButtonConfiguracion.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        jButtonConfiguracion.setText("...");
         jButtonConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfiguracionActionPerformed(evt);
             }
         });
 
+        jButtonGuardadoAuto.setFont(new java.awt.Font("Roboto Light", 0, 11)); // NOI18N
         jButtonGuardadoAuto.setText("Guardado automático");
         jButtonGuardadoAuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +174,7 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/corredorR.png"))); // NOI18N
 
+        jButtonAyuda.setFont(new java.awt.Font("Roboto Light", 0, 11)); // NOI18N
         jButtonAyuda.setText("AYUDA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -184,28 +183,24 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelTituloPP)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTituloPP)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jButtonCorredores)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonAyuda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonGuardadoAuto)))
-                .addGap(29, 29, 29))
+                                .addComponent(jButtonAyuda)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonGuardadoAuto))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonCorredores)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButtonConfiguracion)
+                                    .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 13, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,13 +209,14 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
                 .addComponent(jLabelTituloPP, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonConfiguracion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardadoAuto)
@@ -233,8 +229,8 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

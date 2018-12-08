@@ -24,9 +24,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel1" min="-2" pref="492" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -48,35 +48,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelTituloPP" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="jButtonCorredores" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="211" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jButtonCarreras" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabelTituloPP" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jButtonAyuda" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jButtonGuardadoAuto" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonConfiguracion" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="jButtonCorredores" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" pref="211" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jButtonConfiguracion" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButtonCarreras" min="-2" pref="114" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jButtonAyuda" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButtonGuardadoAuto" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -87,14 +82,15 @@
                   <Component id="jLabelTituloPP" min="-2" pref="68" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="0" pref="241" max="32767" attributes="0"/>
+                      <Component id="jLabel1" alignment="0" pref="242" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButtonCorredores" min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="jButtonCarreras" min="-2" pref="51" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jButtonCarreras" min="-2" pref="51" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButtonConfiguracion" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jButtonCorredores" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -111,16 +107,16 @@
         <Component class="javax.swing.JLabel" name="jLabelTituloPP">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Calibri Light" size="18" style="3"/>
+              <Font name="Roboto Light" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;GESTION&lt;/center&gt; &lt;p&gt;&lt;center&gt;CORREDORES/CARRERAS&lt;/center&gt;&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;GESTI&#xd3;N&lt;/center&gt; &lt;p&gt;&lt;center&gt;CORREDORES/CARRERAS&lt;/center&gt;&lt;/html&gt;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCorredores">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="12" style="3"/>
+              <Font name="Roboto Light" size="12" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CORREDORES"/>
           </Properties>
@@ -131,7 +127,7 @@
         <Component class="javax.swing.JButton" name="jButtonCarreras">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="12" style="3"/>
+              <Font name="Roboto Light" size="12" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CARRERAS"/>
           </Properties>
@@ -141,7 +137,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonConfiguracion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;...&lt;/center&gt;&lt;/html&gt;"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Roboto Light" size="12" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConfiguracionActionPerformed"/>
@@ -149,6 +148,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonGuardadoAuto">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Roboto Light" size="11" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Guardado autom&#xe1;tico"/>
           </Properties>
           <Events>
@@ -164,6 +166,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonAyuda">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Roboto Light" size="11" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="AYUDA"/>
           </Properties>
         </Component>

@@ -143,7 +143,7 @@ public class GestionCorredor implements Serializable {
     }
 
     public void escribirCsvCorredores() {
-        String outputFile = "C:\\Users\\aainh\\Desktop\\2DAM\\DI\\DI1819\\CorredoresConsola\\corredores.csv";
+        String outputFile = "corredores.csv";
         boolean alreadyExists = new File(outputFile).exists();
 
         if (alreadyExists) {

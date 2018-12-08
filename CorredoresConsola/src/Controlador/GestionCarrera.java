@@ -1,7 +1,6 @@
 package Controlador;
 
 import Modelo.Carrera;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

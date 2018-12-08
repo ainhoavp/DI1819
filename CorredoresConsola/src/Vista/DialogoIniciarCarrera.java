@@ -33,21 +33,21 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
         this.gestionCarrera = gc;
         this.carreraActual = cActual;
         for (CorredorCarrera corredorC : carreraActual.getCorredoresCarrera()) {
-                    dorsales.add(corredorC.getDorsal());
-                }
+            dorsales.add(corredorC.getDorsal());
+        }
         setLocationRelativeTo(this);
         cronometroJLabel2.setLlegada(new Llegada() {
             @Override
             public void ejecutarLlegada(int dorsal, String tiempo) {
-                if (dorsales.contains(dorsal)){
-                    carreraActual.getCorredoresCarrera().get(dorsal-1).setTiempo(tiempo);
-                    System.out.println(carreraActual.getCorredoresCarrera().get(dorsal-1).toString());
-                } 
+                if (dorsales.contains(dorsal)) {
+                    carreraActual.getCorredoresCarrera().get(dorsal - 1).setTiempo(tiempo);
+                    System.out.println(carreraActual.getCorredoresCarrera().get(dorsal - 1).toString());
+                }
             }
         });
     }
 
-     private void ponerAyuda() {
+    private void ponerAyuda() {
         try {
             File ficheroAyuda = new File("help" + File.separator + "help_set.hs");
             URL hsURL = ficheroAyuda.toURI().toURL();
@@ -67,9 +67,7 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
         }
 
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,21 +78,24 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonFinalizarCarrera = new javax.swing.JButton();
         jButtonIniciar = new javax.swing.JButton();
         jButtonParar = new javax.swing.JButton();
         cronometroJLabel2 = new modelo.CronometroJLabel();
         jButtonAyuda = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFinalizarCarrera.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        jButtonFinalizarCarrera.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jButtonFinalizarCarrera.text")); // NOI18N
+        jButtonFinalizarCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonFinalizarCarreraActionPerformed(evt);
             }
         });
 
+        jButtonIniciar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonIniciar.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jButtonIniciar.text")); // NOI18N
         jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +103,7 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
             }
         });
 
+        jButtonParar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jButtonParar.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jButtonParar.text")); // NOI18N
         jButtonParar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,27 +111,32 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
             }
         });
 
+        jButtonAyuda.setFont(new java.awt.Font("Roboto Light", 0, 11)); // NOI18N
         jButtonAyuda.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jButtonAyuda.text")); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 10)); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(DialogoIniciarCarrera.class, "DialogoIniciarCarrera.jLabel1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cronometroJLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(jButtonParar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cronometroJLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1)
+                        .addGap(0, 93, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonAyuda)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAyuda))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonFinalizarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonParar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,19 +144,17 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cronometroJLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonParar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addContainerGap(21, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAyuda)
-                        .addContainerGap())))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonFinalizarCarrera)
+                    .addComponent(jButtonAyuda))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,11 +174,19 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    public void repintarTablaEnListadoCarreras() {
+        ListadoCarreras lc = (ListadoCarreras) this.getParent();
+        lc.rellenarTablaCarreras();
+    }
+
+
+    private void jButtonFinalizarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCarreraActionPerformed
         carreraActual.setFinalizada(true);
         JOptionPane.showConfirmDialog(this, "Carrera finalizada.");
+        repintarTablaEnListadoCarreras();
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButtonFinalizarCarreraActionPerformed
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         cronometroJLabel2.iniciar();
@@ -187,10 +200,11 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private modelo.CronometroJLabel cronometroJLabel2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAyuda;
+    private javax.swing.JButton jButtonFinalizarCarrera;
     private javax.swing.JButton jButtonIniciar;
     private javax.swing.JButton jButtonParar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
