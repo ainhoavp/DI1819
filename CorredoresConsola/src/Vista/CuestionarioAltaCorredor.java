@@ -31,7 +31,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         super(parent, modal);
         this.gc = gc;
         initComponents();
-         jButtonEnviar.setEnabled(false);
+        jButtonEnviar.setEnabled(false);
         setLocationRelativeTo(null);
         validarFormulario();
 
@@ -47,7 +47,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         jTextFieldDNI.setText(this.corredorModificar.getDni());
         jTextFieldDireccion.setText(this.corredorModificar.getDireccion());
         jTextFieldTel.setText(Integer.toString(this.corredorModificar.getTelefono()));
-        jSpinner1.setValue(this.corredorModificar.getfNac());
+        jDateChooserFechaNac.setDate(this.corredorModificar.getfNac());
         validarFormulario();
     }
 
@@ -101,10 +101,10 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         jLabelFechaNac = new javax.swing.JLabel();
         jLabelTel = new javax.swing.JLabel();
         jTextFieldTel = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
         jButtonEnviar = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
         jLabelAlta = new javax.swing.JLabel();
+        jDateChooserFechaNac = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -149,11 +149,8 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
 
         jTextFieldTel.setName("Teléfono"); // NOI18N
 
-        jSpinner1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
-
         jButtonEnviar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
-        jButtonEnviar.setText("ENVIAR");
+        jButtonEnviar.setText("GUARDAR");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEnviarActionPerformed(evt);
@@ -161,7 +158,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         });
 
         jButtonLimpiar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
-        jButtonLimpiar.setText("LIMPIAR");
+        jButtonLimpiar.setText("LIMPIAR FORMULARIO");
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLimpiarActionPerformed(evt);
@@ -181,35 +178,42 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
                     .addComponent(jLabelAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelNombre)
-                                    .addComponent(jLabelDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabelApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
-                                .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelFechaNac)
                                     .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldTel, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jDateChooserFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButtonEnviar)
-                                        .addGap(101, 101, 101)
-                                        .addComponent(jButtonLimpiar))))
-                            .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButtonEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonLimpiar)
+                                        .addGap(79, 79, 79))))
+                            .addComponent(validationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabelNombre)
+                                        .addComponent(jLabelDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(47, 47, 47)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jTextFieldApellidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabelDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(19, 19, 19)
+                                    .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -238,9 +242,9 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
                     .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,7 +287,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
         String dni = jTextFieldDNI.getText();
         String dir = jTextFieldDireccion.getText();
         String telf = jTextFieldTel.getText();
-        Date fecha = (Date) jSpinner1.getValue();
+        Date fecha = jDateChooserFechaNac.getDate();
 
         if (corredorModificar == null) {
             gc.anadirCorredor(nombre, apellidos, dir, dni, fecha, Integer.parseInt(telf));
@@ -315,6 +319,7 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEnviar;
     private javax.swing.JButton jButtonLimpiar;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaNac;
     private javax.swing.JLabel jLabelAlta;
     private javax.swing.JLabel jLabelApellidos;
     private javax.swing.JLabel jLabelDNI;
@@ -323,7 +328,6 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelTel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextFieldApellidos;
     private javax.swing.JTextField jTextFieldDNI;
     private javax.swing.JTextField jTextFieldDireccion;

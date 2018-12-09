@@ -2,6 +2,7 @@ package Modelo;
 
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,6 +14,7 @@ public class MiTablaCorredores extends AbstractTableModel implements Serializabl
 
     private final String[] columnas = {"Nombre", "Apellidos", "DNI", "Dirección", "F.nac", "Tel"};
     private final List<Corredor> listaCorredoresTabla;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public MiTablaCorredores(List<Corredor> c) {
         this.listaCorredoresTabla = c;
@@ -49,7 +51,8 @@ public class MiTablaCorredores extends AbstractTableModel implements Serializabl
             case 3:
                 return listaCorredoresTabla.get(rowIndex).getDireccion();
             case 4:
-                return listaCorredoresTabla.get(rowIndex).getfNac().toString();
+                String fecha = sdf.format(listaCorredoresTabla.get(rowIndex).getfNac());
+                return fecha;
             case 5:
                 return listaCorredoresTabla.get(rowIndex).getTelefono();
         }

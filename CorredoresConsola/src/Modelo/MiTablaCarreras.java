@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -12,8 +13,7 @@ public class MiTablaCarreras extends AbstractTableModel implements Serializable 
 
     private final String[] columnas = {"Nombre carrera", "Fecha", "Lugar", "Número participantes", "Precio", "Estado"};
     private List<Carrera> listaCarrerasTabla;
-    private String est;
-
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     public MiTablaCarreras(List<Carrera> listaCarreras) {
         this.listaCarrerasTabla = listaCarreras;
     }
@@ -41,7 +41,8 @@ public class MiTablaCarreras extends AbstractTableModel implements Serializable 
             case 0:
                 return listaCarrerasTabla.get(rowIndex).getNombreCarrera();
             case 1:
-                return listaCarrerasTabla.get(rowIndex).getFechaCarrera();
+                String fecha = sdf.format(listaCarrerasTabla.get(rowIndex).getFechaCarrera());
+                return fecha;
             case 2:
                 return listaCarrerasTabla.get(rowIndex).getLugarCarrera();
             case 3:

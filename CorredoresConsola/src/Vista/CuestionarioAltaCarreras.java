@@ -235,7 +235,7 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
         String nombreCarrera = jTextFieldNombreCarrera.getText();
         Date fechaCarrera = jDateChooserFecha.getDate();
         String lugarCarrera = jTextFieldLugar.getText();
-        double precioCarrera = Double.valueOf(jTextFieldPrecio.getText());
+        int precioCarrera = Integer.valueOf(jTextFieldPrecio.getText());
         int numeroParticipantes = Integer.parseInt(jTextFieldNumeroParticipantes.getText());
 
         carreraNueva = new Carrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);

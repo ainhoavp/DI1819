@@ -40,7 +40,7 @@ public class GestionCarrera implements Serializable {
         this.listaCarreras = listaCarreras;
     }
 
-    public void anadirCarrera(String nombC, Date fechaCarrera, String lugarCarrera, int numeroParticipantes, double precio) {
+    public void anadirCarrera(String nombC, Date fechaCarrera, String lugarCarrera, int numeroParticipantes, int precio) {
         Carrera carrera = new Carrera(nombC, fechaCarrera, lugarCarrera, numeroParticipantes, precio);
         listaCarreras.add(carrera);
     }

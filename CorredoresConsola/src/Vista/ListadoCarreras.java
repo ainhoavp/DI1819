@@ -332,6 +332,7 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
                 //aquí ya me devuelve la lista ordenada por orden de llegada.
                 //ahora la escribo
                 escribirCsvClasificación();
+                 JOptionPane.showMessageDialog(this, "CLASIFICACIÓN EXPORTADA A UN FICHERO.");
             }
         }
     }//GEN-LAST:event_jButtonClasificacionActionPerformed

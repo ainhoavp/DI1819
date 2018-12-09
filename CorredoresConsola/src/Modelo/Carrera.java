@@ -14,11 +14,11 @@ public class Carrera implements Serializable {
     private Date fechaCarrera;
     private String lugarCarrera;
     private int numeroParticipantes;
-    private double precio;
+    private int precio;
     private boolean finalizada = false;
     ArrayList <CorredorCarrera> corredoresCarrera = new ArrayList<>();
 
-    public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera, int numeroParticipantes, double precio) {
+    public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera, int numeroParticipantes, int precio) {
         this.nombreCarrera = nombreCarrera;
         if (this.nombreCarrera == null) {
             throw new IllegalArgumentException("El nombre del carrera no puede estar vacío.");
@@ -82,7 +82,7 @@ public class Carrera implements Serializable {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 

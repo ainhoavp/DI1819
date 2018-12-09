@@ -61,7 +61,10 @@ public class GestionCorredor implements Serializable {
 
    
     public GestionCorredor() {
+        File file = new File("corredores.csv");
+        if(file.exists()){
         leerCsvCorredores();
+        }
     }
 
     public void anadirCorredor(String nombC, String apel, String dir, String dni, Date fecha, int tel) {
@@ -183,7 +186,7 @@ public class GestionCorredor implements Serializable {
 
     public void leerCsvCorredores() {
         try {
-            CsvReader corredores_import = new CsvReader("C:\\Users\\aainh\\Desktop\\2DAM\\DI\\DI1819\\CorredoresConsola\\corredores.csv");
+            CsvReader corredores_import = new CsvReader("corredores.csv");
             corredores_import.readHeaders();
 
             while (corredores_import.readRecord()) {

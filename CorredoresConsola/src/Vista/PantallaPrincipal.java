@@ -262,7 +262,7 @@ public class PantallaPrincipal extends javax.swing.JFrame implements Serializabl
     }//GEN-LAST:event_jButtonConfiguracionActionPerformed
 
     private void jButtonGuardadoAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardadoAutoActionPerformed
-        String resultado = JOptionPane.showInputDialog("Introduce el tiempo de guardado automático");
+        String resultado = JOptionPane.showInputDialog("Introduce el tiempo de guardado automático en minutos.");
         tiempo = Integer.parseInt(resultado);
         guardadoAutomatico(tiempo);
     }//GEN-LAST:event_jButtonGuardadoAutoActionPerformed
