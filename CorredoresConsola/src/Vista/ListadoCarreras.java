@@ -12,13 +12,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
@@ -285,13 +280,13 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
         } else {
             Carrera carreraSeleccionada = gc.getListaCarreras().get(seleccionada);
             if (carreraSeleccionada.isFinalizada()) {
-                JOptionPane.showMessageDialog(this, "La carrera ya está finalizada, no puede borrarse.");
-            } else {
-                int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea borrar la carrera?", "Confirmar borrado", JOptionPane.YES_NO_OPTION);
-                if (respuesta != 1) {
+                int resultado = JOptionPane.showConfirmDialog(this, "¿Seguro que desea borrar la carrera? \n Si borra la carrera ya no podrá acceder a sus datos ni a la clasificación.",
+                        "Confirmar borrado", JOptionPane.YES_NO_OPTION);
+                if (resultado != 1) {
                     gc.getListaCarreras().remove(carreraSeleccionada);
                     rellenarTablaCarreras();
                 }
+
             }
         }
     }//GEN-LAST:event_jButtonBorrarCarreraActionPerformed
@@ -302,11 +297,15 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
             JOptionPane.showMessageDialog(this, "No has seleccionado ninguna carrera.");
         } else {
             Carrera carreraSeleccionada = gc.getListaCarreras().get(posicionCarreraSeleccionada);
-            if (carreraSeleccionada.isFinalizada()) {
-                JOptionPane.showMessageDialog(this, "Esta carrera ya ha finalizado.");
+            if (carreraSeleccionada.getCorredoresCarrera().size() < 1) {
+                JOptionPane.showMessageDialog(this, "La carrera seleccionada no tiene participantes, añada corredores antes de iniciarla.");
             } else {
-                DialogoIniciarCarrera dialogoIniciarCarrera = new DialogoIniciarCarrera(this, true, gc, carreraSeleccionada);
-                dialogoIniciarCarrera.setVisible(true);
+                if (carreraSeleccionada.isFinalizada()) {
+                    JOptionPane.showMessageDialog(this, "Esta carrera ya ha finalizado.");
+                } else {
+                    DialogoIniciarCarrera dialogoIniciarCarrera = new DialogoIniciarCarrera(this, true, gc, carreraSeleccionada);
+                    dialogoIniciarCarrera.setVisible(true);
+                }
             }
         }
     }//GEN-LAST:event_jButtonIniciarCarreraActionPerformed
@@ -318,27 +317,30 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
             JOptionPane.showMessageDialog(this, "No has seleccionado ninguna carrera.");
         } else {
             Carrera carreraClasificacion = gc.getListaCarreras().get(carreraSeleccionadaParaClasificacion);
-            for (Iterator<CorredorCarrera> iterator = carreraClasificacion.getCorredoresCarrera().iterator(); iterator.hasNext();) {
-                CorredorCarrera corredorCarrera = iterator.next();
-                String tiempoModificar = corredorCarrera.getTiempo();
-                String nuevoTiempo = tiempoModificar.replace(":", "");
-                int tiempo = Integer.parseInt(nuevoTiempo);
-                corredorCarrera.setTiempoParaClasificacion(tiempo);
-            }
+            if (!carreraClasificacion.isFinalizada()) {
+                JOptionPane.showMessageDialog(this, "Para generar la clasificación la carrera debe haber finalizado.");
+            } else {
+                for (Iterator<CorredorCarrera> iterator = carreraClasificacion.getCorredoresCarrera().iterator(); iterator.hasNext();) {
+                    CorredorCarrera corredorCarrera = iterator.next();
+                    String tiempoModificar = corredorCarrera.getTiempo();
+                    String nuevoTiempo = tiempoModificar.replace(":", "");
+                    int tiempo = Integer.parseInt(nuevoTiempo);
+                    corredorCarrera.setTiempoParaClasificacion(tiempo);
+                }
 
-            Collections.sort(carreraClasificacion.getCorredoresCarrera());
-            //aquí ya me devuelve la lista ordenada por orden de llegada.
-            //ahora la escribo
-            escribirCsvClasificación();
+                Collections.sort(carreraClasificacion.getCorredoresCarrera());
+                //aquí ya me devuelve la lista ordenada por orden de llegada.
+                //ahora la escribo
+                escribirCsvClasificación();
+            }
         }
     }//GEN-LAST:event_jButtonClasificacionActionPerformed
 
     public void escribirCsvClasificación() {
         int carreraSeleccionadaParaClasificacion = jTableCarreras.getSelectedRow();
         Carrera carreraClasificacion = gc.getListaCarreras().get(carreraSeleccionadaParaClasificacion);
-        String outputFile = "clasificacion"+carreraClasificacion.getNombreCarrera()+".csv";
+        String outputFile = "clasificacion" + carreraClasificacion.getNombreCarrera() + ".csv";
         boolean alreadyExists = new File(outputFile).exists();
-        
 
         if (alreadyExists) {
             File ArchivoCorredores = new File(outputFile);
@@ -350,7 +352,7 @@ public class ListadoCarreras extends javax.swing.JDialog implements Serializable
             CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');
 
             csvOutput.write(carreraClasificacion.getNombreCarrera());
-             csvOutput.endRecord();
+            csvOutput.endRecord();
             csvOutput.write(carreraClasificacion.getFechaCarrera() + "\n");
             csvOutput.endRecord();
 

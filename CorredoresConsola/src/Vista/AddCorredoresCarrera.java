@@ -46,6 +46,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredoresDisponibles = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -105,6 +106,14 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jLabel2.text")); // NOI18N
 
+        jButton1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        jButton1.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jButton1.text")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,10 +124,12 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
+                        .addGap(89, 89, 89)
                         .addComponent(jButtonAddCorredores)
-                        .addGap(90, 90, 90)
-                        .addComponent(jButtonBorrarCorredores)))
+                        .addGap(38, 38, 38)
+                        .addComponent(jButtonBorrarCorredores)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton1)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +158,8 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAddCorredores)
-                    .addComponent(jButtonBorrarCorredores))
+                    .addComponent(jButtonBorrarCorredores)
+                    .addComponent(jButton1))
                 .addGap(75, 75, 75))
         );
 
@@ -206,6 +218,10 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
          
     }//GEN-LAST:event_jButtonBorrarCorredoresActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void rellenarTablaCorredoresDisponibles() {
         jTableCorredoresDisponibles.setModel(new MiTablaCorredores(gestionCorredor.getListaCorredores()));
     }
@@ -217,6 +233,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAddCorredores;
     private javax.swing.JButton jButtonBorrarCorredores;
     private javax.swing.JLabel jLabel1;

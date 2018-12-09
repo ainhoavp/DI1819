@@ -181,10 +181,12 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
 
 
     private void jButtonFinalizarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCarreraActionPerformed
-        carreraActual.setFinalizada(true);
-        JOptionPane.showConfirmDialog(this, "Carrera finalizada.");
-        repintarTablaEnListadoCarreras();
-        dispose();
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea finalizar la carrera?", "Confirmar finalizado", JOptionPane.YES_NO_OPTION);
+        if (respuesta != 1) {
+            carreraActual.setFinalizada(true);
+            repintarTablaEnListadoCarreras();
+            dispose();
+        }
 
     }//GEN-LAST:event_jButtonFinalizarCarreraActionPerformed
 
