@@ -281,30 +281,33 @@ public class CuestionarioAltaCorredor extends javax.swing.JDialog implements Ser
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-
-        String nombre = jTextFieldNombre.getText();
-        String apellidos = jTextFieldApellidos.getText();
-        String dni = jTextFieldDNI.getText();
-        String dir = jTextFieldDireccion.getText();
-        String telf = jTextFieldTel.getText();
-        Date fecha = jDateChooserFechaNac.getDate();
-
-        if (corredorModificar == null) {
-            gc.anadirCorredor(nombre, apellidos, dir, dni, fecha, Integer.parseInt(telf));
-            JOptionPane.showMessageDialog(this, "Corredor dado de alta", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+        if (jDateChooserFechaNac.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "La fecha no puede estar vacía", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            corredorModificar.setNombre(nombre);
-            corredorModificar.setApellido(apellidos);
-            corredorModificar.setDni(dni);
-            corredorModificar.setDireccion(dir);
-            corredorModificar.setTelefono(Integer.parseInt(telf));
-            corredorModificar.setfNac(fecha);
-        }
+            String nombre = jTextFieldNombre.getText();
+            String apellidos = jTextFieldApellidos.getText();
+            String dni = jTextFieldDNI.getText();
+            String dir = jTextFieldDireccion.getText();
+            String telf = jTextFieldTel.getText();
+            Date fecha = jDateChooserFechaNac.getDate();
+
+            if (corredorModificar == null) {
+                gc.anadirCorredor(nombre, apellidos, dir, dni, fecha, Integer.parseInt(telf));
+                JOptionPane.showMessageDialog(this, "Corredor dado de alta", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                corredorModificar.setNombre(nombre);
+                corredorModificar.setApellido(apellidos);
+                corredorModificar.setDni(dni);
+                corredorModificar.setDireccion(dir);
+                corredorModificar.setTelefono(Integer.parseInt(telf));
+                corredorModificar.setfNac(fecha);
+            }
 
 //de esta clase: "java.awt.Frame parent"     
-        //pp.rellenarListaCorredores();
-        limpiarPantalla();
-        dispose(); //para cerrar la pantalla secundaria
+            //pp.rellenarListaCorredores();
+            limpiarPantalla();
+            dispose(); //para cerrar la pantalla secundaria
+        }
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed

@@ -231,28 +231,30 @@ public class CuestionarioAltaCarreras extends javax.swing.JDialog implements Ser
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEnviarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarCarrerasActionPerformed
-
-        String nombreCarrera = jTextFieldNombreCarrera.getText();
-        Date fechaCarrera = jDateChooserFecha.getDate();
-        String lugarCarrera = jTextFieldLugar.getText();
-        int precioCarrera = Integer.valueOf(jTextFieldPrecio.getText());
-        int numeroParticipantes = Integer.parseInt(jTextFieldNumeroParticipantes.getText());
-
-        carreraNueva = new Carrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);
-
-        if (carreraModificar == null) {
-            gc.anadirCarrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);
-            JOptionPane.showMessageDialog(this, "Carrera dada de alta", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+        if (jDateChooserFecha.getDate() == null || jDateChooserFecha.getDate().before(new Date())) {
+            JOptionPane.showMessageDialog(this, "La fecha no puede estar vacía  o no puede ser anterior a la de hoy", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            carreraModificar.setNombreCarrera(nombreCarrera);
-            carreraModificar.setLugarCarrera(lugarCarrera);
-            carreraModificar.setNumeroParticipantes(numeroParticipantes);
-            carreraModificar.setPrecio(precioCarrera);
-            carreraModificar.setFechaCarrera(fechaCarrera);
-        }
+            String nombreCarrera = jTextFieldNombreCarrera.getText();
+            Date fechaCarrera = jDateChooserFecha.getDate();
+            String lugarCarrera = jTextFieldLugar.getText();
+            int precioCarrera = Integer.valueOf(jTextFieldPrecio.getText());
+            int numeroParticipantes = Integer.parseInt(jTextFieldNumeroParticipantes.getText());
 
-        limpiarPantalla();
-        dispose();
+            carreraNueva = new Carrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);
+
+            if (carreraModificar == null) {
+                gc.anadirCarrera(nombreCarrera, fechaCarrera, lugarCarrera, numeroParticipantes, precioCarrera);
+                JOptionPane.showMessageDialog(this, "Carrera dada de alta", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                carreraModificar.setNombreCarrera(nombreCarrera);
+                carreraModificar.setLugarCarrera(lugarCarrera);
+                carreraModificar.setNumeroParticipantes(numeroParticipantes);
+                carreraModificar.setPrecio(precioCarrera);
+                carreraModificar.setFechaCarrera(fechaCarrera);
+            }
+            limpiarPantalla();
+            dispose();
+        }
     }//GEN-LAST:event_jButtonEnviarCarrerasActionPerformed
 
     private void jTextFieldNumeroParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroParticipantesActionPerformed

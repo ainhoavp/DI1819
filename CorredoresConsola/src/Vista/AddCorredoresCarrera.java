@@ -46,7 +46,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCorredoresDisponibles = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonTerminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -106,11 +106,11 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jLabel2.text")); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
-        jButton1.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTerminar.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        jButtonTerminar.setText(org.openide.util.NbBundle.getMessage(AddCorredoresCarrera.class, "AddCorredoresCarrera.jButtonTerminar.text")); // NOI18N
+        jButtonTerminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonTerminarActionPerformed(evt);
             }
         });
 
@@ -129,7 +129,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
                         .addGap(38, 38, 38)
                         .addComponent(jButtonBorrarCorredores)
                         .addGap(40, 40, 40)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonTerminar)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +159,7 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAddCorredores)
                     .addComponent(jButtonBorrarCorredores)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonTerminar))
                 .addGap(75, 75, 75))
         );
 
@@ -185,42 +185,45 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
 
     private void jButtonAddCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCorredoresActionPerformed
         int selec = jTableCorredoresDisponibles.getSelectedRow(); //posicion en la que está el corredor en la tabla
-        if(carreraSeleccionada.isFinalizada()){
+        if (carreraSeleccionada.isFinalizada()) {
             JOptionPane.showMessageDialog(this, "No puedes añadir más corredores a esta carrera, ya está finalizada.");
-        }else{
-        int dorsal = gc.generarDorsal(carreraSeleccionada);
-        Corredor corredorSeleccionado = gestionCorredor.getListaCorredores().get(selec);
-        CorredorCarrera corredorCarrera = new CorredorCarrera(corredorSeleccionado, dorsal);
-        //comprobar antes de añadir el numero maximo de participantes de la carrera y si el corredor ya está en la carrera apuntado.
-        if (carreraSeleccionada.getCorredoresCarrera().size() >= carreraSeleccionada.getNumeroParticipantes()) {
-            JOptionPane.showMessageDialog(this, "Ya hay inscritos el número maximo de participantes.");
         } else {
-            List<Corredor> listaCorredores = new ArrayList<>();
-            for (CorredorCarrera corCar : carreraSeleccionada.getCorredoresCarrera()) {
-                listaCorredores.add(corCar.getCorredor());
-            }
-            if (listaCorredores.contains(corredorSeleccionado)) {
-                JOptionPane.showMessageDialog(this, "El corredor ya está inscrito en la carrera.");
+            int dorsal = gc.generarDorsal(carreraSeleccionada);
+            Corredor corredorSeleccionado = gestionCorredor.getListaCorredores().get(selec);
+            CorredorCarrera corredorCarrera = new CorredorCarrera(corredorSeleccionado, dorsal);
+            //comprobar antes de añadir el numero maximo de participantes de la carrera y si el corredor ya está en la carrera apuntado.
+            if (carreraSeleccionada.getCorredoresCarrera().size() >= carreraSeleccionada.getNumeroParticipantes()) {
+                JOptionPane.showMessageDialog(this, "Ya hay inscritos el número maximo de participantes.");
             } else {
-                carreraSeleccionada.getCorredoresCarrera().add(corredorCarrera);
+                List<Corredor> listaCorredores = new ArrayList<>();
+                for (CorredorCarrera corCar : carreraSeleccionada.getCorredoresCarrera()) {
+                    listaCorredores.add(corCar.getCorredor());
+                }
+                if (listaCorredores.contains(corredorSeleccionado)) {
+                    JOptionPane.showMessageDialog(this, "El corredor ya está inscrito en la carrera.");
+                } else {
+                    carreraSeleccionada.getCorredoresCarrera().add(corredorCarrera);
+                }
+                rellenarTablaCorredoresInscritos();
             }
-            rellenarTablaCorredoresInscritos();
-        }
         }
     }//GEN-LAST:event_jButtonAddCorredoresActionPerformed
 
     private void jButtonBorrarCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarCorredoresActionPerformed
-         int selec = jTableCorredoresInscritos.getSelectedRow();
-         CorredorCarrera corredorCarreraSeleccionado = carreraSeleccionada.getCorredoresCarrera().get(selec);
-         carreraSeleccionada.getCorredoresCarrera().remove(corredorCarreraSeleccionado);
-         
-         rellenarTablaCorredoresInscritos();
-         
+        int selec = jTableCorredoresInscritos.getSelectedRow();
+        CorredorCarrera corredorCarreraSeleccionado = carreraSeleccionada.getCorredoresCarrera().get(selec);
+        if (carreraSeleccionada.isFinalizada()) {
+            JOptionPane.showMessageDialog(this, "No se pueden borrar los corredores, la carrera ya está finalizada.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            carreraSeleccionada.getCorredoresCarrera().remove(corredorCarreraSeleccionado);
+
+            rellenarTablaCorredoresInscritos();
+        }
     }//GEN-LAST:event_jButtonBorrarCorredoresActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerminarActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonTerminarActionPerformed
 
     public void rellenarTablaCorredoresDisponibles() {
         jTableCorredoresDisponibles.setModel(new MiTablaCorredores(gestionCorredor.getListaCorredores()));
@@ -233,9 +236,9 @@ public class AddCorredoresCarrera extends javax.swing.JDialog implements Seriali
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAddCorredores;
     private javax.swing.JButton jButtonBorrarCorredores;
+    private javax.swing.JButton jButtonTerminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
