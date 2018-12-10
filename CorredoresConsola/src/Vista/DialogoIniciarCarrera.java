@@ -39,9 +39,7 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
         cronometroJLabel2.setLlegada(new Llegada() {
             @Override
             public void ejecutarLlegada(int dorsal, String tiempo) {
-                if (dorsales.contains(dorsal)) {
-                    carreraActual.getCorredoresCarrera().get(dorsal - 1).setTiempo(tiempo);
-                }
+                gc.buscarDorsal(carreraActual, dorsal, tiempo);
             }
         });
     }

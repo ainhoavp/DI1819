@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.Carrera;
+import Modelo.CorredorCarrera;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,7 +24,6 @@ public class GestionCarrera implements Serializable {
     private Carrera carrera;
     private ArrayList<Carrera> listaCarreras = new ArrayList();
 
-    
     public Carrera getCarrera() {
         return carrera;
     }
@@ -54,31 +54,38 @@ public class GestionCarrera implements Serializable {
             System.out.println("No hay carreras con ese nombrei");
         }
     }
-    
-    
-    public int generarDorsal(Carrera carrera){
-        
+
+    public int generarDorsal(Carrera carrera) {
+
         int numUltimoDorsal = 0;
         for (int i = 0; i < carrera.getCorredoresCarrera().size(); i++) {
-           numUltimoDorsal = carrera.getCorredoresCarrera().get(i).getDorsal();
+            numUltimoDorsal = carrera.getCorredoresCarrera().get(i).getDorsal();
         }
-            numUltimoDorsal++;
+        numUltimoDorsal++;
         return numUltimoDorsal;
-        
+
     }
 
-public void guardarEstado(String nombreFichero) throws FileNotFoundException, IOException{
-    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreFichero));
-    oos.writeObject(this);
-    oos.close();
-}
-      
-public void leerEstado(String nombreFichero) throws FileNotFoundException, IOException, ClassNotFoundException{
-    ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreFichero));
-    GestionCarrera gestionCarrera = (GestionCarrera) ois.readObject();
-    this.listaCarreras = gestionCarrera.getListaCarreras();
-    this.carrera = gestionCarrera.getCarrera();
-    ois.close();
-}
+    public void buscarDorsal(Carrera carrera, int dorsal, String tiempo) {
+        for (CorredorCarrera listaCorredores : carrera.getCorredoresCarrera()) {
+            if (listaCorredores.getDorsal() == dorsal) {
+                listaCorredores.setTiempo(tiempo);
+            }
+        }
+    }
+
+    public void guardarEstado(String nombreFichero) throws FileNotFoundException, IOException {
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreFichero));
+        oos.writeObject(this);
+        oos.close();
+    }
+
+    public void leerEstado(String nombreFichero) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreFichero));
+        GestionCarrera gestionCarrera = (GestionCarrera) ois.readObject();
+        this.listaCarreras = gestionCarrera.getListaCarreras();
+        this.carrera = gestionCarrera.getCarrera();
+        ois.close();
+    }
 
 }
