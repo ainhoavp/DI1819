@@ -41,7 +41,6 @@ public class DialogoIniciarCarrera extends javax.swing.JDialog implements Serial
             public void ejecutarLlegada(int dorsal, String tiempo) {
                 if (dorsales.contains(dorsal)) {
                     carreraActual.getCorredoresCarrera().get(dorsal - 1).setTiempo(tiempo);
-                    System.out.println(carreraActual.getCorredoresCarrera().get(dorsal - 1).toString());
                 }
             }
         });
